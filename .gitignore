@@ -2,6 +2,11 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+
+## Private Kyes
+PrivateKeys.plist
+GoogleService-Info.plist
+
 ## Build generated
 build/
 DerivedData/

@@ -1,0 +1,6 @@
+framework module Pods_lasgasmxUITests {
+  umbrella header "Pods-lasgasmxUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
