@@ -20,6 +20,8 @@
 		E96CE1801E89CE2B00F9D97B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E96CE17F1E89CE2B00F9D97B /* GoogleService-Info.plist */; };
 		E96CE1821E89D3F200F9D97B /* PrivateKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E96CE1811E89D3F200F9D97B /* PrivateKeys.plist */; };
 		E96CE1851E89D5AB00F9D97B /* ConfigKeysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CE1841E89D5AB00F9D97B /* ConfigKeysManager.swift */; };
+		E9EB3A3B1E8AD3E600D76215 /* gasPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EB3A3A1E8AD3E600D76215 /* gasPriceView.swift */; };
+		E9EB3A3E1E8AD57900D76215 /* UIColor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		E96CE17F1E89CE2B00F9D97B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E96CE1811E89D3F200F9D97B /* PrivateKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PrivateKeys.plist; sourceTree = "<group>"; };
 		E96CE1841E89D5AB00F9D97B /* ConfigKeysManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigKeysManager.swift; path = Helpers/ConfigKeysManager.swift; sourceTree = "<group>"; };
+		E9EB3A3A1E8AD3E600D76215 /* gasPriceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = gasPriceView.swift; path = Views/gasPriceView.swift; sourceTree = "<group>"; };
+		E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Helper.swift"; path = "Helpers/Extension/UIColor+Helper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				E9112AC01E8195EE00B6E60F /* HomeView.swift */,
+				E9EB3A3A1E8AD3E600D76215 /* gasPriceView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 		E96CE1831E89D57A00F9D97B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */,
 				E96CE1841E89D5AB00F9D97B /* ConfigKeysManager.swift */,
 			);
 			name = Helpers;
@@ -500,7 +506,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9112AC11E8195EE00B6E60F /* HomeView.swift in Sources */,
+				E9EB3A3E1E8AD57900D76215 /* UIColor+Helper.swift in Sources */,
 				E96CE1851E89D5AB00F9D97B /* ConfigKeysManager.swift in Sources */,
+				E9EB3A3B1E8AD3E600D76215 /* gasPriceView.swift in Sources */,
 				E9112ABF1E8195EE00B6E60F /* AppDelegate.swift in Sources */,
 				E9112AC71E8195EE00B6E60F /* lasgasmx.xcdatamodeld in Sources */,
 			);

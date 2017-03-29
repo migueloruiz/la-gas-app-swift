@@ -9,6 +9,7 @@ target 'lasgasmx' do
 
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
+  pod 'GoogleMaps'
 
   target 'lasgasmxTests' do
     inherit! :search_paths

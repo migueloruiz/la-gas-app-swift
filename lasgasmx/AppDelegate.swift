@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import GoogleMaps;
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,10 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let id = configKeysManager.getConfigValue(byKey: "AdMobID")
         GADMobileAds.configure(withApplicationID: "ca-app-pub-\(id)")
         
+//        let googleKey = configKeysManager.getConfigValue(byKey: "GoogleMapsKey")
+        GMSServices.provideAPIKey("AIzaSyAfXh0lF_P9NILv-_qbShZV7VNgKNqgme8")
+        
 //        let layout = UICollectionViewFlowLayout()
 //        window?.rootViewController = UINavigationController(rootViewController: HomeView(collectionViewLayout:layout) )
-        
-        window?.rootViewController = UINavigationController(rootViewController: HomeView() )
+         window?.rootViewController = HomeView()
+//        window?.rootViewController = UINavigationController(rootViewController: HomeView() )
 
         
         return true

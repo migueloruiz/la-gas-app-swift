@@ -8,14 +8,12 @@
 
 import UIKit
 import GoogleMobileAds
+import GoogleMaps
 
-class HomeView: UIViewController, GADBannerViewDelegate {
+class HomeView: UIViewController, GADBannerViewDelegate, GMSMapViewDelegate {
     
-    let gasPicker: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
-        return view
+    let gasPricesCarrousell: gasPriceView = {
+        return gasPriceView()
     }()
     
     let adsView: GADBannerView = {
@@ -24,10 +22,21 @@ class HomeView: UIViewController, GADBannerViewDelegate {
         return view
     }()
     
-    let mapView: UIView = {
-        let view = UIView()
+    var mapView: GMSMapView = {
+        let view = GMSMapView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .green
+        
+        let camera = GMSCameraPosition.camera(withLatitude: 19.4406926, longitude: -99.2047001, zoom: 17)
+        view.camera = camera
+        view.isMyLocationEnabled = true
+        
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2DMake(19.4406926, -99.2047001)
+        marker.title = "Sydney"
+        marker.snippet = "Australia"
+        marker.icon = UIImage(named: "locationIcon")
+        marker.map = view
+
         return view
     }()
     
@@ -37,12 +46,12 @@ class HomeView: UIViewController, GADBannerViewDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupSubViews()
+        mapView.delegate = self
     }
     
     func setupSubViews() {
         
         let configKeysManager = ConfigKeysManager()
-        let id = configKeysManager.getConfigValue(byKey: "AdMobID")
         adsView.adUnitID = "ca-app-pub-2278511226994516/3431553183"
         adsView.rootViewController = self
         adsView.delegate = self
@@ -51,32 +60,29 @@ class HomeView: UIViewController, GADBannerViewDelegate {
         request.testDevices = [kGADSimulatorID]
         adsView.load(request)
         
-        view.addSubview(gasPicker)
-        view.addSubview(adsView)
         view.addSubview(mapView)
-        
-//        gasPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor ).isActive = true
-//        gasPicker.centerYAnchor.constraint(equalTo: view.centerYAnchor ).isActive = true
-//        gasPicker.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-//        gasPicker.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.8).isActive = true
+        view.addSubview(adsView)
+        view.addSubview(gasPricesCarrousell)
 
-        gasPicker.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor , constant: 0).isActive = true
-        gasPicker.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
-        gasPicker.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
-        gasPicker.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
-        gasPicker.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 0.08 ).isActive = true
+        gasPricesCarrousell.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor , constant: 10).isActive = true
+        gasPricesCarrousell.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 30).isActive = true
+        gasPricesCarrousell.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -30).isActive = true
+        gasPricesCarrousell.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
+        gasPricesCarrousell.heightAnchor.constraint(equalToConstant: 60 ).isActive = true
         
         adsView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        adsView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
-        adsView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
-        adsView.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
+//        adsView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
+//        adsView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
+        adsView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        adsView.widthAnchor.constraint(equalToConstant: 320).isActive = true
         adsView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        mapView.topAnchor.constraint(equalTo: gasPicker.bottomAnchor , constant: 0).isActive = true
-        mapView.bottomAnchor.constraint(equalTo: adsView.topAnchor , constant: 0).isActive = true
+        mapView.topAnchor.constraint(equalTo: view.topAnchor , constant: 0).isActive = true
+        mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor , constant: 0).isActive = true
         mapView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         mapView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
         mapView.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
+        
     }
     
     /// Tells the delegate an ad request loaded an ad.
@@ -111,7 +117,13 @@ class HomeView: UIViewController, GADBannerViewDelegate {
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         print("adViewWillLeaveApplication")
     }
-
+    
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        let infoWindow = UIView(frame: CGRect(x: 0, y: 0, width: 170, height: 100))
+        infoWindow.backgroundColor = .cyan
+        return infoWindow
+    }
+    
 }
 
 //class HomeView: UICollectionViewController {
