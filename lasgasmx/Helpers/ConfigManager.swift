@@ -8,12 +8,14 @@
 
 import Foundation
 
-class ConfigKeysManager: NSObject {
+class ConfigManager {
     
     let configKeys :[String: AnyObject]
     
-    override init() {
-        guard let path = Bundle.main.path(forResource: "PrivateKeys", ofType: "plist") else {
+    // TODO: Hacer un correcto manejo de errores en la carga de el .plist
+    
+    init( byPlistFile file: String ) {
+        guard let path = Bundle.main.path(forResource: file, ofType: "plist") else {
             self.configKeys = [String: AnyObject]()
             print("ERROR: PrivateKeys.plit not found")
             return
@@ -22,9 +24,8 @@ class ConfigKeysManager: NSObject {
         self.configKeys = NSDictionary(contentsOfFile: path) as! [String: AnyObject]!
     }
     
-    func getConfigValue(byKey key: String) -> String {
-        guard configKeys[key] != nil else { return "" }
-        return self.configKeys[key]! as! String
+    subscript(key: String) -> String {
+        return configKeys[key] != nil ? self.configKeys[key]! as! String : ""
     }
     
 }

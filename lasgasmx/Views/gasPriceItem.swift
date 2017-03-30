@@ -8,7 +8,7 @@
 
 import UIKit
 
-class gasPriceView: UIView {
+class gasPriceItem: UIView {
     
     let cityLable: UILabel = {
         let lable = UILabel()
