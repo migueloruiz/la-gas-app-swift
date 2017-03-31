@@ -15,6 +15,7 @@ import GoogleMaps;
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var mainNavigation: UINavigationController? = nil
     let configManager = ConfigManager(byPlistFile: "PrivateKeys")
 
 
@@ -31,9 +32,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // TODO: Hacer un Routing o manejador de vista
         let homeViewController = HomeViewController()
-        window?.rootViewController = UINavigationController(rootViewController: homeViewController )
+        
+        mainNavigation = UINavigationController(rootViewController: homeViewController )
+        mainNavigation?.navigationBar.backIndicatorImage = UIImage(named: "back")
+        mainNavigation?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "back")        
+        
+        window?.rootViewController = mainNavigation
+        
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector:  #selector(AppDelegate.catchNotification), name: NSNotification.Name(rawValue: "PresentViewNotification"), object: nil)
         
         return true
+    }
+    
+    func catchNotification(notification:Notification) -> Void {
+        
+        guard let object = notification.object else {
+            return
+        }
+        
+        print("object \(object)")
+        mainNavigation?.pushViewController(EditLocationViewController(), animated: true)
+        
+        
     }
 
     // MARK: - Core Data stack

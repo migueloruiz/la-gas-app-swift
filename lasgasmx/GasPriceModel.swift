@@ -8,13 +8,20 @@
 
 import Foundation
 
-struct GasPrice {
+struct GasPriceInState {
     var state: String
     var city: String
+    var date: String
+    var prices: [GasPrice]
     
     func getText() -> String {
         return "\(city), \(state)"
     }
+}
+
+struct GasPrice {
+    let type : FuelType
+    let price: Float
 }
 
 enum FuelType: String {

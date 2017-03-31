@@ -9,6 +9,11 @@ Icon
 # Thumbnails
 ._*
 
+# Private Files
+GoogleService-Info.plist
+PrivateKeys.plist
+
+
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd

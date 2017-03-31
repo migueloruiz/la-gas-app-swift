@@ -88,8 +88,11 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
         gasPricesController?.delegate = self
         mapView.delegate = self
         
-        setupNavigationBar()
         setupSubViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBar()
     }
     
     func setupNavigationBar() {
@@ -108,7 +111,12 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
         request.testDevices = [kGADSimulatorID]
         adsView.load(request)
         
-        pager.numberOfPages = (gasPriceDatasorce.objects?.count)!
+        
+        if let items = gasPriceDatasorce.objects {
+            pager.numberOfPages = items.count
+        } else {
+            pager.numberOfPages = 1
+        }
         
         view.addSubview(mapView)
         view.addSubview(adsView)
@@ -122,7 +130,7 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
         tap.delegate = self
         view.addGestureRecognizer(tap)
 
-        gasPricesCarrousell.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 60)
+        gasPricesCarrousell.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 70)
         
         adsView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 320, heightConstant: 50)
         adsView.anchorCenterXToSuperview()
@@ -131,8 +139,17 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
     }
     
     func updateCounter(counter: Int) {
-        pager.numberOfPages = (gasPriceDatasorce.objects?.count)!
+        pager.numberOfPages = (gasPriceDatasorce.objects?.count)! ?? 1
         pager.currentPage = counter
+        
+        if let items = gasPriceDatasorce.objects {
+            pager.numberOfPages = items.count
+            pager.currentPage = counter
+        } else {
+            pager.numberOfPages = 1
+            pager.currentPage = 1
+        }
+
     }
     
     func handleTap(sender: UITapGestureRecognizer? = nil) {

@@ -12,19 +12,37 @@ class GasPriceCell: CollectionDatasourceCell {
     
     override var datasourceItem: Any? {
         didSet {
-            if let text = datasourceItem as? String {
-                cityLable.text = text
-            } else {
-                cityLable.text = datasourceItem.debugDescription
+            guard let item = datasourceItem as? GasPriceInState else {
+                return
+            }
+            cityLable.text = item.getText()
+            dateLable.text = item.date
+            
+            pricesStack.clearSubviews()
+            
+            for price in item.prices {
+                let priceView = GasItemView(price: price.price, forType: price.type)
+                pricesStack.addArrangedSubview(priceView)
             }
         }
     }
+    
+    let pricesStack = UIStackView(arrangedSubviews: [])
     
     let cityLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.text = "Miguel Hidalgo, Ciudad de México"
         lable.font = UIFont.systemFont(ofSize: 14)
+        lable.textAlignment = .center
+        return lable
+    }()
+    
+    let dateLable: UILabel = {
+        let lable = UILabel()
+        lable.translatesAutoresizingMaskIntoConstraints = false
+        lable.text = "18 al 20 de Marzo del 2017"
+        lable.font = UIFont.systemFont(ofSize: 12)
         lable.textAlignment = .center
         return lable
     }()
@@ -37,47 +55,78 @@ class GasPriceCell: CollectionDatasourceCell {
         self.layer.masksToBounds = true
         self.backgroundColor = .white
         
-        
-        let view1 = gasItem( withType: .Magna )
-        let view2 = gasItem( withType: .Premium )
-        let view3 = gasItem( withType: .Diesel)
-        
-        view1.price = 16.89
-        view2.price = 16.90
-        view3.price = 19.89
-        
-        let pricesStack = UIStackView(arrangedSubviews: [
-            view1,
-            view2,
-            view3
-            ])
         pricesStack.axis = .horizontal
         pricesStack.distribution = .fillEqually
         pricesStack.translatesAutoresizingMaskIntoConstraints = false
         
-        
         self.addSubview(cityLable)
+        self.addSubview(dateLable)
         self.addSubview(pricesStack)
         
-        cityLable.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-        cityLable.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
-        cityLable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
-        cityLable.heightAnchor.constraint(equalToConstant: 23).isActive = true
+        cityLable.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 22)
         
-        pricesStack.topAnchor.constraint(equalTo: cityLable.bottomAnchor, constant: 0).isActive = true
-        pricesStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        pricesStack.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
-        pricesStack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
+        dateLable.anchor(top: cityLable.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: -4, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 18)
+        
+        pricesStack.anchor(top: dateLable.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    }
+
+}
+
+class GasPriceEmptyCell: CollectionDatasourceCell {
+    
+    override var datasourceItem: Any? {
+        didSet {}
+    }
+    
+    let textLable: UITextView = {
+        let lable = UITextView()
+        lable.translatesAutoresizingMaskIntoConstraints = false
+        lable.text = "Agrega una localidad para consultar los precios"
+        lable.font = UIFont.systemFont(ofSize: 16)
+        lable.textAlignment = .left
+        lable.isEditable = false
+        lable.isSelectable = false
+        
+        return lable
+    }()
+    
+    let addbutton : UIButton = {
+        let b = UIButton(type: .contactAdd)
+        return b
+    }()
+    
+    override func setupViews() {
+        super.setupViews()
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
+        self.backgroundColor = .white
+        
+        self.addSubview(textLable)
+        self.addSubview(addbutton)
+        
+        textLable.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: addbutton.leftAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 0, widthConstant: self.frame.width * 0.8, heightConstant: 0)
+        
+        addbutton.anchor(top: self.topAnchor, left: textLable.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: self.frame.width * 0.2, heightConstant: 0)
+        
+        addbutton.addTarget(self, action: #selector(GasPriceEmptyCell.presentCreateView), for: .touchUpInside)
+    }
+    
+    func presentCreateView() {
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name(rawValue:"PresentViewNotification"), object: "hola")
     }
     
 }
 
 
-class gasItem: UIView {
+class GasItemView: UIView {
     
     var price: Float {
-        set(new) { priceLabel.text = "\(new) $" }
-        get { return self.price }
+        didSet(new) {
+            priceLabel.text = (new > 0) ? "\(new) $" : "- -"
+        }
     }
     
     lazy var priceLabel: UILabel = {
@@ -99,14 +148,17 @@ class gasItem: UIView {
     }()
     
     override init(frame: CGRect) {
+        self.price = 0
         super.init(frame: frame)
         setupView()
     }
     
-    convenience init( withType fule: FuelType ) {
+    convenience init(price: Float, forType fule: FuelType ) {
         self.init(frame: CGRect.zero)
         setupView()
         setColor(by: fule)
+        self.price = price
+        priceLabel.text = (price > 0) ? "\(price) $" : "- -"
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -119,14 +171,10 @@ class gasItem: UIView {
         addSubview(priceLabel)
         addSubview(fuelTypeLabel)
         
-        priceLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 3).isActive = true
-        priceLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
-        priceLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
+        priceLabel.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 3, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         priceLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
-        fuelTypeLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: -5).isActive = true
-        fuelTypeLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
-        fuelTypeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
-        fuelTypeLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -3).isActive = true
+        
+        fuelTypeLabel.anchor(top: priceLabel.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: -5, leftConstant: 0, bottomConstant: 3, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
     
     func setColor( by type: FuelType) {
