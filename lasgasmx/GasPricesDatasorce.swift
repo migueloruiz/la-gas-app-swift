@@ -6,16 +6,20 @@
 //  Copyright © 2017 migueloruiz. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class GasPricesDatasorce: CollectionDatasource {
     override init() {
         super.init()
-        objects = ["hola","hola1","hola2","hola3"]
+        objects = ["0","0", "1"]
     }
     
-//    override func cellClasses() -> [CollectionDatasourceCell.Type] {
-//        return [iPhoneCell.self, MacCell.self]
-//    }
+    override func cellClasses() -> [CollectionDatasourceCell.Type] {
+        return [GasPriceCell.self]
+    }
+    
+    override func cellClass(_ indexPath: IndexPath) -> CollectionDatasourceCell.Type? {
+        return GasPriceCell.self
+    }
     
 }

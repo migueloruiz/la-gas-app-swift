@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, UICollectionViewDelegate, CollectionDatasourceDelegate, UICollectionViewDelegateFlowLayout {
     
     private unowned var collectionView: UICollectionView
     
@@ -23,7 +23,8 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
         didSet {
             if let cellClasses = datasource?.cellClasses() {
                 for cellClass in cellClasses {
-                    collectionView.register(cellClass, forCellWithReuseIdentifier: String(describing: cellClass))
+                    let className = String(describing: cellClass)
+                    collectionView.register(cellClass, forCellWithReuseIdentifier: String(describing: className))
                 }
             }
 
@@ -50,14 +51,38 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
     init(collectionView: UICollectionView, datasorce: CollectionDatasource) {
         self.collectionView = collectionView
         self.datasource = datasorce
+        super.init()
         
-//        collectionView.backgroundColor = .white
-//        collectionView.alwaysBounceVertical = true
+        datasorce.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         collectionView.register(DefaultCell.self, forCellWithReuseIdentifier: defaultCellId)
         collectionView.register(DefaultHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: defaultHeaderId)
         collectionView.register(DefaultFooter.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: defaultFooterId)
+        
+        if let cellClasses = datasource?.cellClasses() {
+            for cellClass in cellClasses {
+                collectionView.register(cellClass, forCellWithReuseIdentifier: String(describing: cellClass))
+            }
+        }
+        
+        if let headerClasses = datasource?.headerClasses() {
+            for headerClass in headerClasses {
+                collectionView.register(headerClass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier:String(describing: headerClass))
+            }
+        }
+        
+        if let footerClasses = datasource?.footerClasses() {
+            for footerClass in footerClasses {
+                collectionView.register(footerClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: String(describing: footerClass))
+            }
+        }
+        
+        setupViews(collectionView: collectionView)
     }
+    
+    open func setupViews( collectionView: UICollectionView) { }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -77,17 +102,17 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
         return CGSize(width: collectionView.frame.width, height: 50)
     }
     
+    
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         var cell: CollectionDatasourceCell
         
         if let cls = datasource?.cellClass(indexPath) {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(cls), for: indexPath) as! CollectionDatasourceCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: cls), for: indexPath) as! CollectionDatasourceCell
         } else if let cellClasses = datasource?.cellClasses(), cellClasses.count > indexPath.section {
             let cls = cellClasses[indexPath.section]
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(cls), for: indexPath) as! CollectionDatasourceCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: cls), for: indexPath) as! CollectionDatasourceCell
         } else if let cls = datasource?.cellClasses().first {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(cls), for: indexPath) as! CollectionDatasourceCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: cls), for: indexPath) as! CollectionDatasourceCell
         } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: defaultCellId, for: indexPath) as! CollectionDatasourceCell
         }
@@ -98,14 +123,15 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
     }
     
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+         print("call viewForSupplementaryElementOfKind")
         
         var reusableView: CollectionDatasourceCell
         
         if kind == UICollectionElementKindSectionHeader {
             if let classes = datasource?.headerClasses(), classes.count > indexPath.section {
-                reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NSStringFromClass(classes[indexPath.section]), for: indexPath) as! CollectionDatasourceCell
+                reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: classes[indexPath.section]), for: indexPath) as! CollectionDatasourceCell
             } else if let cls = datasource?.headerClasses()?.first {
-                reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NSStringFromClass(cls), for: indexPath) as! CollectionDatasourceCell
+                reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: cls), for: indexPath) as! CollectionDatasourceCell
             } else {
                 reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: defaultHeaderId, for: indexPath) as! CollectionDatasourceCell
             }
@@ -113,9 +139,9 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
             
         } else {
             if let classes = datasource?.footerClasses(), classes.count > indexPath.section {
-                reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NSStringFromClass(classes[indexPath.section]), for: indexPath) as! CollectionDatasourceCell
+                reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: classes[indexPath.section]), for: indexPath) as! CollectionDatasourceCell
             } else if let cls = datasource?.footerClasses()?.first {
-                reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: NSStringFromClass(cls), for: indexPath) as! CollectionDatasourceCell
+                reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: cls), for: indexPath) as! CollectionDatasourceCell
             } else {
                 reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: defaultFooterId, for: indexPath) as! CollectionDatasourceCell
             }
@@ -127,14 +153,19 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
         return reusableView
     }
     
-    open func getRefreshControl() -> UIRefreshControl {
-        let rc = UIRefreshControl()
-        rc.addTarget(self, action: #selector(CollectionDatasourceController.handleRefresh), for: .valueChanged)
-        return rc
+    internal func datasorseUpdate() {
+        self.collectionView.reloadData()
     }
     
-    open func handleRefresh() {
-        
-    }
+//    open func getRefreshControl() -> UIRefreshControl {
+//        let rc = UIRefreshControl()
+//        rc.addTarget(self, action: #selector(CollectionDatasourceController.handleRefresh), for: .valueChanged)
+//        return rc
+//    }
+//    
+//    open func handleRefresh() {
+//        print("Refresh")
+//    }
     
 }
+

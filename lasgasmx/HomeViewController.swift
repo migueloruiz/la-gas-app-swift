@@ -10,18 +10,33 @@ import UIKit
 import GoogleMobileAds
 import GoogleMaps
 
-class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDelegate {
+class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDelegate, UIGestureRecognizerDelegate, GasPricesCarrouselControllerCounter {
     
     
 //    private var gasPricesCarouselController: GasPricesCarouselController!
     // TODO: Crear capa de Carrousel
     lazy var gasPricesCarrousell: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = .red
+        cv.showsHorizontalScrollIndicator = false
+        cv.backgroundColor = .clear
+        cv.isPagingEnabled = true
         return cv
     }()
+    
+    let pager : UIPageControl = {
+        let pg = UIPageControl(frame: .zero)
+        pg.translatesAutoresizingMaskIntoConstraints = false
+        pg.pageIndicatorTintColor = .gray
+        pg.currentPageIndicatorTintColor = .orange
+        pg.backgroundColor = .clear
+        return pg
+    }()
+    
+    let gasPriceDatasorce = GasPricesDatasorce()
+    var gasPricesController : GasPricesCarrouselController? = nil
     
 //    private var stationsMapController: GasPricesCarouselController!
 //    private var adModController: GasPricesCarouselController!
@@ -53,10 +68,10 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
     }()
     
     init() {
-        super.init(nibName: nil, bundle: nil)
         // TODO: Data Sorce
         // TODO: Injectar Repositorio de locaciones gasolineras
         // TODO: Injectar Repositorio de precios estados
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,16 +83,13 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupNavigationBar()
-        setupSubViews()
+        
+        gasPricesController = GasPricesCarrouselController(collectionView: gasPricesCarrousell, datasorce: gasPriceDatasorce)
+        gasPricesController?.delegate = self
         mapView.delegate = self
         
-        let datasorce = GasPricesDatasorce()
-        let gasPricesDatasorce = GasPricesCarrouselController(collectionView: gasPricesCarrousell, datasorce: datasorce)
-//        let gasPricesDatasorce = CollectionViewDataSource<UICollectionViewCell>(collectionView: gasPricesCarrousell)
-        gasPricesCarrousell.dataSource = gasPricesDatasorce
-        gasPricesCarrousell.delegate = gasPricesDatasorce
-        
+        setupNavigationBar()
+        setupSubViews()
     }
     
     func setupNavigationBar() {
@@ -96,16 +108,35 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
         request.testDevices = [kGADSimulatorID]
         adsView.load(request)
         
+        pager.numberOfPages = (gasPriceDatasorce.objects?.count)!
+        
         view.addSubview(mapView)
         view.addSubview(adsView)
         view.addSubview(gasPricesCarrousell)
+        view.addSubview(pager)
         
-        gasPricesCarrousell.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 10, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 60)
+        pager.anchorCenterXToSuperview()
+        pager.anchor(top: gasPricesCarrousell.bottomAnchor, left: gasPricesCarrousell.leftAnchor, bottom: nil, right: gasPricesCarrousell.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector( HomeViewController.handleTap) )
+        tap.delegate = self
+        view.addGestureRecognizer(tap)
+
+        gasPricesCarrousell.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 60)
         
         adsView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 320, heightConstant: 50)
         adsView.anchorCenterXToSuperview()
         
         mapView.fillSuperview()
+    }
+    
+    func updateCounter(counter: Int) {
+        pager.numberOfPages = (gasPriceDatasorce.objects?.count)!
+        pager.currentPage = counter
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer? = nil) {
+        gasPriceDatasorce.objects?.append("1")
     }
     
     /// Tells the delegate an ad request loaded an ad.

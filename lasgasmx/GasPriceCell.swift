@@ -1,14 +1,24 @@
 //
-//  gasPriceView.swift
+//  GasPriceCell.swift
 //  lasgasmx
 //
-//  Created by Desarrollo on 3/28/17.
+//  Created by Desarrollo on 3/30/17.
 //  Copyright © 2017 migueloruiz. All rights reserved.
 //
 
 import UIKit
 
-class gasPriceItem: UIView {
+class GasPriceCell: CollectionDatasourceCell {
+    
+    override var datasourceItem: Any? {
+        didSet {
+            if let text = datasourceItem as? String {
+                cityLable.text = text
+            } else {
+                cityLable.text = datasourceItem.debugDescription
+            }
+        }
+    }
     
     let cityLable: UILabel = {
         let lable = UILabel()
@@ -18,22 +28,10 @@ class gasPriceItem: UIView {
         lable.textAlignment = .center
         return lable
     }()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
     
-    convenience init() {
-        self.init(frame: CGRect.zero)
-        setupView()
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("This class does not support NSCoding")
-    }
-    
-    func setupView() {
+    override func setupViews() {
+        super.setupViews()
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.cornerRadius = 10
         self.layer.masksToBounds = true
@@ -56,8 +54,8 @@ class gasPriceItem: UIView {
         pricesStack.axis = .horizontal
         pricesStack.distribution = .fillEqually
         pricesStack.translatesAutoresizingMaskIntoConstraints = false
-
-
+        
+        
         self.addSubview(cityLable)
         self.addSubview(pricesStack)
         
@@ -71,8 +69,9 @@ class gasPriceItem: UIView {
         pricesStack.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
         pricesStack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
     }
-
+    
 }
+
 
 class gasItem: UIView {
     
@@ -133,30 +132,14 @@ class gasItem: UIView {
     func setColor( by type: FuelType) {
         fuelTypeLabel.text = type.rawValue
         switch type {
-            case .Magna:
-                self.backgroundColor = UIColor.magna
-            case .Premium:
-                self.backgroundColor = UIColor.premium
-            case .Diesel:
-                self.backgroundColor = UIColor.diesel
+        case .Magna:
+            self.backgroundColor = UIColor.magna
+        case .Premium:
+            self.backgroundColor = UIColor.premium
+        case .Diesel:
+            self.backgroundColor = UIColor.diesel
         }
     }
 }
-
-
-enum FuelType: String {
-    case Magna = "Magana"
-    case Premium = "Premium"
-    case Diesel = "Diesel"
-}
-
-
-
-
-
-
-
-
-
 
 
