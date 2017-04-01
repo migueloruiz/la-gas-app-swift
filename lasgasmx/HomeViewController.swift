@@ -10,7 +10,7 @@ import UIKit
 import GoogleMobileAds
 import GoogleMaps
 
-class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDelegate, UIGestureRecognizerDelegate, GasPricesCarrouselControllerCounter {
+class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDelegate {
     
     
 //    private var gasPricesCarouselController: GasPricesCarouselController!
@@ -125,10 +125,6 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
         
         pager.anchorCenterXToSuperview()
         pager.anchor(top: gasPricesCarrousell.bottomAnchor, left: gasPricesCarrousell.leftAnchor, bottom: nil, right: gasPricesCarrousell.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector( HomeViewController.handleTap) )
-        tap.delegate = self
-        view.addGestureRecognizer(tap)
 
         gasPricesCarrousell.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 70)
         
@@ -136,24 +132,6 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
         adsView.anchorCenterXToSuperview()
         
         mapView.fillSuperview()
-    }
-    
-    func updateCounter(counter: Int) {
-        pager.numberOfPages = (gasPriceDatasorce.objects?.count)! ?? 1
-        pager.currentPage = counter
-        
-        if let items = gasPriceDatasorce.objects {
-            pager.numberOfPages = items.count
-            pager.currentPage = counter
-        } else {
-            pager.numberOfPages = 1
-            pager.currentPage = 1
-        }
-
-    }
-    
-    func handleTap(sender: UITapGestureRecognizer? = nil) {
-        gasPriceDatasorce.objects?.append("1")
     }
     
     /// Tells the delegate an ad request loaded an ad.
@@ -195,4 +173,24 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
         return infoWindow
     }
     
+}
+
+extension HomeViewController: GasPricesCarrouselDelegate {
+    internal func gasEmptyCellSelected() {
+        guard let nav = self.navigationController else {
+            print("No NavigationControlle abilable")
+            return
+        }
+        nav.pushViewController(NewLocationViewController(), animated: true)
+    }
+
+    internal func updateCounter(counter: Int) {
+        guard let items = gasPriceDatasorce.objects else {
+            pager.numberOfPages = 1
+            pager.currentPage = 1
+            return
+        }
+        pager.numberOfPages = items.count
+        pager.currentPage = counter
+    }
 }

@@ -9,14 +9,18 @@
 import Foundation
 
 struct GasPriceInState {
-    var state: String
-    var city: String
+    var priceLocation: GasPriceLocation
     var date: String
     var prices: [GasPrice]
     
     func getText() -> String {
-        return "\(city), \(state)"
+        return "\(priceLocation.city.capitalized), \(priceLocation.state.capitalized)"
     }
+}
+
+struct GasPriceLocation {
+    var state: String
+    var city: String
 }
 
 struct GasPrice {

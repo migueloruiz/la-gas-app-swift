@@ -12,7 +12,6 @@ class GasPricesDatasorce: CollectionDatasource {
     override init() {
         super.init()
         objects = [1]
-
     }
     
     override func cellClasses() -> [CollectionDatasourceCell.Type] {
@@ -33,11 +32,14 @@ class GasPricesDatasorce: CollectionDatasource {
         
         let arrayPreices = [magna, premium, diesel]
         
-        let price1 = GasPriceInState(state: "Ciudad de México", city: "Miguel Hidalgo", date: "18 al 20 de Marzo del 2017", prices: arrayPreices)
-        let price2 = GasPriceInState(state: "Estado de México", city: "Cuautitlan Izacalli", date: "18 al 20 de Marzo del 2017", prices: arrayPreices)
-        let price3 = GasPriceInState(state: "Jalisco", city: "Zapopan", date: "18 al 20 de Marzo del 2017", prices: arrayPreices)
+        let priceLocation = GasPriceLocation(state: "Ciudad de México", city:"Miguel Hidalgo")
         
-        objects = [price1, price2 ,price3]
+        let price1 = GasPriceInState(priceLocation: priceLocation, date: "18 al 20 de Marzo del 2017", prices: arrayPreices)
+        let price2 = GasPriceInState(priceLocation: priceLocation, date: "18 al 20 de Marzo del 2017", prices: arrayPreices)
+        let price3 = GasPriceInState(priceLocation: priceLocation, date: "18 al 20 de Marzo del 2017", prices: arrayPreices)
+
+        
+        objects = [price1, price2 ,price3, 1]
     }
     
 }

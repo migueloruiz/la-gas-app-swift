@@ -81,17 +81,18 @@ class GasPriceEmptyCell: CollectionDatasourceCell {
     let textLable: UITextView = {
         let lable = UITextView()
         lable.translatesAutoresizingMaskIntoConstraints = false
-        lable.text = "Agrega una localidad para consultar los precios"
+        lable.text = "Agrega hasta 5 locaciones para consultar los precios"
         lable.font = UIFont.systemFont(ofSize: 16)
         lable.textAlignment = .left
         lable.isEditable = false
         lable.isSelectable = false
-        
+        lable.isUserInteractionEnabled = false
         return lable
     }()
     
     let addbutton : UIButton = {
         let b = UIButton(type: .contactAdd)
+        b.isUserInteractionEnabled = false
         return b
     }()
     
@@ -107,15 +108,8 @@ class GasPriceEmptyCell: CollectionDatasourceCell {
         self.addSubview(addbutton)
         
         textLable.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: addbutton.leftAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 0, widthConstant: self.frame.width * 0.8, heightConstant: 0)
-        
+
         addbutton.anchor(top: self.topAnchor, left: textLable.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: self.frame.width * 0.2, heightConstant: 0)
-        
-        addbutton.addTarget(self, action: #selector(GasPriceEmptyCell.presentCreateView), for: .touchUpInside)
-    }
-    
-    func presentCreateView() {
-        let nc = NotificationCenter.default
-        nc.post(name: Notification.Name(rawValue:"PresentViewNotification"), object: "hola")
     }
     
 }

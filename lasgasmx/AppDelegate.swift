@@ -39,24 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = mainNavigation
         
-        
-        let nc = NotificationCenter.default
-        nc.addObserver(self, selector:  #selector(AppDelegate.catchNotification), name: NSNotification.Name(rawValue: "PresentViewNotification"), object: nil)
-        
         return true
     }
-    
-    func catchNotification(notification:Notification) -> Void {
-        
-        guard let object = notification.object else {
-            return
-        }
-        
-        print("object \(object)")
-        mainNavigation?.pushViewController(EditLocationViewController(), animated: true)
-        
-        
-    }
+
 
     // MARK: - Core Data stack
 

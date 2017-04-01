@@ -136,6 +136,9 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
                 reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: defaultHeaderId, for: indexPath) as! CollectionDatasourceCell
             }
             reusableView.datasourceItem = datasource?.headerItem(indexPath.section)
+            let headerTapped = UITapGestureRecognizer (target: self, action: #selector(CollectionDatasourceController.sectionHeaderTapped(withSender:)) )
+            reusableView.tag = indexPath.section
+            reusableView.addGestureRecognizer(headerTapped)
             
         } else {
             if let classes = datasource?.footerClasses(), classes.count > indexPath.section {
@@ -146,16 +149,31 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
                 reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: defaultFooterId, for: indexPath) as! CollectionDatasourceCell
             }
             reusableView.datasourceItem = datasource?.footerItem(indexPath.section)
+            
         }
         
         reusableView.controller = self
-        
         return reusableView
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     }
     
     internal func datasorseUpdate() {
         self.collectionView.reloadData()
     }
+    
+    internal func sectionHeaderTapped(withSender sender: UITapGestureRecognizer){
+        guard let hearder = sender.view else {
+            return
+        }
+        sectionHeaderTapped(at: hearder.tag)
+    }
+    
+    open func sectionHeaderTapped(at indexPath: Int){}
     
 //    open func getRefreshControl() -> UIRefreshControl {
 //        let rc = UIRefreshControl()

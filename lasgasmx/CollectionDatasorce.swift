@@ -19,10 +19,6 @@ open class CollectionDatasource: NSObject {
     
     public var objects: [Any]? {
         didSet {
-            guard let dl = delegate else {
-                return
-            }
-            dl.datasorseUpdate()
         }
     }
     var delegate: CollectionDatasourceDelegate? = nil
@@ -68,6 +64,13 @@ open class CollectionDatasource: NSObject {
     ///If your footers need a special item, return it here
     open func footerItem(_ section: Int) -> Any? {
         return nil
+    }
+    
+    public func updateDatasorce() {
+        guard let dl = delegate else {
+            return
+        }
+        dl.datasorseUpdate()
     }
 
 }
