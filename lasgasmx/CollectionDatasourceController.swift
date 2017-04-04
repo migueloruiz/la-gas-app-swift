@@ -162,7 +162,8 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
     open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     }
     
-    internal func datasorseUpdate() {
+    func datasorseUpdate() {
+        print("update data")
         self.collectionView.reloadData()
     }
     

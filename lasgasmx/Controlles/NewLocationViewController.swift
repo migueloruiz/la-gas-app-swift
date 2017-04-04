@@ -8,26 +8,25 @@
 
 import UIKit
 
-class NewLocationViewController: UIViewController {
+class NewLocationViewController: UIViewController, UISearchResultsUpdating{
     
     var state: String = ""
     var city: String = ""
     
-    let cancelButton: UIButton = {
-        let b = UIButton()
-        b.translatesAutoresizingMaskIntoConstraints = true
-        b.backgroundColor = .red
-        return b
-    }()
-    
-    let serchBar: UISearchController = {
+    lazy var searchController: UISearchController = {
         let s = UISearchController(searchResultsController: nil)
+        s.searchResultsUpdater = self
+        s.dimsBackgroundDuringPresentation = false
+//        s.definesPresentationContext = false
+        s.hidesNavigationBarDuringPresentation = false
+//        s.searchBar.placeholder = "Search here..."
         return s
     }()
     
     lazy var selectCityView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.sectionHeadersPinToVisibleBounds = true
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
@@ -56,26 +55,37 @@ class NewLocationViewController: UIViewController {
         setSubviews()
         
         selctCityController = SelectCityCollectionController(collectionView: selectCityView, datasorce: selectCityDatasource)
-        
+        self.navigationController?.isNavigationBarHidden = false
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchController.searchBar)
+        self.navigationItem.titleView = searchController.searchBar
+        self.navigationController?.navigationBar.backItem?.title = ""
     }
     
     func setSubviews() {
-        view.addSubview(cancelButton)
         view.addSubview(selectCityView)
         
-        cancelButton.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 25, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 30, heightConstant: 30)
-        cancelButton.addTarget(self, action: #selector(NewLocationViewController.dismissView), for: .touchUpInside )
+        selectCityView.anchor(top: view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
-        selectCityView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: view.frame.height * 0.9)
     }
     
-    func dismissView() {
-        print("close")
-        guard let nav = self.navigationController else {
-            print("NavigationController not abilable")
-            return
-        }
-        nav.popViewController(animated: true)
+    func didDismissSearchController(_ searchController: UISearchController) {
+        print("4")
     }
-
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        print("3")
+    }    
+    
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+//        self.navigationController?.isNavigationBarHidden = true
+        
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+//        self.navigationController?.isNavigationBarHidden = true
+        
+    }
 }

@@ -16,13 +16,13 @@ class SelectCityDatasorce: CollectionDatasource {
         "Izcalli", "Izcalli",
         ]
     
-    let statesHeader = SelectCityHeadersItems(defaultText: .State, isSectionActive: true, slectedItem: nil)
-    let citysHeader = SelectCityHeadersItems(defaultText: .City, isSectionActive: false, slectedItem: nil)
     var headers: [SelectCityHeadersItems]
     
-    
     override init() {
-        headers = [statesHeader, citysHeader]
+        headers = [
+            SelectCityHeadersItems(defaultText: .State, isSectionActive: true, slectedItem: nil),
+            SelectCityHeadersItems(defaultText: .City, isSectionActive: false, slectedItem: nil)
+        ]
         super.init()
     }
     
@@ -39,14 +39,12 @@ class SelectCityDatasorce: CollectionDatasource {
     }
     
     override func numberOfItems(_ section: Int) -> Int {
-        
         // TODO: esto s epuede mejorrar
         return headers[section].isSectionActive ? (section > 0) ?  citys.count : states.count : 0
-
     }
     
     override func numberOfSections() -> Int {
-        return headers.count
+        return (headers[0].slectedItem == nil || headers[0].isSectionActive) ? 1 : 2
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
@@ -76,6 +74,11 @@ class SelectCityDatasorce: CollectionDatasource {
         }
         
         updateDatasorce()
+    }
+    
+    func setItemInHeader(whit index: Int, slected: String) {
+        headers[index].isSectionActive = false
+        headers[index].slectedItem = slected
     }
     
 }

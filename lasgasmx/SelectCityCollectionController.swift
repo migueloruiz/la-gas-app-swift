@@ -60,7 +60,8 @@ class SelectCityCollectionController: CollectionDatasourceController {
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        setSectionby(index: indexPath )
+        setSectionby(index: indexPath)
+        datasorseUpdate()
     }
     
     override func sectionHeaderTapped(at indexPath: Int){
@@ -76,17 +77,14 @@ class SelectCityCollectionController: CollectionDatasourceController {
         }
         
         let selectedItem = (index.section > 0) ?  data.citys[index.item] : data.states[index.item]
+        let section = index.section
+        data.setItemInHeader(whit:section, slected: selectedItem)
         
-        let indexSection = index.section
-        data.headers[indexSection].slectedItem = selectedItem
-        data.headers[indexSection].isSectionActive = false
-        
-        if indexSection + 1 < data.headers.count {
-            data.headers[indexSection + 1].isSectionActive = true
+        if section+1 < data.headers.count {
+            data.headers[section + 1].isSectionActive = true
         } else {
             print("seleccion terminada \(data.headers[0].slectedItem), \(data.headers[1].slectedItem)")
         }
-        datasorseUpdate()
     }
 }
 

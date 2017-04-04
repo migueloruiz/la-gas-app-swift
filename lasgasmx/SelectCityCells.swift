@@ -60,7 +60,6 @@ class SelectCityHeader: CollectionDatasourceCell {
                 return
             }
             label.text = "  \(item.getText())"
-
         }
     }
     
