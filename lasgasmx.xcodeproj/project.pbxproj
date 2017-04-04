@@ -21,6 +21,13 @@
 		E9112ACC1E8195EE00B6E60F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9112ACA1E8195EE00B6E60F /* LaunchScreen.storyboard */; };
 		E9112AD71E8195EE00B6E60F /* lasgasmxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9112AD61E8195EE00B6E60F /* lasgasmxTests.swift */; };
 		E9112AE21E8195EE00B6E60F /* lasgasmxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9112AE11E8195EE00B6E60F /* lasgasmxUITests.swift */; };
+		E96254E51E940BB2004CEB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254E41E940BB2004CEB66 /* Result.swift */; };
+		E96254E71E940C68004CEB66 /* DataBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254E61E940C68004CEB66 /* DataBucket.swift */; };
+		E96254E91E941164004CEB66 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254E81E941164004CEB66 /* Request.swift */; };
+		E96254EB1E941873004CEB66 /* SelectCityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254EA1E941873004CEB66 /* SelectCityModels.swift */; };
+		E96254ED1E946266004CEB66 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254EC1E946266004CEB66 /* CoreDataManager.swift */; };
+		E96254F51E946802004CEB66 /* GasPriceEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254F31E946802004CEB66 /* GasPriceEntity+CoreDataClass.swift */; };
+		E96254F61E946802004CEB66 /* GasPriceEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254F41E946802004CEB66 /* GasPriceEntity+CoreDataProperties.swift */; };
 		E96CE1801E89CE2B00F9D97B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E96CE17F1E89CE2B00F9D97B /* GoogleService-Info.plist */; };
 		E96CE1821E89D3F200F9D97B /* PrivateKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E96CE1811E89D3F200F9D97B /* PrivateKeys.plist */; };
 		E96CE1851E89D5AB00F9D97B /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CE1841E89D5AB00F9D97B /* ConfigManager.swift */; };
@@ -33,7 +40,7 @@
 		E97A81B01E8C88F900294DCE /* GasPricesDatasorce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A81AF1E8C88F900294DCE /* GasPricesDatasorce.swift */; };
 		E9BEDDB61E8ED72200C0A41D /* SelectCityCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEDDB51E8ED72200C0A41D /* SelectCityCollectionController.swift */; };
 		E9BEDDB81E8ED85F00C0A41D /* SelectCityDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEDDB71E8ED85F00C0A41D /* SelectCityDatasource.swift */; };
-		E9BEDDBA1E8EDA0C00C0A41D /* SelectCityCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEDDB91E8EDA0C00C0A41D /* SelectCityCells.swift */; };
+		E9BEDDBA1E8EDA0C00C0A41D /* SelectCityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEDDB91E8EDA0C00C0A41D /* SelectCityViews.swift */; };
 		E9BEDDBC1E8F156B00C0A41D /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BEDDBB1E8F156B00C0A41D /* locations.json */; };
 		E9EB3A3E1E8AD57900D76215 /* UIColor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +89,13 @@
 		E9112ADD1E8195EE00B6E60F /* lasgasmxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lasgasmxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9112AE11E8195EE00B6E60F /* lasgasmxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lasgasmxUITests.swift; sourceTree = "<group>"; };
 		E9112AE31E8195EE00B6E60F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E96254E41E940BB2004CEB66 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		E96254E61E940C68004CEB66 /* DataBucket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBucket.swift; sourceTree = "<group>"; };
+		E96254E81E941164004CEB66 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		E96254EA1E941873004CEB66 /* SelectCityModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityModels.swift; sourceTree = "<group>"; };
+		E96254EC1E946266004CEB66 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		E96254F31E946802004CEB66 /* GasPriceEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GasPriceEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E96254F41E946802004CEB66 /* GasPriceEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GasPriceEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E96CE17F1E89CE2B00F9D97B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E96CE1811E89D3F200F9D97B /* PrivateKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PrivateKeys.plist; sourceTree = "<group>"; };
 		E96CE1841E89D5AB00F9D97B /* ConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigManager.swift; path = Helpers/ConfigManager.swift; sourceTree = "<group>"; };
@@ -94,7 +108,7 @@
 		E97A81AF1E8C88F900294DCE /* GasPricesDatasorce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPricesDatasorce.swift; sourceTree = "<group>"; };
 		E9BEDDB51E8ED72200C0A41D /* SelectCityCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityCollectionController.swift; sourceTree = "<group>"; };
 		E9BEDDB71E8ED85F00C0A41D /* SelectCityDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityDatasource.swift; sourceTree = "<group>"; };
-		E9BEDDB91E8EDA0C00C0A41D /* SelectCityCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityCells.swift; sourceTree = "<group>"; };
+		E9BEDDB91E8EDA0C00C0A41D /* SelectCityViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityViews.swift; sourceTree = "<group>"; };
 		E9BEDDBB1E8F156B00C0A41D /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
 		E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Helper.swift"; path = "Helpers/Extension/UIColor+Helper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,13 +192,14 @@
 				E96CE1811E89D3F200F9D97B /* PrivateKeys.plist */,
 				E9112AC51E8195EE00B6E60F /* lasgasmx.xcdatamodeld */,
 				E97A819E1E8C3EF700294DCE /* Generic */,
-				E97A819D1E8C3EEE00294DCE /* UI */,
 				E9112AEF1E81965A00B6E60F /* Controllers */,
 				E97A81981E8C29BF00294DCE /* Componets */,
 				E9112AF11E81968200B6E60F /* Views */,
 				E9112AF01E81967300B6E60F /* Resurces */,
 				E96CE1831E89D57A00F9D97B /* Helpers */,
+				E96254E31E940A45004CEB66 /* Providers */,
 				E97A81971E8C259100294DCE /* Services */,
+				E96254EE1E9467CC004CEB66 /* CoreDataModel */,
 				E9112AF21E81969300B6E60F /* Models */,
 			);
 			path = lasgasmx;
@@ -237,9 +252,29 @@
 		E9112AF21E81969300B6E60F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E96254E61E940C68004CEB66 /* DataBucket.swift */,
 				E90E73421E8DD25100041042 /* GasPriceModel.swift */,
+				E96254E41E940BB2004CEB66 /* Result.swift */,
+				E96254E81E941164004CEB66 /* Request.swift */,
+				E96254EA1E941873004CEB66 /* SelectCityModels.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		E96254E31E940A45004CEB66 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Providers;
+			sourceTree = "<group>";
+		};
+		E96254EE1E9467CC004CEB66 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				E96254F31E946802004CEB66 /* GasPriceEntity+CoreDataClass.swift */,
+				E96254F41E946802004CEB66 /* GasPriceEntity+CoreDataProperties.swift */,
+			);
+			name = CoreDataModel;
 			sourceTree = "<group>";
 		};
 		E96CE1831E89D57A00F9D97B /* Helpers */ = {
@@ -256,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				E96CE1841E89D5AB00F9D97B /* ConfigManager.swift */,
+				E96254EC1E946266004CEB66 /* CoreDataManager.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -267,13 +303,6 @@
 				CAE3235A1E8E16E2005871F7 /* GasPricesCarrousel */,
 			);
 			name = Componets;
-			sourceTree = "<group>";
-		};
-		E97A819D1E8C3EEE00294DCE /* UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = UI;
 			sourceTree = "<group>";
 		};
 		E97A819E1E8C3EF700294DCE /* Generic */ = {
@@ -292,7 +321,7 @@
 			children = (
 				E9BEDDB51E8ED72200C0A41D /* SelectCityCollectionController.swift */,
 				E9BEDDB71E8ED85F00C0A41D /* SelectCityDatasource.swift */,
-				E9BEDDB91E8EDA0C00C0A41D /* SelectCityCells.swift */,
+				E9BEDDB91E8EDA0C00C0A41D /* SelectCityViews.swift */,
 			);
 			name = SelectCityTable;
 			sourceTree = "<group>";
@@ -599,12 +628,18 @@
 				E97A819C1E8C324900294DCE /* GasPricesCarouselController.swift in Sources */,
 				E90E73431E8DD25100041042 /* GasPriceModel.swift in Sources */,
 				CAE3235C1E8E1759005871F7 /* NewLocationViewController.swift in Sources */,
+				E96254F51E946802004CEB66 /* GasPriceEntity+CoreDataClass.swift in Sources */,
 				E97A81AE1E8C80A300294DCE /* DefaultCell.swift in Sources */,
+				E96254E71E940C68004CEB66 /* DataBucket.swift in Sources */,
+				E96254E91E941164004CEB66 /* Request.swift in Sources */,
+				E96254ED1E946266004CEB66 /* CoreDataManager.swift in Sources */,
 				E97A81B01E8C88F900294DCE /* GasPricesDatasorce.swift in Sources */,
 				E9112AC11E8195EE00B6E60F /* HomeViewController.swift in Sources */,
-				E9BEDDBA1E8EDA0C00C0A41D /* SelectCityCells.swift in Sources */,
+				E96254E51E940BB2004CEB66 /* Result.swift in Sources */,
+				E9BEDDBA1E8EDA0C00C0A41D /* SelectCityViews.swift in Sources */,
 				E9EB3A3E1E8AD57900D76215 /* UIColor+Helper.swift in Sources */,
 				E9BEDDB61E8ED72200C0A41D /* SelectCityCollectionController.swift in Sources */,
+				E96254EB1E941873004CEB66 /* SelectCityModels.swift in Sources */,
 				E96CE1851E89D5AB00F9D97B /* ConfigManager.swift in Sources */,
 				CAE323591E8DFDDC005871F7 /* UIStackView+Helpers.swift in Sources */,
 				E97A81A81E8C77EE00294DCE /* CollectionDatasourceController.swift in Sources */,
@@ -612,6 +647,7 @@
 				E97A81AA1E8C78BF00294DCE /* CollectionDatasorce.swift in Sources */,
 				E9112ABF1E8195EE00B6E60F /* AppDelegate.swift in Sources */,
 				E90E73411E8D848400041042 /* GasPriceCell.swift in Sources */,
+				E96254F61E946802004CEB66 /* GasPriceEntity+CoreDataProperties.swift in Sources */,
 				E97A81A61E8C744C00294DCE /* UIView+Anchors.swift in Sources */,
 				E97A81AC1E8C790100294DCE /* CollectionDatasorceCell.swift in Sources */,
 				E9112AC71E8195EE00B6E60F /* lasgasmx.xcdatamodeld in Sources */,

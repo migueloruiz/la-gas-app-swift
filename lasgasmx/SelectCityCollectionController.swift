@@ -16,18 +16,14 @@
 
 import UIKit
 
-class SelectCityCollectionController: CollectionDatasourceController {
-    
-    // TODO: Costructor con stado y ciudad
-    // injectados
-    
-    // TODO: Init elements
-    
-    // TODO: GasPricesLocation
-    var gasPricesLocation : GasPriceLocation? = nil
-    
-    //TODO validacion state y city
+protocol SelectCityCollectionDelegate {
+    func itemsSelected(location: GasPriceLocation?)
+}
 
+class SelectCityCollectionController: CollectionDatasourceController  {
+    
+    var gasPricesLocation : GasPriceLocation? = nil
+    var delegate: SelectCityCollectionDelegate? = nil
     
     override init(collectionView: UICollectionView, datasorce: CollectionDatasource) {
         super.init(collectionView: collectionView, datasorce: datasorce)
@@ -35,7 +31,7 @@ class SelectCityCollectionController: CollectionDatasourceController {
         guard let data = datasource as? SelectCityDatasorce else {
             return
         }
-        data.fetchData()
+        data.getData()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -60,30 +56,18 @@ class SelectCityCollectionController: CollectionDatasourceController {
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        setSectionby(index: indexPath)
-        datasorseUpdate()
+        guard let d = delegate else { return }
+        if let data = datasource as? SelectCityDatasorce {
+            let result = data.setSectionby(index: indexPath)
+            d.itemsSelected(location: result)
+            datasorseUpdate()
+        }
     }
     
     override func sectionHeaderTapped(at indexPath: Int){
         if let data = datasource as? SelectCityDatasorce {
             data.headers[indexPath].isSectionActive = !data.headers[indexPath].isSectionActive
             datasorseUpdate()
-        }
-    }
-    
-    func setSectionby(index: IndexPath){
-        guard let data = datasource as? SelectCityDatasorce else {
-            return
-        }
-        
-        let selectedItem = (index.section > 0) ?  data.citys[index.item] : data.states[index.item]
-        let section = index.section
-        data.setItemInHeader(whit:section, slected: selectedItem)
-        
-        if section+1 < data.headers.count {
-            data.headers[section + 1].isSectionActive = true
-        } else {
-            print("seleccion terminada \(data.headers[0].slectedItem), \(data.headers[1].slectedItem)")
         }
     }
 }

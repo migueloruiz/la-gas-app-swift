@@ -10,19 +10,31 @@ import UIKit
 
 class SelectCityDatasorce: CollectionDatasource {
     
+    var citysDictionary: CitysDictionary? = nil
+    var filterQuery: String? = nil {
+        didSet{ self.updateDatasorce() }
+    }
+    
     var states: [String] = []
-    var citys = [
-        "Izcalli", "Izcalli",
-        "Izcalli", "Izcalli",
-        ]
+    var citys: [String] = []
+    var filter: [String]? = nil
     
     var headers: [SelectCityHeadersItems]
     
     override init() {
-        headers = [
+        self.headers = [
             SelectCityHeadersItems(defaultText: .State, isSectionActive: true, slectedItem: nil),
             SelectCityHeadersItems(defaultText: .City, isSectionActive: false, slectedItem: nil)
         ]
+        super.init()
+    }
+    
+    init (location: GasPriceLocation) {
+        self.headers = [
+            SelectCityHeadersItems(defaultText: .State, isSectionActive: false, slectedItem: location.state),
+            SelectCityHeadersItems(defaultText: .City, isSectionActive: false, slectedItem: location.city)
+        ]
+        print(headers)
         super.init()
     }
     
@@ -39,41 +51,59 @@ class SelectCityDatasorce: CollectionDatasource {
     }
     
     override func numberOfItems(_ section: Int) -> Int {
-        // TODO: esto s epuede mejorrar
-        return headers[section].isSectionActive ? (section > 0) ?  citys.count : states.count : 0
+        let isSectionActive = headers[section].isSectionActive
+        if !isSectionActive { return 0 }
+        
+        guard let query = filterQuery else {
+             return (section > 0) ?  citys.count : states.count
+        }
+        
+        let arrayToFilter = (section > 0) ? citys : states
+        filter = arrayToFilter.filter { city in
+            return city.lowercased().contains(query.lowercased())
+        }
+        
+        return filter!.count
+    }
+    
+    override func item(_ indexPath: IndexPath) -> Any? {
+        return (filterQuery != nil) ? filter?[indexPath.item] : (indexPath.section > 0) ?  citys[indexPath.item] : states[indexPath.item]
     }
     
     override func numberOfSections() -> Int {
         return (headers[0].slectedItem == nil || headers[0].isSectionActive) ? 1 : 2
     }
     
-    override func item(_ indexPath: IndexPath) -> Any? {
-        return (indexPath.section > 0) ?  citys[indexPath.item] : states[indexPath.item]
-    }
-    
     override func headerItem(_ section: Int) -> Any? {
         return headers[section]
     }
     
-    func fetchData(){
-        // TODO: esto va en un buket o conection
-        let path = Bundle.main.path(forResource: "locations", ofType: "json")
-        let data = NSData(contentsOfFile: path!)!
-        
-        
-        // TODO esto va en un parser
-        let json = try? JSONSerialization.jsonObject(with: data as Data, options: [])
-        
-        // TODO pasar esto aun servicio que regrese estados y ciudades
-        // getStates()
-        // getCitys(in: String)
-        
-        if let dictionary = json as? [String: [String]] {
-            states = Array(dictionary.keys)
-            print(dictionary["ESTADO DE MÉXICO"]!)
+    func getData() {
+        if citysDictionary == nil {
+            fetchData()
+        } else {
+            setCitys()
         }
+    }
+    
+    func fetchData(){
+        let localData = LocalDataBucket(fileName: "locations")
         
-        updateDatasorce()
+        localData.makeConnection { dataResult in
+            switch dataResult {
+                case .Success(let data):
+                    self.citysDictionary = CitysDictionary(data: data)
+                    self.states = (self.citysDictionary?.getStates())!
+                case .Failure(let error):
+                    print(error)
+            }
+        }
+    }
+    
+    func setCitys() {
+        guard let city = headers[0].slectedItem else {return}
+        citys = citysDictionary!.getCitys(in: city)
+        self.updateDatasorce()
     }
     
     func setItemInHeader(whit index: Int, slected: String) {
@@ -81,24 +111,20 @@ class SelectCityDatasorce: CollectionDatasource {
         headers[index].slectedItem = slected
     }
     
-}
-
-struct SelectCityHeadersItems {
-    let defaultText: SelectCityHeaderstype
-    var isSectionActive: Bool
-    var slectedItem: String?
-    
-    func getText() -> String {
-        if let item = slectedItem {
-            return item.capitalized
-        } else {
-            return defaultText.rawValue
+    func setSectionby(index: IndexPath) -> GasPriceLocation?{
+        let section = index.section
+        let selectedItem = (filterQuery != nil) ? (filter?[index.item])! : (section > 0) ?  citys[index.item] : states[index.item]
+        setItemInHeader(whit:section, slected: selectedItem)
+        
+        if section+1 < headers.count {
+            headers[section + 1].isSectionActive = true
+            headers[section + 1].slectedItem = nil
         }
+        getData()
+        
+        guard let state = headers[0].slectedItem, let city = headers[1].slectedItem else { return nil }
+        return GasPriceLocation(state: state, city: city)
     }
-}
 
-enum SelectCityHeaderstype: String {
-    case State  = "Elige un estado"
-    case City  = "Elige una ciudad"
+    
 }
-

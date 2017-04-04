@@ -123,7 +123,6 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
     }
     
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-         print("call viewForSupplementaryElementOfKind")
         
         var reusableView: CollectionDatasourceCell
         
@@ -163,7 +162,6 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
     }
     
     func datasorseUpdate() {
-        print("update data")
         self.collectionView.reloadData()
     }
     

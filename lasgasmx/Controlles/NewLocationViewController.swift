@@ -10,16 +10,14 @@ import UIKit
 
 class NewLocationViewController: UIViewController, UISearchResultsUpdating{
     
-    var state: String = ""
-    var city: String = ""
+    var location : GasPriceLocation? = nil
     
     lazy var searchController: UISearchController = {
         let s = UISearchController(searchResultsController: nil)
         s.searchResultsUpdater = self
         s.dimsBackgroundDuringPresentation = false
-//        s.definesPresentationContext = false
         s.hidesNavigationBarDuringPresentation = false
-//        s.searchBar.placeholder = "Search here..."
+        s.searchBar.placeholder = "Buscar..."
         return s
     }()
     
@@ -32,17 +30,15 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
         return cv
     }()
     
-    var selctCityController: SelectCityCollectionController? = nil
-    let selectCityDatasource = SelectCityDatasorce()
-    
+    var selectCityController: SelectCityCollectionController? = nil
+    var selectCityDatasource = SelectCityDatasorce()
     init() {
         super.init(nibName: nil, bundle: nil)
     }
     
-    init(state: String, city: String) {
+    init(location: GasPriceLocation) {
         super.init(nibName: nil, bundle: nil)
-        self.state = state
-        self.city = city
+        self.location = location
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,38 +50,52 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
         view.backgroundColor = .white
         setSubviews()
         
-        selctCityController = SelectCityCollectionController(collectionView: selectCityView, datasorce: selectCityDatasource)
+        if location != nil {
+            selectCityDatasource = SelectCityDatasorce(location: location!)
+        }
+        
+        selectCityController = SelectCityCollectionController(collectionView: selectCityView, datasorce: selectCityDatasource)
+        selectCityController?.delegate = self
         self.navigationController?.isNavigationBarHidden = false
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchController.searchBar)
+
         self.navigationItem.titleView = searchController.searchBar
-        self.navigationController?.navigationBar.backItem?.title = ""
+        
+        let myBackButton:UIButton = UIButton()
+        let crossImage = UIImage(named: "cross")
+        myBackButton.addTarget(self, action: #selector(NewLocationViewController.popToRoot), for: .touchUpInside)
+        myBackButton.setImage(crossImage, for: .normal)
+        myBackButton.sizeToFit()
+        let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
+        self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
     }
     
     func setSubviews() {
         view.addSubview(selectCityView)
-        
         selectCityView.anchor(top: view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
     }
     
-    func didDismissSearchController(_ searchController: UISearchController) {
-        print("4")
-    }
     
     func updateSearchResults(for searchController: UISearchController) {
-        print("3")
+        let searchString = searchController.searchBar.text
+        selectCityDatasource.filterQuery =  (searchController.isActive && searchString != "") ? searchString : nil
     }    
     
+    func popToRoot(){
+        self.navigationController?.popViewController(animated: true)
+    }
+
+}
+
+extension NewLocationViewController: SelectCityCollectionDelegate{
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    func itemsSelected(location: GasPriceLocation?) {
+        searchController.searchBar.text = ""
+        searchController.searchBar.endEditing(true)
         
-//        self.navigationController?.isNavigationBarHidden = true
+        guard let l = location else { return }
+        print("\(l)")
         
+        // Create new GasPrice in CoreData
     }
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        
-//        self.navigationController?.isNavigationBarHidden = true
-        
-    }
 }

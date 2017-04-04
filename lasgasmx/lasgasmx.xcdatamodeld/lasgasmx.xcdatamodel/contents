@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1217" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="GasPriceEntity" representedClassName="GasPriceEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="city" attributeType="String" syncable="YES"/>
+        <attribute name="dateText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="diesel" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="magna" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="premium" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="state" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="GasPriceEntity" positionX="-63" positionY="-18" width="128" height="135"/>
+    </elements>
 </model>

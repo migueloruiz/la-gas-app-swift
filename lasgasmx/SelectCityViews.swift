@@ -7,8 +7,6 @@
 //
 import UIKit
 
-// TODO: Elemento preseccionado
-
 class SelectCityCell: CollectionDatasourceCell {
     
     override var datasourceItem: Any? {
@@ -56,10 +54,9 @@ class SelectCityHeader: CollectionDatasourceCell {
     
     override var datasourceItem: Any? {
         didSet {
-            guard let item = datasourceItem as? SelectCityHeadersItems else {
-                return
-            }
-            label.text = "  \(item.getText())"
+            guard let item = datasourceItem as? SelectCityHeadersItems else { return }
+            label.text = item.getText()
+            arrowImage.image = (item.isSectionActive) ? UIImage(named: "up-arrow")?.withRenderingMode(.alwaysTemplate) : UIImage(named: "down-arrow")?.withRenderingMode(.alwaysTemplate)
         }
     }
     
@@ -67,14 +64,24 @@ class SelectCityHeader: CollectionDatasourceCell {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = true
         l.textColor = .white
-        l.backgroundColor = .gray
+        l.backgroundColor = .clear
         return l
+    }()
+    
+    let arrowImage: UIImageView = {
+        let i = UIImageView()
+        i.contentMode = UIViewContentMode.scaleAspectFit
+        i.tintColor = .white
+        return i
     }()
     
     override func setupViews() {
         super.setupViews()
+        self.backgroundColor = .gray
         addSubview(label)
-        label.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        addSubview(arrowImage)
+        label.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: arrowImage.leftAnchor, topConstant: 0, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        arrowImage.anchor(top: topAnchor, left: label.rightAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 15, heightConstant: 0)
     }
     
 }

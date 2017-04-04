@@ -181,6 +181,10 @@ extension HomeViewController: GasPricesCarrouselDelegate {
             print("No NavigationControlle abilable")
             return
         }
+        
+//        let location =  GasPriceLocation(state: "AGUASCALIENTES", city: "JESUS MARIA")
+//        nav.pushViewController(NewLocationViewController(location: location), animated: true)
+        
         nav.pushViewController(NewLocationViewController(), animated: true)
     }
 
