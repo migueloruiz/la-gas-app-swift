@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>API_BASE_URL</key>
+	<string>https://lagasmx.herokuapp.com</string>
 	<key>GOOGLE_MAPS_KEY</key>
 	<string>AIzaSyAfXh0lF_P9NILv-_qbShZV7VNgKNqgme8	</string>
 	<key>AD_MOD_ID</key>

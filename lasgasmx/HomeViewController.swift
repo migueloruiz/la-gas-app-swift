@@ -86,6 +86,9 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
         
         gasPricesController = GasPricesCarrouselController(collectionView: gasPricesCarrousell, datasorce: gasPriceDatasorce)
         gasPricesController?.delegate = self
+        gasPriceDatasorce.fetchStroage()
+        
+        
         mapView.delegate = self
         
         setupSubViews()

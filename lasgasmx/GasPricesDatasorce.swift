@@ -9,9 +9,30 @@
 import UIKit
 
 class GasPricesDatasorce: CollectionDatasource {
+    
+    let storageManager = GasPriceStorageManager()
+    let apiBucket = BucketAPI()
+    
     override init() {
         super.init()
-        objects = [1]
+        
+        fetchStroage()
+        storageManager.updateAll(edit: { (item) -> Bool in
+            let priceLocation = GasPriceLocation(state: item.state!, city: item.city! )
+            apiBucket.getPriceBy(location: priceLocation, completition: { result in
+                switch result {
+                case .Success(let data):
+                    print(data)
+                case .Failure(let error):
+                    print(error)
+                }
+            })
+            return true
+        }, complited: {
+            print("Done")
+            fetchStroage()
+        })
+        
     }
     
     override func cellClasses() -> [CollectionDatasourceCell.Type] {
@@ -25,21 +46,26 @@ class GasPricesDatasorce: CollectionDatasource {
         return GasPriceCell.self
     }
     
-    func fetchData(){
-        let magna = GasPrice(type: .Magna, price: 16.50)
-        let premium = GasPrice(type: .Premium, price: 17.50)
-        let diesel = GasPrice(type: .Diesel, price: 18.50)
-        
-        let arrayPreices = [magna, premium, diesel]
-        
-        let priceLocation = GasPriceLocation(state: "Ciudad de México", city:"Miguel Hidalgo")
-        
-        let price1 = GasPriceInState(priceLocation: priceLocation, date: "18 al 20 de Marzo del 2017", prices: arrayPreices)
-        let price2 = GasPriceInState(priceLocation: priceLocation, date: "18 al 20 de Marzo del 2017", prices: arrayPreices)
-        let price3 = GasPriceInState(priceLocation: priceLocation, date: "18 al 20 de Marzo del 2017", prices: arrayPreices)
-
-        
-        objects = [price1, price2 ,price3, 1]
+    func fetchStroage(){
+//        let priceLocation = GasPriceLocation(state: "CIUDAD DE MÉXICO", city:"MIGUEL HIDALGO")
+//        storageManager.newGasPrice(location: priceLocation)
+        var prices = storageManager.fetchAll() as [AnyObject]
+        if prices.count < 5 { prices.append(1 as AnyObject) }
+        objects = prices
     }
+    
+//    func fetchLocation(item: GasPriceEntity) -> Bool {
+////        let priceLocation = GasPriceLocation(state: item.state!, city: item.city! )
+////        apiBucket.getPriceBy(location: priceLocation, completition: { result in
+////            switch result {
+////                case .Success(let data):
+////                    print(data)
+////                    item(true)
+////                case .Failure(let error):
+////                    print(error)
+////                    item = false
+////            }
+////        })
+//    }
     
 }

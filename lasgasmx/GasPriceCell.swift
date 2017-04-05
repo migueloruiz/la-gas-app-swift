@@ -118,8 +118,8 @@ class GasPriceEmptyCell: CollectionDatasourceCell {
 class GasItemView: UIView {
     
     var price: Float {
-        didSet(new) {
-            priceLabel.text = (new > 0) ? "\(new) $" : "- -"
+        didSet(newValue) {
+            priceLabel.text = (newValue > 0) ? "\(String(format: "%.2f", newValue)) $" : "- -"
         }
     }
     
@@ -152,7 +152,7 @@ class GasItemView: UIView {
         setupView()
         setColor(by: fule)
         self.price = price
-        priceLabel.text = (price > 0) ? "\(price) $" : "- -"
+        priceLabel.text = (price > 0) ? "\(String(format: "%.2f", price)) $" : "- -"
     }
     
     required init(coder aDecoder: NSCoder) {

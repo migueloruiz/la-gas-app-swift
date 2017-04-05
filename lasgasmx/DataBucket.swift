@@ -26,6 +26,8 @@ extension DataBucket: ConnectBucketDelegate {
     internal func makeConnection(resource: Request, completion: @escaping (Result<Data, Error>) -> Void) {
         let request = resource.toRequest(baseURL: baseURL)
         session.dataTask(with: request) { (data, response, error) in
+            
+            // TODO Response Status
             guard let d = data else {
                 completion(.Failure(.Network(error!.localizedDescription)))
                 return
@@ -34,10 +36,6 @@ extension DataBucket: ConnectBucketDelegate {
         }.resume()
     }
 }
-
-
-
-
 
 protocol ConnectLocalBucketDelegate {
     func makeConnection(completion: @escaping (Result<Data, Error>) -> Void)

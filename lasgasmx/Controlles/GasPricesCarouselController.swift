@@ -51,7 +51,8 @@ class GasPricesCarrouselController: CollectionDatasourceController {
             return
         }
         
-        guard (type(of: collectionView.cellForItem(at: indexPath)) == GasPriceCell.self) else {
+  
+        guard let cell = collectionView.cellForItem(at: indexPath) as? GasPriceCell else {
             dl.gasEmptyCellSelected()
             return
         }
