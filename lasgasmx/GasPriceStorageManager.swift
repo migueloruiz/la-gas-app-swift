@@ -34,7 +34,10 @@ class GasPriceStorageManager {
         newGasPriceStorage.magna = 0.0
         newGasPriceStorage.diesel = 0.0
         newGasPriceStorage.premium = 0.0
-
+        saveChanges()
+    }
+    
+    func saveChanges() {
         do {
             try context.save()
         } catch let error as NSError  {
@@ -42,51 +45,52 @@ class GasPriceStorageManager {
         }
     }
     
-    func fetchAll() -> [GasPriceInState] {
-        var prices : [GasPriceInState] = []
-        let fetchRequest: NSFetchRequest<GasPriceEntity> = GasPriceEntity.fetchRequest()
-        
-        do {
-            let searchResults = try context.fetch(fetchRequest)
-            for price in searchResults as [GasPriceEntity] {
-                prices.append(price.getStruct())
-            }
-        } catch { print("Error with request: \(error)") }
-        return prices
-    }
-    
-    func editLocation(with actualLocation: GasPriceLocation, newLocation: GasPriceLocation) {
-        
-    }
-    
-    func updateAll(edit: (_ item: GasPriceEntity) -> Bool, complited: (Void) -> Void ) {
+    func fetchAll() -> [GasPriceEntity] {
         let fetchRequest: NSFetchRequest<GasPriceEntity> = GasPriceEntity.fetchRequest()
         do {
             let searchResults = try context.fetch(fetchRequest)
-            for price in searchResults as [GasPriceEntity] {
-                let isValid = edit(price)
-                
-                if (isValid) {
-                    do {
-                        try context.save()
-                    } catch let error as NSError  {
-                        print("Could not save \(error), \(error.userInfo)")
-                    }
-                }
-            }
-            
-            do {
-                try context.save()
-            } catch let error as NSError  {
-                print("Could not save \(error), \(error.userInfo)")
-            }
+            return searchResults
         } catch {
-            print("Error with request: \(error)")
+            return []
         }
-        
-        complited()
+    }
+    
+    func fetchAllAsGasPrices() -> [GasPriceInState] {
+        return fetchAll().map{ $0.getStruct() } as [GasPriceInState]
+    }
+    
+    func editLocation(with actualLocation: GasPriceLocation, recordChanges: (_ item: GasPriceEntity) -> Bool) {
         
     }
+    
+//    func updateAll(edit: (_ item: GasPriceEntity) -> Bool, complited: (Void) -> Void ) {
+//        let fetchRequest: NSFetchRequest<GasPriceEntity> = GasPriceEntity.fetchRequest()
+//        do {
+//            let searchResults = try context.fetch(fetchRequest)
+//            for price in searchResults as [GasPriceEntity] {
+//                let isValid = edit(price)
+//                
+//                if (isValid) {
+//                    do {
+//                        try context.save()
+//                    } catch let error as NSError  {
+//                        print("Could not save \(error), \(error.userInfo)")
+//                    }
+//                }
+//            }
+//            
+//            do {
+//                try context.save()
+//            } catch let error as NSError  {
+//                print("Could not save \(error), \(error.userInfo)")
+//            }
+//        } catch {
+//            print("Error with request: \(error)")
+//        }
+//        
+//        complited()
+//        
+//    }
     
 
 

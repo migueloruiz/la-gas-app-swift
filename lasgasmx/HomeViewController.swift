@@ -10,11 +10,8 @@ import UIKit
 import GoogleMobileAds
 import GoogleMaps
 
-class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDelegate {
+class HomeViewController: UIViewController, GMSMapViewDelegate {
     
-    
-//    private var gasPricesCarouselController: GasPricesCarouselController!
-    // TODO: Crear capa de Carrousel
     lazy var gasPricesCarrousell: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -37,9 +34,6 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
     
     let gasPriceDatasorce = GasPricesDatasorce()
     var gasPricesController : GasPricesCarrouselController? = nil
-    
-//    private var stationsMapController: GasPricesCarouselController!
-//    private var adModController: GasPricesCarouselController!
 
     // TODO: Crear capa de Ads
     let adsView: GADBannerView = {
@@ -108,12 +102,12 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
         
         adsView.adUnitID = "ca-app-pub-2278511226994516/3431553183"
         adsView.rootViewController = self
-        adsView.delegate = self
+//        , GADBannerViewDelegate
+//        adsView.delegate = self
         
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID]
         adsView.load(request)
-        
         
         if let items = gasPriceDatasorce.objects {
             pager.numberOfPages = items.count
@@ -137,38 +131,38 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
         mapView.fillSuperview()
     }
     
-    /// Tells the delegate an ad request loaded an ad.
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceiveAd")
-    }
-    
-    /// Tells the delegate an ad request failed.
-    func adView(_ bannerView: GADBannerView,
-                didFailToReceiveAdWithError error: GADRequestError) {
-        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
-    }
-    
-    /// Tells the delegate that a full screen view will be presented in response
-    /// to the user clicking on an ad.
-    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        print("adViewWillPresentScreen")
-    }
-    
-    /// Tells the delegate that the full screen view will be dismissed.
-    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        print("adViewWillDismissScreen")
-    }
-    
-    /// Tells the delegate that the full screen view has been dismissed.
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        print("adViewDidDismissScreen")
-    }
-    
-    /// Tells the delegate that a user click will open another app (such as
-    /// the App Store), backgrounding the current app.
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        print("adViewWillLeaveApplication")
-    }
+//    /// Tells the delegate an ad request loaded an ad.
+//    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+//        print("adViewDidReceiveAd")
+//    }
+//    
+//    /// Tells the delegate an ad request failed.
+//    func adView(_ bannerView: GADBannerView,
+//                didFailToReceiveAdWithError error: GADRequestError) {
+//        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+//    }
+//    
+//    /// Tells the delegate that a full screen view will be presented in response
+//    /// to the user clicking on an ad.
+//    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+//        print("adViewWillPresentScreen")
+//    }
+//    
+//    /// Tells the delegate that the full screen view will be dismissed.
+//    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+//        print("adViewWillDismissScreen")
+//    }
+//    
+//    /// Tells the delegate that the full screen view has been dismissed.
+//    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+//        print("adViewDidDismissScreen")
+//    }
+//    
+//    /// Tells the delegate that a user click will open another app (such as
+//    /// the App Store), backgrounding the current app.
+//    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+//        print("adViewWillLeaveApplication")
+//    }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         let infoWindow = UIView(frame: CGRect(x: 0, y: 0, width: 170, height: 100))
@@ -180,14 +174,7 @@ class HomeViewController: UIViewController, GADBannerViewDelegate, GMSMapViewDel
 
 extension HomeViewController: GasPricesCarrouselDelegate {
     internal func gasEmptyCellSelected() {
-        guard let nav = self.navigationController else {
-            print("No NavigationControlle abilable")
-            return
-        }
-        
-//        let location =  GasPriceLocation(state: "AGUASCALIENTES", city: "JESUS MARIA")
-//        nav.pushViewController(NewLocationViewController(location: location), animated: true)
-        
+        guard let nav = self.navigationController else { return }
         nav.pushViewController(NewLocationViewController(), animated: true)
     }
 

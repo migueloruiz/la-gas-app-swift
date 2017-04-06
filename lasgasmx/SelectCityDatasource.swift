@@ -125,6 +125,10 @@ class SelectCityDatasorce: CollectionDatasource {
         guard let state = headers[0].slectedItem, let city = headers[1].slectedItem else { return nil }
         return GasPriceLocation(state: state, city: city)
     }
+    
+    func sectiosAreActive() -> Bool {
+        return headers[0].isSectionActive || headers[1].isSectionActive
+    }
 
     
 }

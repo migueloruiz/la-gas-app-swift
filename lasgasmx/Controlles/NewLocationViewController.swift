@@ -11,6 +11,8 @@ import UIKit
 class NewLocationViewController: UIViewController, UISearchResultsUpdating{
     
     var location : GasPriceLocation? = nil
+    var selectCityController: SelectCityCollectionController? = nil
+    var selectCityDatasource = SelectCityDatasorce()
     
     lazy var searchController: UISearchController = {
         let s = UISearchController(searchResultsController: nil)
@@ -30,8 +32,6 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
         return cv
     }()
     
-    var selectCityController: SelectCityCollectionController? = nil
-    var selectCityDatasource = SelectCityDatasorce()
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,7 +47,7 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .red
         setSubviews()
         
         if location != nil {
@@ -91,6 +91,9 @@ extension NewLocationViewController: SelectCityCollectionDelegate{
     func itemsSelected(location: GasPriceLocation?) {
         searchController.searchBar.text = ""
         searchController.searchBar.endEditing(true)
+        
+        print(selectCityDatasource.sectiosAreActive())
+        // activar y desactivar botones
         
         guard let l = location else { return }
         print("\(l)")

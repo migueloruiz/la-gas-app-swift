@@ -78,6 +78,26 @@ extension GasPriceEntity {
         self.city = location.city
     }
     
+    func update(with data: GasPriceInState) {
+        self.state = data.priceLocation.state
+        self.city = data.priceLocation.city
+        self.dateText = data.date
+        self.updatePrices(with: data.prices)
+    }
+    
+    func updatePrices(with prices: [GasPrice]) {
+        for price in prices {
+            switch price.type {
+                case .Magna:
+                    self.magna = price.price
+                case .Premium:
+                    self.premium = price.price
+                case .Diesel:
+                    self.diesel = price.price
+            }
+        }
+    }
+    
     func getStruct() -> GasPriceInState {
         let location = GasPriceLocation(state: self.state!, city: self.city!)
         let date = (self.dateText != nil) ? self.dateText! : ""

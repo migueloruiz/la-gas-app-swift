@@ -56,12 +56,11 @@ class SelectCityCollectionController: CollectionDatasourceController  {
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let d = delegate else { return }
-        if let data = datasource as? SelectCityDatasorce {
-            let result = data.setSectionby(index: indexPath)
-            d.itemsSelected(location: result)
-            datasorseUpdate()
-        }
+        guard let d = delegate, let data = datasource as? SelectCityDatasorce else { return }
+        let result = data.setSectionby(index: indexPath)
+        d.itemsSelected(location: result)
+        datasorseUpdate()
+        
     }
     
     override func sectionHeaderTapped(at indexPath: Int){
@@ -70,5 +69,6 @@ class SelectCityCollectionController: CollectionDatasourceController  {
             datasorseUpdate()
         }
     }
+    
 }
 
