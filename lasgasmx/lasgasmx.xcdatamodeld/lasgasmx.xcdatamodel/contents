@@ -4,11 +4,12 @@
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateText" attributeType="String" syncable="YES"/>
         <attribute name="diesel" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="magna" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="premium" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="GasPriceEntity" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="GasPriceEntity" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>

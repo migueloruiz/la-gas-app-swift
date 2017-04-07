@@ -18,6 +18,7 @@ import UIKit
 
 protocol SelectCityCollectionDelegate {
     func itemsSelected(location: GasPriceLocation?)
+    func headerTapped()
 }
 
 class SelectCityCollectionController: CollectionDatasourceController  {
@@ -64,8 +65,11 @@ class SelectCityCollectionController: CollectionDatasourceController  {
     }
     
     override func sectionHeaderTapped(at indexPath: Int){
-        if let data = datasource as? SelectCityDatasorce {
-            data.headers[indexPath].isSectionActive = !data.headers[indexPath].isSectionActive
+        if let d = delegate, let data = datasource as? SelectCityDatasorce {
+            if data.headers[indexPath].slectedItem != nil {
+                data.headers[indexPath].isSectionActive = !data.headers[indexPath].isSectionActive
+            }
+            d.headerTapped()
             datasorseUpdate()
         }
     }

@@ -14,8 +14,6 @@ class GasPricesDatasorce: CollectionDatasource {
     
     override init() {
         super.init()
-        fetchStroage()
-        updateStorageItems()
     }
     
     override func cellClasses() -> [CollectionDatasourceCell.Type] {
@@ -30,7 +28,9 @@ class GasPricesDatasorce: CollectionDatasource {
     func fetchStroage(){
         var prices = storageManager.fetchAllAsGasPrices() as [AnyObject]
         if prices.count < 5 { prices.append(1 as AnyObject) }
+        print(prices.count)
         objects = prices
+        updateDatasorce()
     }
     
     func updateStorageItems() {
@@ -42,14 +42,20 @@ class GasPricesDatasorce: CollectionDatasource {
             apiBucket.getPriceBy(location: location, completition: { dataResult in
                 switch dataResult {
                     case .Success(let data):
-                        entity.update(with: data)
-                        self.storageManager.saveChanges()
-                        self.fetchStroage()
+                        DispatchQueue.main.async {
+                            entity.update(with: data)
+                            self.storageManager.saveChanges()
+                            self.fetchStroage()
+                        }
                     case .Failure:
                         break
                     }
             })
         }
+    }
+    
+    func updateCarrousell() {
+        updateStorageItems()
     }
     
 }

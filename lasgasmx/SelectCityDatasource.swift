@@ -34,7 +34,6 @@ class SelectCityDatasorce: CollectionDatasource {
             SelectCityHeadersItems(defaultText: .State, isSectionActive: false, slectedItem: location.state),
             SelectCityHeadersItems(defaultText: .City, isSectionActive: false, slectedItem: location.city)
         ]
-        print(headers)
         super.init()
     }
     
@@ -94,6 +93,7 @@ class SelectCityDatasorce: CollectionDatasource {
                 case .Success(let data):
                     self.citysDictionary = CitysDictionary(data: data)
                     self.states = (self.citysDictionary?.getStates())!
+                    self.setCitys()
                 case .Failure(let error):
                     print(error)
             }
@@ -128,6 +128,13 @@ class SelectCityDatasorce: CollectionDatasource {
     
     func sectiosAreActive() -> Bool {
         return headers[0].isSectionActive || headers[1].isSectionActive
+    }
+    
+    func getActualLocation() -> GasPriceLocation? {
+        guard let state = headers[0].slectedItem, let city = headers[1].slectedItem else {
+            return nil
+        }
+        return GasPriceLocation(state: state, city: city)
     }
 
     

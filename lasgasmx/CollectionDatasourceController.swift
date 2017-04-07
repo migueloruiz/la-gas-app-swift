@@ -161,9 +161,14 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
     open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     }
     
-    func datasorseUpdate() {
+    final func datasorseUpdate() {
+        print("update collection")
         self.collectionView.reloadData()
+        aftherUpdate()
+        
     }
+    
+    func aftherUpdate() {}
     
     internal func sectionHeaderTapped(withSender sender: UITapGestureRecognizer){
         guard let hearder = sender.view else {

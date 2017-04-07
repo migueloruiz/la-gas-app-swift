@@ -26,4 +26,7 @@ extension UIColor {
     static var magna: UIColor  { return UIColor(r: 247, g: 63, b: 46) }
     static var premium: UIColor  { return UIColor(r: 24, g: 176, b: 106) }
     static var diesel: UIColor  { return UIColor(r: 76, g: 76, b: 76) }
+    
+    static var delete: UIColor  { return UIColor(r: 247, g: 109, b: 59) }
+    static var succes: UIColor  { return UIColor(r: 0, g: 240, b: 135) }
 }

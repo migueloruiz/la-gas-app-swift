@@ -11,6 +11,8 @@ import UIKit
 protocol GasPricesCarrouselDelegate {
     func updateCounter(counter: Int)
     func gasEmptyCellSelected()
+    func gasCellSelected(price: GasPriceInState)
+    func datasourseWasUpdated()
 }
 
 class GasPricesCarrouselController: CollectionDatasourceController {
@@ -45,18 +47,28 @@ class GasPricesCarrouselController: CollectionDatasourceController {
         dl.updateCounter(counter: Int(counter))
     }
     
+    override func aftherUpdate(){
+        guard let dl = delegate else {
+            print("GasPricesCarrouselController.delagete no set")
+            return
+        }
+        dl.datasourseWasUpdated()
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let dl = delegate else {
             print("GasPricesCarrouselController.delagete no set")
             return
         }
         
-  
         guard let cell = collectionView.cellForItem(at: indexPath) as? GasPriceCell else {
             dl.gasEmptyCellSelected()
             return
         }
-        print("Abrir calculadora")
+        
+        if let price = cell.datasourceItem as? GasPriceInState {
+            dl.gasCellSelected( price: price )
+        }
     }
     
 }

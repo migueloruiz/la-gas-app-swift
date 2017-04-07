@@ -10,9 +10,14 @@ import UIKit
 
 class NewLocationViewController: UIViewController, UISearchResultsUpdating{
     
-    var location : GasPriceLocation? = nil
+    var gasPrice : GasPriceInState? = nil
     var selectCityController: SelectCityCollectionController? = nil
     var selectCityDatasource = SelectCityDatasorce()
+    
+    let storageManager = GasPriceStorageManager()
+    
+    var deleteButtonisAvilable = false
+    var saveButtonisAvilable = true
     
     lazy var searchController: UISearchController = {
         let s = UISearchController(searchResultsController: nil)
@@ -32,13 +37,38 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
         return cv
     }()
     
+    let deleteButton : UIButton = {
+        let b = UIButton()
+        b.layer.cornerRadius = 10
+        b.backgroundColor = .delete
+        b.setTitle("Eliminar locacion", for: .normal)
+        b.addTarget(self, action: #selector(NewLocationViewController.deleteLocation), for: .touchUpInside)
+        b.isHidden = true
+        b.alpha = 0
+        return b
+    }()
+    
+    let saveButton : UIButton = {
+        let b = UIButton()
+        b.layer.cornerRadius = 10
+        b.backgroundColor = .succes
+        b.setTitle("Guardar Locacion", for: .normal)
+        b.addTarget(self, action: #selector(NewLocationViewController.saveLocation), for: .touchUpInside)
+        b.isHidden = true
+        b.alpha = 0
+        return b
+    }()
+    
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
     
-    init(location: GasPriceLocation) {
+    init(gasPrice: GasPriceInState) {
         super.init(nibName: nil, bundle: nil)
-        self.location = location
+        self.gasPrice = gasPrice
+        deleteButtonisAvilable = true
+        saveButtonisAvilable = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,11 +77,11 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         setSubviews()
         
-        if location != nil {
-            selectCityDatasource = SelectCityDatasorce(location: location!)
+        if let price = gasPrice {
+            selectCityDatasource = SelectCityDatasorce(location: price.priceLocation)
         }
         
         selectCityController = SelectCityCollectionController(collectionView: selectCityView, datasorce: selectCityDatasource)
@@ -60,18 +90,23 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
 
         self.navigationItem.titleView = searchController.searchBar
         
-        let myBackButton:UIButton = UIButton()
-        let crossImage = UIImage(named: "cross")
-        myBackButton.addTarget(self, action: #selector(NewLocationViewController.popToRoot), for: .touchUpInside)
-        myBackButton.setImage(crossImage, for: .normal)
-        myBackButton.sizeToFit()
-        let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
+        let exitButton = CrossBackButton(withTarget: self, action: #selector(NewLocationViewController.popView), type: .cross)
+        let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: exitButton)
         self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
     }
     
     func setSubviews() {
         view.addSubview(selectCityView)
+        view.addSubview(deleteButton)
+        view.addSubview(saveButton)
+        
+        setHiddenButtons(saveButtonisAvilable)
+        
         selectCityView.anchor(top: view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        deleteButton.anchor(top: nil, left: view.leftAnchor, bottom: saveButton.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 20, rightConstant: 30, widthConstant: 20, heightConstant: 40)
+        
+        saveButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 20, rightConstant: 30, widthConstant: 20, heightConstant: 40)
     }
     
     
@@ -81,7 +116,39 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
     }    
     
     func popToRoot(){
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func popView(){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func deleteLocation() {
+        guard let price = gasPrice else { return }
+        storageManager.deleteWith(id: price.id!)
+        popToRoot()
+    }
+    
+    func saveLocation() {
+        if(!deleteButtonisAvilable) {
+            guard let newLocation = selectCityDatasource.getActualLocation() else {
+                print("manejar error")
+                return
+            }
+            storageManager.newGasPrice(location: newLocation)
+            popToRoot()
+        } else {
+            print("Editar viejo")
+        }
+    }
+    
+    func setHiddenButtons(_ value: Bool) {
+        if (deleteButtonisAvilable){
+            deleteButton.isHidden = value
+            deleteButton.alpha = value ? 0 : 1
+        }
+        saveButton.isHidden = value
+        saveButton.alpha = value ? 0 : 1
     }
 
 }
@@ -92,13 +159,11 @@ extension NewLocationViewController: SelectCityCollectionDelegate{
         searchController.searchBar.text = ""
         searchController.searchBar.endEditing(true)
         
-        print(selectCityDatasource.sectiosAreActive())
-        // activar y desactivar botones
-        
-        guard let l = location else { return }
-        print("\(l)")
-        
-        // Create new GasPrice in CoreData
+        setHiddenButtons(selectCityDatasource.sectiosAreActive())
+    }
+    
+    func headerTapped() {
+        setHiddenButtons(selectCityDatasource.sectiosAreActive())
     }
     
 }

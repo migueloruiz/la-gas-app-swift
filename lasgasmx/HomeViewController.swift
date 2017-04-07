@@ -82,7 +82,6 @@ class HomeViewController: UIViewController, GMSMapViewDelegate {
         gasPricesController?.delegate = self
         gasPriceDatasorce.fetchStroage()
         
-        
         mapView.delegate = self
         
         setupSubViews()
@@ -90,6 +89,15 @@ class HomeViewController: UIViewController, GMSMapViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar()
+        gasPriceDatasorce.updateCarrousell()
+        
+        if let items = gasPriceDatasorce.objects {
+            pager.numberOfPages = items.count
+        } else {
+            pager.numberOfPages = 1
+        }
+        
+        print("will apear")
     }
     
     func setupNavigationBar() {
@@ -173,6 +181,19 @@ class HomeViewController: UIViewController, GMSMapViewDelegate {
 }
 
 extension HomeViewController: GasPricesCarrouselDelegate {
+    
+    func datasourseWasUpdated() {
+        guard let items = gasPriceDatasorce.objects else {
+            return
+        }
+        pager.numberOfPages = items.count
+    }
+    
+    internal func gasCellSelected(price: GasPriceInState) {
+        guard let nav = self.navigationController else { return }
+        nav.pushViewController(CalculatorViewController(gasPrice: price), animated: true)
+    }
+
     internal func gasEmptyCellSelected() {
         guard let nav = self.navigationController else { return }
         nav.pushViewController(NewLocationViewController(), animated: true)

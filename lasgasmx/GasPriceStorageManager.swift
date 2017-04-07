@@ -34,22 +34,22 @@ class GasPriceStorageManager {
         newGasPriceStorage.magna = 0.0
         newGasPriceStorage.diesel = 0.0
         newGasPriceStorage.premium = 0.0
+        newGasPriceStorage.id = generateIdTimestamp()
         saveChanges()
     }
     
     func saveChanges() {
         do {
             try context.save()
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
+        } catch let error  {
+            print("Could not save \(error), \(error.localizedDescription)")
         }
     }
     
     func fetchAll() -> [GasPriceEntity] {
         let fetchRequest: NSFetchRequest<GasPriceEntity> = GasPriceEntity.fetchRequest()
         do {
-            let searchResults = try context.fetch(fetchRequest)
-            return searchResults
+            return try context.fetch(fetchRequest)
         } catch {
             return []
         }
@@ -60,43 +60,23 @@ class GasPriceStorageManager {
     }
     
     func editLocation(with actualLocation: GasPriceLocation, recordChanges: (_ item: GasPriceEntity) -> Bool) {
-        
+
     }
     
-//    func updateAll(edit: (_ item: GasPriceEntity) -> Bool, complited: (Void) -> Void ) {
-//        let fetchRequest: NSFetchRequest<GasPriceEntity> = GasPriceEntity.fetchRequest()
-//        do {
-//            let searchResults = try context.fetch(fetchRequest)
-//            for price in searchResults as [GasPriceEntity] {
-//                let isValid = edit(price)
-//                
-//                if (isValid) {
-//                    do {
-//                        try context.save()
-//                    } catch let error as NSError  {
-//                        print("Could not save \(error), \(error.userInfo)")
-//                    }
-//                }
-//            }
-//            
-//            do {
-//                try context.save()
-//            } catch let error as NSError  {
-//                print("Could not save \(error), \(error.userInfo)")
-//            }
-//        } catch {
-//            print("Error with request: \(error)")
-//        }
-//        
-//        complited()
-//        
-//    }
-    
-
-
-    
-    func deleteLocation(with actualLocation: GasPriceLocation) {
+    func deleteWith(id: String) {
+        let predicate = NSPredicate(format: "id = %@" ,"\(id)")
+        let fetchRequest: NSFetchRequest<GasPriceEntity> = GasPriceEntity.fetchRequest()
+        fetchRequest.predicate = predicate
         
+        do {
+            let searchResults = try context.fetch(fetchRequest)
+            if let itemToDelete = searchResults.first {
+                context.delete(itemToDelete)
+                saveChanges()
+            }
+        } catch let error {
+            print("Could not save \(error), \(error.localizedDescription)")
+        }
     }
     
 //    

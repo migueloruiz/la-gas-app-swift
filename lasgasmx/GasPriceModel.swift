@@ -13,6 +13,8 @@ struct GasPriceInState {
     var date: String
     var prices: [GasPrice]
     
+    var id: String?
+    
     func getText() -> String {
         return "\(priceLocation.city.capitalized), \(priceLocation.state.capitalized)"
     }
@@ -21,6 +23,13 @@ struct GasPriceInState {
         self.priceLocation = priceLocation
         self.date = date
         self.prices = prices
+    }
+    
+    init(priceLocation: GasPriceLocation, date: String, prices: [GasPrice], id: String) {
+        self.priceLocation = priceLocation
+        self.date = date
+        self.prices = prices
+        self.id = id
     }
     
     init(priceLocation: GasPriceLocation, json: [String: Any]) {
@@ -107,10 +116,12 @@ extension GasPriceEntity {
         let premium = GasPrice(type: .Premium, price: self.premium)
         let diesel = GasPrice(type: .Diesel, price: self.diesel)
         
+        let id = self.id!
+        
         prices.append(magna)
         prices.append(premium)
         prices.append(diesel)
         
-        return GasPriceInState(priceLocation: location, date: date, prices: prices)
+        return GasPriceInState(priceLocation: location, date: date, prices: prices, id: id)
     }
 }
