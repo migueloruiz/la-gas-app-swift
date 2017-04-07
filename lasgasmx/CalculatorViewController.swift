@@ -8,52 +8,17 @@
 
 import UIKit
 
-class CalculatorViewController: UIViewController{
+class CalculatorViewController: UIViewController {
     
     var price: GasPriceInState {
         didSet{
         }
     }
     
-    let amountInput: UITextField = {
-        let i = UITextField()
-        i.backgroundColor = .white
-        i.font = UIFont.systemFont(ofSize: 24)
-        i.translatesAutoresizingMaskIntoConstraints = true
-        i.textAlignment = .right
-        i.layer.cornerRadius = 10
-        i.text = "0.00"
-        i.keyboardType = UIKeyboardType.decimalPad
-        i.becomeFirstResponder()
-        
-        return i
-    }()
-//    class TextField: UITextField {
-//        
-//        let padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5);
-//        
-//        override func textRectForBounds(bounds: CGRect) -> CGRect {
-//            return UIEdgeInsetsInsetRect(bounds, padding)
-//        }
-//        
-//        override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
-//            return UIEdgeInsetsInsetRect(bounds, padding)
-//        }
-//        
-//        override func editingRectForBounds(bounds: CGRect) -> CGRect {
-//            return UIEdgeInsetsInsetRect(bounds, padding)
-//        }
-//    }
+    var calcResultController: CalcResultsCollectionController
+    var calcResultDatasource: CalcResultDatasorce
     
-    
-    let typeSegment : UISegmentedControl = {
-        let items = ["Pesos","Litros"]
-        let s = UISegmentedControl(items: items)
-        s.selectedSegmentIndex = 0
-        s.tintColor = .white
-        s.translatesAutoresizingMaskIntoConstraints = true
-        return s
-    }()
+    let amountInput = UICalcTextField()
     
     let calcResultsView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -66,6 +31,8 @@ class CalculatorViewController: UIViewController{
     
     init(gasPrice: GasPriceInState) {
         self.price = gasPrice
+        calcResultDatasource = CalcResultDatasorce(prices: gasPrice.prices)
+        calcResultController = CalcResultsCollectionController(collectionView: calcResultsView, datasorce: calcResultDatasource)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -78,13 +45,13 @@ class CalculatorViewController: UIViewController{
         
         self.navigationController?.isNavigationBarHidden = false
         
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         
-        let backButton = CrossBackButton(withTarget: self, action: #selector(CalculatorViewController.popView), type: .back)
+        let backButton = UIBackButton(withTarget: self, action: #selector(CalculatorViewController.popView), type: .back)
         let backButtonItem:UIBarButtonItem = UIBarButtonItem(customView: backButton)
         self.navigationItem.leftBarButtonItem  = backButtonItem
         
-        let editButton = CrossBackButton(withTarget: self, action: #selector(CalculatorViewController.openEdit), type: .edit)
+        let editButton = UIBackButton(withTarget: self, action: #selector(CalculatorViewController.openEdit), type: .edit)
         let editButtonItem:UIBarButtonItem = UIBarButtonItem(customView: editButton)
         self.navigationItem.rightBarButtonItem  = editButtonItem
         
@@ -94,15 +61,17 @@ class CalculatorViewController: UIViewController{
     }
     
     func setSubviews() {
+        amountInput.focus()
+        amountInput.delegate = self
+        
         view.addSubview(amountInput)
-        view.addSubview(typeSegment)
         view.addSubview(calcResultsView)
         
-        amountInput.anchor(top: view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: typeSegment.leftAnchor, topConstant: 70, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 40)
+        let offset: CGFloat = 30;
         
-        typeSegment.anchor(top: amountInput.topAnchor, left: amountInput.rightAnchor, bottom: nil, right: view.rightAnchor, topConstant: 5, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 30)
+        amountInput.anchor(top: view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 60 + offset, leftConstant: 20, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 40)
         
-        calcResultsView.anchor(top: amountInput.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        calcResultsView.anchor(top: amountInput.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: offset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
 
     }
     
@@ -118,3 +87,10 @@ class CalculatorViewController: UIViewController{
     
 }
 
+extension CalculatorViewController: UICalcTextFieldDelegate {
+    
+    internal func calcTextField(changeValue: CalcType) {
+        calcResultDatasource.calc = changeValue
+    }
+    
+}

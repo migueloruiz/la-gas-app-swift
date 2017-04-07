@@ -91,7 +91,7 @@ class SelectCityDatasorce: CollectionDatasource {
         localData.makeConnection { dataResult in
             switch dataResult {
                 case .Success(let data):
-                    self.citysDictionary = CitysDictionary(data: data)
+                    self.citysDictionary = CitysDictionary(json: data)
                     self.states = (self.citysDictionary?.getStates())!
                     self.setCitys()
                 case .Failure(let error):

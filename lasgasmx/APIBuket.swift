@@ -23,7 +23,7 @@ class BucketAPI: DataBucket {
             
             switch dataResult {
                 case .Success(let data):
-                    let decodeJson = decodeJSON(data: data)
+                    let decodeJson = decodeJSON(json: data)
                     switch decodeJson {
                         case .Success(let json):
                             let r = GasPriceInState(priceLocation: location, json: json)

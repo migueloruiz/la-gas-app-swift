@@ -12,10 +12,6 @@ class GasPricesDatasorce: CollectionDatasource {
     
     let storageManager = GasPriceStorageManager()
     
-    override init() {
-        super.init()
-    }
-    
     override func cellClasses() -> [CollectionDatasourceCell.Type] {
         return [GasPriceCell.self, GasPriceEmptyCell.self]
     }

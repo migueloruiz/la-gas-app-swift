@@ -90,7 +90,7 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
 
         self.navigationItem.titleView = searchController.searchBar
         
-        let exitButton = CrossBackButton(withTarget: self, action: #selector(NewLocationViewController.popView), type: .cross)
+        let exitButton = UIBackButton(withTarget: self, action: #selector(NewLocationViewController.popView), type: .cross)
         let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: exitButton)
         self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
     }

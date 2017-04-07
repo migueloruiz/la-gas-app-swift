@@ -21,6 +21,11 @@
 		E9112ACC1E8195EE00B6E60F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9112ACA1E8195EE00B6E60F /* LaunchScreen.storyboard */; };
 		E9112AD71E8195EE00B6E60F /* lasgasmxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9112AD61E8195EE00B6E60F /* lasgasmxTests.swift */; };
 		E9112AE21E8195EE00B6E60F /* lasgasmxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9112AE11E8195EE00B6E60F /* lasgasmxUITests.swift */; };
+		E961AF131E97EE99008173FB /* CalcResultsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961AF121E97EE99008173FB /* CalcResultsCollectionController.swift */; };
+		E961AF151E97EFC7008173FB /* CalcResultDatasorce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961AF141E97EFC7008173FB /* CalcResultDatasorce.swift */; };
+		E961AF171E97F29A008173FB /* CalcResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961AF161E97F29A008173FB /* CalcResultCell.swift */; };
+		E961AF191E980026008173FB /* Float+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961AF181E980026008173FB /* Float+Helpers.swift */; };
+		E961AF1B1E980C87008173FB /* UICalcTextField+Costume.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961AF1A1E980C87008173FB /* UICalcTextField+Costume.swift */; };
 		E96254E51E940BB2004CEB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254E41E940BB2004CEB66 /* Result.swift */; };
 		E96254E71E940C68004CEB66 /* DataBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254E61E940C68004CEB66 /* DataBucket.swift */; };
 		E96254E91E941164004CEB66 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254E81E941164004CEB66 /* Request.swift */; };
@@ -42,7 +47,7 @@
 		E9BEDDBC1E8F156B00C0A41D /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BEDDBB1E8F156B00C0A41D /* locations.json */; };
 		E9DE33A61E96AF91006498EF /* UserSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A51E96AF91006498EF /* UserSettingsManager.swift */; };
 		E9DE33A81E96B755006498EF /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A71E96B755006498EF /* CalculatorViewController.swift */; };
-		E9DE33AB1E96B9B4006498EF /* UIButton+Custome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33AA1E96B9B4006498EF /* UIButton+Custome.swift */; };
+		E9DE33AB1E96B9B4006498EF /* UIBackButton+Custome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33AA1E96B9B4006498EF /* UIBackButton+Custome.swift */; };
 		E9DE33AD1E96C1AA006498EF /* UINavigationItem+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33AC1E96C1AA006498EF /* UINavigationItem+Helper.swift */; };
 		E9DE33AF1E96C88E006498EF /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33AE1E96C88E006498EF /* Timestamp.swift */; };
 		E9EB3A3E1E8AD57900D76215 /* UIColor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */; };
@@ -95,6 +100,11 @@
 		E9112ADD1E8195EE00B6E60F /* lasgasmxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lasgasmxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9112AE11E8195EE00B6E60F /* lasgasmxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lasgasmxUITests.swift; sourceTree = "<group>"; };
 		E9112AE31E8195EE00B6E60F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E961AF121E97EE99008173FB /* CalcResultsCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcResultsCollectionController.swift; sourceTree = "<group>"; };
+		E961AF141E97EFC7008173FB /* CalcResultDatasorce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcResultDatasorce.swift; sourceTree = "<group>"; };
+		E961AF161E97F29A008173FB /* CalcResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcResultCell.swift; sourceTree = "<group>"; };
+		E961AF181E980026008173FB /* Float+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Float+Helpers.swift"; sourceTree = "<group>"; };
+		E961AF1A1E980C87008173FB /* UICalcTextField+Costume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICalcTextField+Costume.swift"; path = "UI/UICalcTextField+Costume.swift"; sourceTree = "<group>"; };
 		E96254E41E940BB2004CEB66 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E96254E61E940C68004CEB66 /* DataBucket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBucket.swift; sourceTree = "<group>"; };
 		E96254E81E941164004CEB66 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -116,7 +126,7 @@
 		E9BEDDBB1E8F156B00C0A41D /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
 		E9DE33A51E96AF91006498EF /* UserSettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsManager.swift; sourceTree = "<group>"; };
 		E9DE33A71E96B755006498EF /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
-		E9DE33AA1E96B9B4006498EF /* UIButton+Custome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Custome.swift"; sourceTree = "<group>"; };
+		E9DE33AA1E96B9B4006498EF /* UIBackButton+Custome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBackButton+Custome.swift"; sourceTree = "<group>"; };
 		E9DE33AC1E96C1AA006498EF /* UINavigationItem+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Helper.swift"; sourceTree = "<group>"; };
 		E9DE33AE1E96C88E006498EF /* Timestamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Helper.swift"; path = "Helpers/Extension/UIColor+Helper.swift"; sourceTree = "<group>"; };
@@ -270,6 +280,16 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		E961AF111E97EE37008173FB /* CalcResults */ = {
+			isa = PBXGroup;
+			children = (
+				E961AF121E97EE99008173FB /* CalcResultsCollectionController.swift */,
+				E961AF141E97EFC7008173FB /* CalcResultDatasorce.swift */,
+				E961AF161E97F29A008173FB /* CalcResultCell.swift */,
+			);
+			name = CalcResults;
+			sourceTree = "<group>";
+		};
 		E96254E31E940A45004CEB66 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +311,7 @@
 				E9F868811E959447007181BA /* String+Helper.swift */,
 				E9DE33AC1E96C1AA006498EF /* UINavigationItem+Helper.swift */,
 				E9DE33AE1E96C88E006498EF /* Timestamp.swift */,
+				E961AF181E980026008173FB /* Float+Helpers.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -311,6 +332,7 @@
 				E97A819E1E8C3EF700294DCE /* Generic */,
 				E9BEDDB41E8ED6FC00C0A41D /* SelectCityTable */,
 				CAE3235A1E8E16E2005871F7 /* GasPricesCarrousel */,
+				E961AF111E97EE37008173FB /* CalcResults */,
 			);
 			name = Componets;
 			sourceTree = "<group>";
@@ -339,7 +361,8 @@
 		E9DE33A91E96B98D006498EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				E9DE33AA1E96B9B4006498EF /* UIButton+Custome.swift */,
+				E9DE33AA1E96B9B4006498EF /* UIBackButton+Custome.swift */,
+				E961AF1A1E980C87008173FB /* UICalcTextField+Costume.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -645,13 +668,17 @@
 			files = (
 				E9F8687E1E956EDF007181BA /* JsonParse.swift in Sources */,
 				E97A819C1E8C324900294DCE /* GasPricesCarouselController.swift in Sources */,
+				E961AF191E980026008173FB /* Float+Helpers.swift in Sources */,
 				E90E73431E8DD25100041042 /* GasPriceModel.swift in Sources */,
 				CAE3235C1E8E1759005871F7 /* NewLocationViewController.swift in Sources */,
+				E961AF151E97EFC7008173FB /* CalcResultDatasorce.swift in Sources */,
 				E97A81AE1E8C80A300294DCE /* DefaultCell.swift in Sources */,
 				E96254E71E940C68004CEB66 /* DataBucket.swift in Sources */,
 				E96254E91E941164004CEB66 /* Request.swift in Sources */,
-				E9DE33AB1E96B9B4006498EF /* UIButton+Custome.swift in Sources */,
+				E9DE33AB1E96B9B4006498EF /* UIBackButton+Custome.swift in Sources */,
+				E961AF1B1E980C87008173FB /* UICalcTextField+Costume.swift in Sources */,
 				E96254ED1E946266004CEB66 /* GasPriceStorageManager.swift in Sources */,
+				E961AF131E97EE99008173FB /* CalcResultsCollectionController.swift in Sources */,
 				E97A81B01E8C88F900294DCE /* GasPricesDatasorce.swift in Sources */,
 				E9112AC11E8195EE00B6E60F /* HomeViewController.swift in Sources */,
 				E96254E51E940BB2004CEB66 /* Result.swift in Sources */,
@@ -671,6 +698,7 @@
 				E90E73411E8D848400041042 /* GasPriceCell.swift in Sources */,
 				E9DE33A61E96AF91006498EF /* UserSettingsManager.swift in Sources */,
 				E97A81A61E8C744C00294DCE /* UIView+Anchors.swift in Sources */,
+				E961AF171E97F29A008173FB /* CalcResultCell.swift in Sources */,
 				E97A81AC1E8C790100294DCE /* CollectionDatasorceCell.swift in Sources */,
 				E9F868821E959447007181BA /* String+Helper.swift in Sources */,
 				E9DE33AF1E96C88E006498EF /* Timestamp.swift in Sources */,

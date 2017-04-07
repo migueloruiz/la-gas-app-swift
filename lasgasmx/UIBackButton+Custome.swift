@@ -8,15 +8,15 @@
 
 import UIKit
 
-enum BackButtonType {
+enum UIBackButtonType {
     case cross
     case back
     case edit
 }
 
-class CrossBackButton: UIButton {
+class UIBackButton: UIButton {
 
-    init( withTarget target: Any?, action: Selector, type: BackButtonType ){
+    init( withTarget target: Any?, action: Selector, type: UIBackButtonType ){
         super.init(frame: .zero)
         self.backgroundColor = .clear
         self.addTarget(target, action: action, for: .touchUpInside)
@@ -28,7 +28,7 @@ class CrossBackButton: UIButton {
         super.init(coder: aDecoder)
     }
     
-    func getImageBy(_ type: BackButtonType ) -> UIImage{
+    func getImageBy(_ type: UIBackButtonType ) -> UIImage{
         switch type {
             case .cross:
                 return #imageLiteral(resourceName: "cross")

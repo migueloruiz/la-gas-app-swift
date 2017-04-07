@@ -119,7 +119,7 @@ class GasItemView: UIView {
     
     var price: Float {
         didSet(newValue) {
-            priceLabel.text = (newValue > 0) ? "\(String(format: "%.2f", newValue)) $" : "- -"
+            priceLabel.text = (newValue > 0) ? newValue.asPesos : "- -"
         }
     }
     
@@ -152,7 +152,7 @@ class GasItemView: UIView {
         setupView()
         setColor(by: fule)
         self.price = price
-        priceLabel.text = (price > 0) ? "\(String(format: "%.2f", price)) $" : "- -"
+        priceLabel.text = (price > 0) ? price.asPesos : "- -"
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -170,6 +170,8 @@ class GasItemView: UIView {
         
         fuelTypeLabel.anchor(top: priceLabel.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: -5, leftConstant: 0, bottomConstant: 3, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
+    
+    // TODO esto se puede volver una funcion mas general
     
     func setColor( by type: FuelType) {
         fuelTypeLabel.text = type.rawValue
