@@ -88,6 +88,7 @@ class HomeViewController: UIViewController, GMSMapViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("will apear")
         setupNavigationBar()
         gasPriceDatasorce.updateCarrousell()
         
@@ -96,8 +97,6 @@ class HomeViewController: UIViewController, GMSMapViewDelegate {
         } else {
             pager.numberOfPages = 1
         }
-        
-        print("will apear")
     }
     
     func setupNavigationBar() {

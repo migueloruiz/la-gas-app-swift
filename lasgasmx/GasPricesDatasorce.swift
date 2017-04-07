@@ -55,6 +55,7 @@ class GasPricesDatasorce: CollectionDatasource {
     }
     
     func updateCarrousell() {
+        fetchStroage()
         updateStorageItems()
     }
     
