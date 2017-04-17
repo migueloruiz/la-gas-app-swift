@@ -24,7 +24,6 @@ class GasPricesDatasorce: CollectionDatasource {
     func fetchStroage(){
         var prices = storageManager.fetchAllAsGasPrices() as [AnyObject]
         if prices.count < 5 { prices.append(1 as AnyObject) }
-        print(prices.count)
         objects = prices
         updateDatasorce()
     }

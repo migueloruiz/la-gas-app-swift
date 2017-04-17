@@ -8,22 +8,28 @@
 
 import Foundation
 
+/// Clase para el manejo del archivo XXXXXXX.plit para almacenameinto de Private Keys
+///- Note:
+/// para utilizar esta clase debe de existir el archivo .plist proporcionado
 class ConfigManager {
     
-    let configKeys :[String: AnyObject]
+    private let configKeys :[String: AnyObject]
     
-    // TODO: Hacer un correcto manejo de errores en la carga de el .plist
-    
+    ///Inicializa el nuevo ConfigManager
+    ///- parameters:
+    ///   - byPlistFile: Nombre del archivo **sin la terninacion .plist**
     init( byPlistFile file: String ) {
         guard let path = Bundle.main.path(forResource: file, ofType: "plist") else {
             self.configKeys = [String: AnyObject]()
-            print("ERROR: PrivateKeys.plit not found")
+            fatalError("ERROR: \(file).plit not found")
             return
         }
-        
         self.configKeys = NSDictionary(contentsOfFile: path) as! [String: AnyObject]!
     }
     
+    ///Regresa un string relacionado con el key proporcionado
+    /// - parameter key: Referencia de busqueda
+    /// - returns: Regresa un String en caso de que la busqueda sea exitosa, de lo contrario llegersa un String vacio
     subscript(key: String) -> String {
         return configKeys[key] != nil ? self.configKeys[key]! as! String : ""
     }

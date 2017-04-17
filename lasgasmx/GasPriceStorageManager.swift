@@ -79,41 +79,22 @@ class GasPriceStorageManager {
         }
     }
     
-//    
-//    func updateAbstract( forID id:String ,recordChanges:(abs: Abstract) -> Void){
-//        
-//        let managedContext = getAppDelegate()!.managedObjectContext
-//        let predicate = NSPredicate(format: "id = %@" ,"\(id)")
-//        let fetchRequest   = NSFetchRequest(entityName: "Abstract")
-//        fetchRequest.predicate = predicate
-//        
-//        do{
-//            
-//            if let fetchResult = try managedContext.executeFetchRequest(fetchRequest) as? [Abstract]{
-//                let abs : Abstract = fetchResult.first! as Abstract
-//                recordChanges(abs: abs)
-//                
-//            }else{
-//                Crashlytics.sharedInstance().crash()
-//                Crashlytics.sharedInstance().setObjectValue("fetchResult No Found", forKey: "editAbstract")
-//            }
-//            
-//            do{
-//                try managedContext.save()
-//            }
-//            catch let error as NSError  {
-//                print("Could not save: \(error), \(error.userInfo)")
-//                managedContext.rollback()
-//                Crashlytics.sharedInstance().recordError(error)
-//                Crashlytics.sharedInstance().setObjectValue("save error", forKey: "eeditAbstract")
-//            }
-//            
-//        }
-//        catch let error as NSError  {
-//            print("Could not save \(error), \(error.userInfo)")
-//            Crashlytics.sharedInstance().recordError(error)
-//            Crashlytics.sharedInstance().setObjectValue("fetchResult Error", forKey: "editAbstract")
-//        }
-//    }
+    
+    func updatePriceBy(id:String, recordChanges:(_ gasPriceEntity: GasPriceEntity) -> Void){
+        
+        let predicate = NSPredicate(format: "id = %@" ,"\(id)")
+        let fetchRequest: NSFetchRequest<GasPriceEntity> = GasPriceEntity.fetchRequest()
+        fetchRequest.predicate = predicate
+        
+        do {
+            let searchResults = try context.fetch(fetchRequest)
+            if let itemToUpdate = searchResults.first {
+                recordChanges(itemToUpdate)
+                saveChanges()
+            }
+        } catch let error {
+            print("Could not save \(error), \(error.localizedDescription)")
+        }
+    }
     
 }

@@ -162,10 +162,8 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
     }
     
     final func datasorseUpdate() {
-        print("update collection")
         self.collectionView.reloadData()
         aftherUpdate()
-        
     }
     
     func aftherUpdate() {}
@@ -178,16 +176,5 @@ open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, 
     }
     
     open func sectionHeaderTapped(at indexPath: Int){}
-    
-//    open func getRefreshControl() -> UIRefreshControl {
-//        let rc = UIRefreshControl()
-//        rc.addTarget(self, action: #selector(CollectionDatasourceController.handleRefresh), for: .valueChanged)
-//        return rc
-//    }
-//    
-//    open func handleRefresh() {
-//        print("Refresh")
-//    }
-    
 }
 

@@ -130,16 +130,21 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
     }
     
     func saveLocation() {
-        if(!deleteButtonisAvilable) {
-            guard let newLocation = selectCityDatasource.getActualLocation() else {
-                print("manejar error")
-                return
-            }
-            storageManager.newGasPrice(location: newLocation)
-            popToRoot()
-        } else {
-            print("Editar viejo")
+        guard let newLocation = selectCityDatasource.getActualLocation()  else {
+            print("manejar error")
+            return
         }
+        if(!deleteButtonisAvilable) {
+            storageManager.newGasPrice(location: newLocation)
+        } else {
+            guard let idToFind = gasPrice?.id  else { return }
+            storageManager.updatePriceBy(id: idToFind, recordChanges: { gasPriceToUpdate in
+                gasPriceToUpdate.state = newLocation.state
+                gasPriceToUpdate.city = newLocation.city
+            })
+        }
+        
+        popToRoot()
     }
     
     func setHiddenButtons(_ value: Bool) {

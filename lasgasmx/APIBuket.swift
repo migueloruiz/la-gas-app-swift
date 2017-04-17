@@ -37,6 +37,20 @@ class BucketAPI: DataBucket {
         })
         
     }
+    
+    func getGasStations() {
+        let request = Request(path: "station?user_long=-99.2047001&user_lat=19.4406926", method: .GET)
+        makeConnection(resource: request, completion: { dataResult in
+            switch dataResult {
+            case .Success(let data):
+                print(data)
+            case .Failure(let error):
+                print(error)
+            }
+        })
+        
+    }
+
 }
 
 
