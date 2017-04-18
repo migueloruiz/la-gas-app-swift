@@ -23,21 +23,11 @@ class HomeViewController: UIViewController {
         return cv
     }()
     
+//    var centerUserButton = UICenterUser(withTarget: <#T##Any?#>, action: <#T##Selector#>, radius: <#T##CGFloat#>)
+    
     var mapView: GMSMapView = {
         let view = GMSMapView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
-        let camera = GMSCameraPosition.camera(withLatitude: 19.4406926, longitude: -99.2047001, zoom: 17)
-        view.camera = camera
-        view.isMyLocationEnabled = true
-        
-                let marker = GMSMarker()
-                marker.position = CLLocationCoordinate2DMake(19.4406926, -99.2047001)
-                marker.title = "Sydney"
-                marker.snippet = "Australia"
-                marker.icon = UIImage(named: "locationIcon")
-                marker.map = view
-        
         return view
     }()
     
@@ -93,10 +83,13 @@ class HomeViewController: UIViewController {
         
         pager.numberOfPages = (gasPriceDatasorce.objects != nil) ? gasPriceDatasorce.objects!.count : 1
         
+        let centerButton = UICenterUser(withTarget: self, action:  #selector(HomeViewController.tapOnCenterUserButton), radius: 20)
+        
         view.addSubview(mapView)
         view.addSubview(adsView)
         view.addSubview(gasPricesCarrousell)
         view.addSubview(pager)
+        view.addSubview(centerButton)
         
         pager.anchorCenterXToSuperview()
         pager.anchor(top: gasPricesCarrousell.bottomAnchor, left: gasPricesCarrousell.leftAnchor, bottom: nil, right: gasPricesCarrousell.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
@@ -107,6 +100,12 @@ class HomeViewController: UIViewController {
         adsView.anchorCenterXToSuperview()
         
         mapView.fillSuperview()
+        
+        centerButton.anchor(top: nil, left: nil, bottom: adsView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 10, rightConstant: 10, widthConstant: 40, heightConstant: 40)
+    }
+    
+    func tapOnCenterUserButton()  {
+        print("Tap")
     }
     
 }

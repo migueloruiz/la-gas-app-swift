@@ -27,12 +27,18 @@ class GasPriceCell: CollectionDatasourceCell {
         }
     }
     
-    let pricesStack = UIStackView(arrangedSubviews: [])
+    let pricesStack: UIStackView = {
+        let s = UIStackView(arrangedSubviews: [])
+        s.axis = .horizontal
+        s.distribution = .fillEqually
+        s.translatesAutoresizingMaskIntoConstraints = false
+        return s
+    }()
     
     let cityLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
-        lable.text = "Miguel Hidalgo, Ciudad de México"
+        lable.text = ""
         lable.font = UIFont.systemFont(ofSize: 14)
         lable.textAlignment = .center
         return lable
@@ -41,7 +47,7 @@ class GasPriceCell: CollectionDatasourceCell {
     let dateLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
-        lable.text = "18 al 20 de Marzo del 2017"
+        lable.text = ""
         lable.font = UIFont.systemFont(ofSize: 12)
         lable.textAlignment = .center
         return lable
@@ -54,10 +60,6 @@ class GasPriceCell: CollectionDatasourceCell {
         self.layer.cornerRadius = 10
         self.layer.masksToBounds = true
         self.backgroundColor = .white
-        
-        pricesStack.axis = .horizontal
-        pricesStack.distribution = .fillEqually
-        pricesStack.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(cityLable)
         self.addSubview(dateLable)

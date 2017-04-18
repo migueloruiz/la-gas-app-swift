@@ -11,7 +11,7 @@ import UIKit
 class UICustomePager: UIPageControl {
     
     init(){
-        super.init()
+        super.init(frame: .zero)
         setStyle()
     }
     
