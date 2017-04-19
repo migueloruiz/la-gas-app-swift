@@ -104,9 +104,7 @@ class HomeViewController: UIViewController {
         centerButton.anchor(top: nil, left: nil, bottom: adsView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 10, rightConstant: 10, widthConstant: 40, heightConstant: 40)
     }
     
-    func tapOnCenterUserButton()  {
-        print("Tap")
-    }
+    func tapOnCenterUserButton() { stationsMap?.setMapInUserPosition() }
     
 }
 

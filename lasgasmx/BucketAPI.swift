@@ -17,7 +17,7 @@ class BucketAPI: DataBucket {
     }
     
     func getPriceBy(location: GasPriceLocation, completition: @escaping (Result<GasPriceInState, Error>) -> Void) {
-        let request = Request(path: "/prices/\(location.state)/\(location.city)", method: .GET)
+        let request = Request(path: "/prices/\(location.state)/\(location.city)", method: .GET, params: nil)
 
         makeConnection(resource: request, completion: { dataResult in
             
@@ -38,17 +38,29 @@ class BucketAPI: DataBucket {
         
     }
     
-    func getGasStations() {
-        let request = Request(path: "station?user_long=-99.2047001&user_lat=19.4406926", method: .GET)
+    func getGasStations(completition: @escaping (Result<[GasStation], Error>) -> Void) {
+        
+        let params = [
+            "user_long": "-99.2047001",
+            "user_lat": "19.4406926"
+        ]
+        let request = Request(path: "/station", method: .GET, params: params)
+        
         makeConnection(resource: request, completion: { dataResult in
             switch dataResult {
-            case .Success(let data):
-                print(data)
-            case .Failure(let error):
-                print(error)
+                case .Success(let data):
+                    let decodeJson = decodeJSON(json: data)
+                    switch decodeJson {
+                        case .Success(let json):
+                            let r = GasStation.getArray(json: json)
+                            completition( .Success(r) )
+                        case .Failure(let error):
+                            completition(Result<[GasStation], Error>.Failure(error))
+                    }
+                case .Failure(let error):
+                    completition(Result<[GasStation], Error>.Failure(error))
             }
         })
-        
     }
 
 }
