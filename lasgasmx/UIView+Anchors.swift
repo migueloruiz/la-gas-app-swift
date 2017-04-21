@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIView {
+    
     public func addConstraintsWithFormat(_ format: String, views: UIView...) {
         
         var viewsDictionary = [String: UIView]()
@@ -44,27 +45,32 @@ extension UIView {
         
         if let top = top {
             anchors.append(topAnchor.constraint(equalTo: top, constant: topConstant))
+            anchors.last?.identifier = "top"
         }
         
         if let left = left {
             anchors.append(leftAnchor.constraint(equalTo: left, constant: leftConstant))
+            anchors.last?.identifier = "left"
         }
         
         if let bottom = bottom {
             anchors.append(bottomAnchor.constraint(equalTo: bottom, constant: -bottomConstant))
+            anchors.last?.identifier = "bottom"
         }
         
         if let right = right {
             anchors.append(rightAnchor.constraint(equalTo: right, constant: -rightConstant))
+            anchors.last?.identifier = "right"
         }
         
         if widthConstant > 0 {
             anchors.append(widthAnchor.constraint(equalToConstant: widthConstant))
+            anchors.last?.identifier = "width"
         }
         
         if heightConstant > 0 {
             anchors.append(heightAnchor.constraint(equalToConstant: heightConstant))
-        }
+            anchors.last?.identifier = "height"        }
         
         anchors.forEach({$0.isActive = true})
         

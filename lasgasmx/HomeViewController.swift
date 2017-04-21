@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GoogleMobileAds
 import GoogleMaps
 
 class HomeViewController: UIViewController {
@@ -16,18 +15,19 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.translatesAutoresizingMaskIntoConstraints = false
         cv.showsHorizontalScrollIndicator = false
         cv.backgroundColor = .clear
         cv.isPagingEnabled = true
         return cv
     }()
     
-//    var centerUserButton = UICenterUser(withTarget: <#T##Any?#>, action: <#T##Selector#>, radius: <#T##CGFloat#>)
+    lazy var centerButton: UICenterUser = {
+        let cb = UICenterUser(withTarget: self, action:  #selector(HomeViewController.tapOnCenterUserButton), radius: 20)
+        return cb
+    }()
     
     var mapView: GMSMapView = {
         let view = GMSMapView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -36,12 +36,11 @@ class HomeViewController: UIViewController {
     let gasPriceDatasorce = GasPricesDatasorce()
     var gasPricesController : GasPricesCarrouselController? = nil
     var stationsMap: GasStationsMapController? = nil
-
-    // TODO: Crear capa de Ads
-    let adsView: GADBannerView = {
-        let view = GADBannerView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    
+    
+    lazy var infoView: InfoView = {
+        let iv = InfoView(root: self)
+        return iv
     }()
     
     init() { super.init(nibName: nil, bundle: nil) }
@@ -59,6 +58,7 @@ class HomeViewController: UIViewController {
         gasPriceDatasorce.fetchStroage()
         
         stationsMap = GasStationsMapController(map: mapView)
+        stationsMap?.delegate = self
         
         setupSubViews()
     }
@@ -75,18 +75,10 @@ class HomeViewController: UIViewController {
     }
     
     func setupSubViews() {
-        adsView.adUnitID = "ca-app-pub-2278511226994516/3431553183"
-        adsView.rootViewController = self
-        let request = GADRequest()
-        request.testDevices = [kGADSimulatorID]
-        adsView.load(request)
-        
         pager.numberOfPages = (gasPriceDatasorce.objects != nil) ? gasPriceDatasorce.objects!.count : 1
         
-        let centerButton = UICenterUser(withTarget: self, action:  #selector(HomeViewController.tapOnCenterUserButton), radius: 20)
-        
         view.addSubview(mapView)
-        view.addSubview(adsView)
+        view.addSubview(infoView)
         view.addSubview(gasPricesCarrousell)
         view.addSubview(pager)
         view.addSubview(centerButton)
@@ -96,12 +88,13 @@ class HomeViewController: UIViewController {
 
         gasPricesCarrousell.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 70)
         
-        adsView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 320, heightConstant: 50)
-        adsView.anchorCenterXToSuperview()
+        infoView.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 320, heightConstant: 50)
+        infoView.anchorCenterXToSuperview()
         
-        mapView.fillSuperview()
+        mapView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: infoView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: -50, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
-        centerButton.anchor(top: nil, left: nil, bottom: adsView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 10, rightConstant: 10, widthConstant: 40, heightConstant: 40)
+        centerButton.anchor(top: nil, left: nil, bottom: infoView
+            .topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 10, rightConstant: 10, widthConstant: 40, heightConstant: 40)
     }
     
     func tapOnCenterUserButton() { stationsMap?.setMapInUserPosition() }
@@ -133,5 +126,54 @@ extension HomeViewController: GasPricesCarrouselDelegate {
     internal func gasEmptyCellSelected() {
         guard let nav = self.navigationController else { return }
         nav.pushViewController(NewLocationViewController(), animated: true)
+    }
+}
+
+extension HomeViewController: GasStationsMapDelegate {
+    func gasStation(tappedStation: GasStation?) {
+
+        self.infoView.layoutIfNeeded()
+
+        
+        for contrain in self.infoView.constraints {
+            if contrain.identifier == "height" {
+                self.infoView.removeConstraint(contrain)
+            }
+            if contrain.identifier == "width" {
+                self.infoView.removeConstraint(contrain)
+            }
+        }
+        
+        let width = (tappedStation == nil) ? 320 : self.view.bounds.width
+        
+        let newWidthConstrain = self.infoView.widthAnchor.constraint(equalToConstant: width)
+        newWidthConstrain.isActive = true
+        newWidthConstrain.identifier = "width"
+        
+        let heigth = (tappedStation == nil) ? 50 : self.view.bounds.height * 0.7
+        let newConstrain = self.infoView.heightAnchor.constraint(equalToConstant: heigth)
+        newConstrain.isActive = true
+        newConstrain.identifier = "height"
+        
+        let size = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 500)
+        let path = UIBezierPath(roundedRect: size, byRoundingCorners:[.topRight, .topLeft], cornerRadii: CGSize(width: 20, height:  20))
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+        self.infoView.layer.mask = maskLayer
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.gasPricesCarrousell.alpha = (tappedStation == nil) ? 1 : 0
+            self.pager.alpha = (tappedStation == nil) ? 1 : 0
+            self.centerButton.alpha = (tappedStation == nil) ? 1 : 0
+            self.infoView.layoutIfNeeded()
+            self.view.layoutIfNeeded()
+        }, completion: { flag in
+            if width == 320 {
+                let path = UIBezierPath(roundedRect: self.infoView.bounds, byRoundingCorners:[.topRight, .topLeft], cornerRadii: CGSize(width: 20, height:  20))
+                let maskLayer = CAShapeLayer()
+                maskLayer.path = path.cgPath
+                self.infoView.layer.mask = maskLayer
+            }
+        })
     }
 }

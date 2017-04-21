@@ -50,6 +50,8 @@
 		E9BEDDB81E8ED85F00C0A41D /* SelectCityDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEDDB71E8ED85F00C0A41D /* SelectCityDatasource.swift */; };
 		E9BEDDBA1E8EDA0C00C0A41D /* SelectCityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEDDB91E8EDA0C00C0A41D /* SelectCityViews.swift */; };
 		E9BEDDBC1E8F156B00C0A41D /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BEDDBB1E8F156B00C0A41D /* locations.json */; };
+		E9D738951EAA7137001D36CF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D738941EAA7137001D36CF /* InfoView.swift */; };
+		E9D738971EAAB7FE001D36CF /* BukettMapDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D738961EAAB7FE001D36CF /* BukettMapDirections.swift */; };
 		E9DE33A61E96AF91006498EF /* UserSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A51E96AF91006498EF /* UserSettingsManager.swift */; };
 		E9DE33A81E96B755006498EF /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A71E96B755006498EF /* CalculatorViewController.swift */; };
 		E9DE33AB1E96B9B4006498EF /* UIBackButton+Custome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33AA1E96B9B4006498EF /* UIBackButton+Custome.swift */; };
@@ -134,6 +136,8 @@
 		E9BEDDB71E8ED85F00C0A41D /* SelectCityDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityDatasource.swift; sourceTree = "<group>"; };
 		E9BEDDB91E8EDA0C00C0A41D /* SelectCityViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityViews.swift; sourceTree = "<group>"; };
 		E9BEDDBB1E8F156B00C0A41D /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
+		E9D738941EAA7137001D36CF /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoView.swift; path = Componets/infoView/InfoView.swift; sourceTree = "<group>"; };
+		E9D738961EAAB7FE001D36CF /* BukettMapDirections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BukettMapDirections.swift; sourceTree = "<group>"; };
 		E9DE33A51E96AF91006498EF /* UserSettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsManager.swift; sourceTree = "<group>"; };
 		E9DE33A71E96B755006498EF /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		E9DE33AA1E96B9B4006498EF /* UIBackButton+Custome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBackButton+Custome.swift"; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 				E96254E61E940C68004CEB66 /* DataBucket.swift */,
 				E9F8687D1E956EDF007181BA /* JsonParse.swift */,
 				E9F8687F1E9589DE007181BA /* BucketAPI.swift */,
+				E9D738961EAAB7FE001D36CF /* BukettMapDirections.swift */,
 			);
 			name = Providers;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 		E97A81981E8C29BF00294DCE /* Componets */ = {
 			isa = PBXGroup;
 			children = (
+				E9D738931EAA70D2001D36CF /* InfoView */,
 				E96DB63B1EA571FD00C385BA /* GasStationsMapView */,
 				E97A819E1E8C3EF700294DCE /* Generic */,
 				E9BEDDB41E8ED6FC00C0A41D /* SelectCityTable */,
@@ -377,6 +383,14 @@
 				E9BEDDB91E8EDA0C00C0A41D /* SelectCityViews.swift */,
 			);
 			name = SelectCityTable;
+			sourceTree = "<group>";
+		};
+		E9D738931EAA70D2001D36CF /* InfoView */ = {
+			isa = PBXGroup;
+			children = (
+				E9D738941EAA7137001D36CF /* InfoView.swift */,
+			);
+			name = InfoView;
 			sourceTree = "<group>";
 		};
 		E9DE33A91E96B98D006498EF /* UI */ = {
@@ -714,7 +728,9 @@
 				E9EB3A3E1E8AD57900D76215 /* UIColor+Helper.swift in Sources */,
 				E9BEDDB61E8ED72200C0A41D /* SelectCityCollectionController.swift in Sources */,
 				E96DB63D1EA5724B00C385BA /* GasStationsMap.swift in Sources */,
+				E9D738971EAAB7FE001D36CF /* BukettMapDirections.swift in Sources */,
 				E96254EB1E941873004CEB66 /* SelectCityModels.swift in Sources */,
+				E9D738951EAA7137001D36CF /* InfoView.swift in Sources */,
 				E96CE1851E89D5AB00F9D97B /* ConfigManager.swift in Sources */,
 				CAE323591E8DFDDC005871F7 /* UIStackView+Helpers.swift in Sources */,
 				E97A81A81E8C77EE00294DCE /* CollectionDatasourceController.swift in Sources */,

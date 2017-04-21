@@ -9,15 +9,28 @@
 import Foundation
 import GoogleMaps
 
+protocol GasStationsMapDelegate {
+    func gasStation( tappedStation: GasStation? )
+}
 
 let kMapStyle = "[{\"elementType\": \"labels\",\"stylers\": [{\"visibility\": \"off\"}]},{\"featureType\": \"administrative.land_parcel\",\"stylers\": [{\"visibility\": \"off\"}]},{\"featureType\": \"administrative.neighborhood\",\"stylers\": [{\"visibility\": \"off\"}]}]"
 
 class GasStationsMapController: NSObject {
     
-    var selectedMarker: GMSMarker? = nil
-    var mapView : GMSMapView
     let locationManager = CLLocationManager()
     let api = BucketAPI()
+    let directionsApi = BuketMapDirections()
+    var selectedMarker: GMSMarker? = nil
+    var mapView : GMSMapView
+    var delegate: GasStationsMapDelegate? = nil
+    var lastCameraPosition: GMSCameraPosition? = nil
+    var directions: GMSPolyline? = nil {
+        willSet(new){
+            if (directions != nil) {
+                directions!.map = nil
+            }
+        }
+    }
     
     var userCordinates = CLLocationCoordinate2D()  {
         willSet(newLocation){
@@ -44,7 +57,7 @@ class GasStationsMapController: NSObject {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         } else {
-            // TODO: Handel error
+            // TODO: Handel no permition
         }
         
         do {
@@ -88,44 +101,70 @@ class GasStationsMapController: NSObject {
         marker.userData = station
         marker.map = mapView
     }
+    
+    func drawPath(start: CLLocationCoordinate2D, end: CLLocationCoordinate2D) {
+        lastCameraPosition = mapView.camera
+        directionsApi.getPath(start, end: end, completition: { result in
+            switch result {
+            case .Success(let json):
+                DispatchQueue.main.async {
+                    guard let pl = GMSPolyline(json: json) else { return }
+                    self.directions = pl
+                    pl.strokeWidth = 4
+                    pl.strokeColor = UIColor.red
+                    pl.map = self.mapView
+                    let path = GMSCoordinateBounds(coordinate: start, coordinate: end) // GMSCoordinateBounds(path: (pl?.path)!)
+                    self.mapView.animate(with: GMSCameraUpdate.fit(path, withPadding: 50) )
+                }
+            case .Failure(let error):
+                print(error)
+            }
+        })
+    }
+    
 }
 
 extension GasStationsMapController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        
-        let infoWindow = UIView(frame: CGRect(x: 0, y: -5, width: 170, height: 100))
-        infoWindow.backgroundColor = .cyan
-        return infoWindow
+        return UIView(frame: .zero)
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print("didTap marker \(marker.userData)")
-        
-        selectedMarker = marker
-        
-        // remove color from currently selected marker
-        if let selectedMarker = mapView.selectedMarker {
-            selectedMarker.icon = GMSMarker.markerImage(with: nil)
-        }
-        
-        // select new marker and make green
-        mapView.selectedMarker = marker
-        marker.icon = GMSMarker.markerImage(with: UIColor.green)
-        
-        // tap event handled by delegate
+        guard let d = delegate, let gasStation = marker.userData as? GasStation else { return true }
+        drawPath(start: userCordinates, end: gasStation.location)
+        d.gasStation( tappedStation: gasStation )
         return true
     }
 
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
-        guard let marker = selectedMarker else { return }
-        marker.icon = UIImage(named: "locationIcon")
+        guard let d = delegate else { return }
+        d.gasStation(tappedStation: nil)
+        self.directions = nil
+        self.mapView.animate(with: GMSCameraUpdate.setCamera(lastCameraPosition!) )
     }
 }
 
 extension GasStationsMapController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         userCordinates = manager.location!.coordinate as CLLocationCoordinate2D
+    }
+}
+
+
+extension GMSPolyline {
+    
+    convenience init?(json: [String: Any]){
+        var polylineArray: [GMSPath] = []
+        guard let routes = json["routes"] as? [[String: Any]] else { return nil }
+        for route in routes {
+            if let routeOverviewPolyline = route["overview_polyline"] as? [String: String] {
+                print(routeOverviewPolyline)
+                let path = GMSPath.init(fromEncodedPath: routeOverviewPolyline["points"]!)
+                polylineArray.append(path!)
+            }
+        }
+        
+        self.init(path: polylineArray.first)
     }
 }
 

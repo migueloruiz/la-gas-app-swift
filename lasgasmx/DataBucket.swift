@@ -27,6 +27,9 @@ extension DataBucket: ConnectBucketDelegate {
         let request = resource.toRequest(baseURL: baseURL)
         session.dataTask(with: request) { (data, response, error) in
             
+//            print(data)
+//            print(response)
+            
             // TODO Response Status
             guard let d = data else {
                 completion(.Failure(.Network(error!.localizedDescription)))

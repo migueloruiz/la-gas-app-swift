@@ -17,6 +17,9 @@ func decodeJSON(json: Data) -> Result<[String: Any], Error> {
     }
 }
 
+
+
+// TODO: esto no va aqui
 /// Estructra para el manejo de estados y ciudades obtenidas del archivo local locations.json
 struct CitysDictionary {
     private let dictionary: [String: [String]]
