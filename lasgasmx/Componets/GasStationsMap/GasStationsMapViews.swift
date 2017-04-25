@@ -95,5 +95,3 @@ class MapMarkerGasItemView: UIView {
         }
     }
 }
-
-

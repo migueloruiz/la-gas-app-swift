@@ -10,13 +10,11 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
     
-    var price: GasPriceInState {
-        didSet{
-        }
-    }
-    
+    var price: GasPriceInState
     var calcResultController: CalcResultsCollectionController
     var calcResultDatasource: CalcResultDatasorce
+    
+    let offset: CGFloat = 30;
     
     let amountInput = UICalcTextField()
     
@@ -44,7 +42,6 @@ class CalculatorViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = false
-        
         view.backgroundColor = .white
         
         let backButton = UIBackButton(withTarget: self, action: #selector(CalculatorViewController.popView), type: .back)
@@ -57,22 +54,19 @@ class CalculatorViewController: UIViewController {
         
         self.navigationItem.set(title: price.getText(), subtitle: price.date)
         
+        amountInput.focus()
+        amountInput.delegate = self
+        
         setSubviews()
     }
     
     func setSubviews() {
-        amountInput.focus()
-        amountInput.delegate = self
-        
         view.addSubview(amountInput)
         view.addSubview(calcResultsView)
-        
-        let offset: CGFloat = 30;
         
         amountInput.anchor(top: view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 60 + offset, leftConstant: 20, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 40)
         
         calcResultsView.anchor(top: amountInput.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: offset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-
     }
     
     // TODO: creo que aui se puede elimiar el pop view pasandolo a la clase del boton
@@ -88,9 +82,7 @@ class CalculatorViewController: UIViewController {
 }
 
 extension CalculatorViewController: UICalcTextFieldDelegate {
-    
     internal func calcTextField(changeValue: CalcType) {
         calcResultDatasource.calc = changeValue
     }
-    
 }

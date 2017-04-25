@@ -29,4 +29,6 @@ extension UIColor {
     
     static var delete: UIColor  { return UIColor(r: 247, g: 109, b: 59) }
     static var succes: UIColor  { return UIColor(r: 0, g: 240, b: 135) }
+    
+    static var softBlue: UIColor  { return UIColor(r: 0, g: 205, b: 252) }
 }

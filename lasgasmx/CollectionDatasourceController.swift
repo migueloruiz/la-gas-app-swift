@@ -10,7 +10,7 @@ import UIKit
 
 open class CollectionDatasourceController:NSObject, UICollectionViewDataSource, UICollectionViewDelegate, CollectionDatasourceDelegate, UICollectionViewDelegateFlowLayout {
     
-    private unowned var collectionView: UICollectionView
+    var collectionView: UICollectionView
     
     open let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)

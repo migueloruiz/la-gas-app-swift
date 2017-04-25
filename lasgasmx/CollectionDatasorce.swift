@@ -11,7 +11,7 @@ import Foundation
 /**
  Datasource is the object that provides your DatasourceController with the information it needs to render out a list.  Override the methods in this class to provide a custom implementation of what cells/headers/footers your list should render.
  */
-protocol CollectionDatasourceDelegate {
+protocol CollectionDatasourceDelegate: class {
     func datasorseUpdate()
 }
 
@@ -21,7 +21,7 @@ open class CollectionDatasource: NSObject {
         didSet {
         }
     }
-    var delegate: CollectionDatasourceDelegate? = nil
+    weak var delegate: CollectionDatasourceDelegate? = nil
     
     ///The cell classes that will be used to render out each section.
     open func cellClasses() -> [CollectionDatasourceCell.Type] {

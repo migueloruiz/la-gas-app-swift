@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ConnectBucketDelegate {
+protocol ConnectBucketDelegate: class {
     func makeConnection(resource: Request, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
@@ -40,7 +40,7 @@ extension DataBucket: ConnectBucketDelegate {
     }
 }
 
-protocol ConnectLocalBucketDelegate {
+protocol ConnectLocalBucketDelegate: class {
     func makeConnection(completion: @escaping (Result<Data, Error>) -> Void)
 }
 

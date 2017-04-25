@@ -16,7 +16,7 @@
 
 import UIKit
 
-protocol SelectCityCollectionDelegate {
+protocol SelectCityCollectionDelegate: class {
     func itemsSelected(location: GasPriceLocation?)
     func headerTapped()
 }
@@ -24,7 +24,7 @@ protocol SelectCityCollectionDelegate {
 class SelectCityCollectionController: CollectionDatasourceController  {
     
     var gasPricesLocation : GasPriceLocation? = nil
-    var delegate: SelectCityCollectionDelegate? = nil
+    weak var delegate: SelectCityCollectionDelegate? = nil
     
     override init(collectionView: UICollectionView, datasorce: CollectionDatasource) {
         super.init(collectionView: collectionView, datasorce: datasorce)
@@ -61,7 +61,7 @@ class SelectCityCollectionController: CollectionDatasourceController  {
         let result = data.setSectionby(index: indexPath)
         d.itemsSelected(location: result)
         datasorseUpdate()
-        
+        collectionView.scrollsToTop = true
     }
     
     override func sectionHeaderTapped(at indexPath: Int){
@@ -71,6 +71,7 @@ class SelectCityCollectionController: CollectionDatasourceController  {
             }
             d.headerTapped()
             datasorseUpdate()
+            collectionView.scrollsToTop = true
         }
     }
     

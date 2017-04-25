@@ -6,6 +6,7 @@
 //  Copyright © 2017 migueloruiz. All rights reserved.
 //
 import UIKit
+import CoreLocation
 
 class BucketAPI: DataBucket {
     
@@ -38,12 +39,14 @@ class BucketAPI: DataBucket {
         
     }
     
-    func getGasStations(completition: @escaping (Result<[GasStation], Error>) -> Void) {
+    func getGasStationsFor(location: CLLocationCoordinate2D , distance: Int, completition: @escaping (Result<[GasStation], Error>) -> Void) {
         
         let params = [
-            "user_long": "-99.2047001",
-            "user_lat": "19.4406926"
+            "user_long": "\(location.longitude)",
+            "user_lat": "\(location.latitude)",
+            "range": "\(distance)"
         ]
+
         let request = Request(path: "/station", method: .GET, params: params)
         
         makeConnection(resource: request, completion: { dataResult in

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GasPricesCarrouselDelegate {
+protocol GasPricesCarrouselDelegate: class {
     func updateCounter(counter: Int)
     func gasEmptyCellSelected()
     func gasCellSelected(price: GasPriceInState)
@@ -18,7 +18,7 @@ protocol GasPricesCarrouselDelegate {
 class GasPricesCarrouselController: CollectionDatasourceController {
     
     let lateralSpace: CGFloat = 30
-    var delegate: GasPricesCarrouselDelegate? = nil
+    weak var delegate: GasPricesCarrouselDelegate? = nil
     
     override func setupViews(collectionView: UICollectionView) {
         collectionView.backgroundColor = .clear

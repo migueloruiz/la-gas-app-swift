@@ -8,18 +8,49 @@
 
 import UIKit
 
-class UICenterUser: UIButton {
+enum UIMapControlButtonType {
+    case navigation
+    case controls
+}
+class UIMapControlButton: UIButton {
     
-    init( withTarget target: Any?, action: Selector, radius: CGFloat ){
+    init( withTarget target: Any?, action: Selector, radius: CGFloat, type: UIMapControlButtonType ){
         super.init(frame: CGRect(x: 0, y: 0, width: radius, height: radius))
         self.layer.cornerRadius = radius
         self.clipsToBounds = true
         self.backgroundColor = .white
         self.tintColor = .black
         self.addTarget(target, action: action, for: .touchUpInside)
-        self.setImage( #imageLiteral(resourceName: "navigation").withRenderingMode(.alwaysTemplate), for: .normal)
-        self.imageEdgeInsets = UIEdgeInsetsMake(10, 4, 7, 7)
+        self.setImage( getImageBy(type).withRenderingMode(.alwaysTemplate), for: .normal)
         self.imageView?.contentMode = .scaleAspectFit
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func getImageBy(_ type: UIMapControlButtonType ) -> UIImage{
+        switch type {
+        case .controls:
+            return #imageLiteral(resourceName: "controls")
+        case .navigation:
+            return #imageLiteral(resourceName: "navigation")
+        }
+        
+    }
+}
+
+
+class UIRoundedButton: UIButton {
+    
+    init( withTarget target: Any?, action: Selector, radius: CGFloat ){
+        super.init(frame: CGRect(x: 0, y: 0, width: radius, height: radius))
+        self.layer.cornerRadius = radius
+        self.clipsToBounds = true
+        self.tintColor = .white
+        self.addTarget(target, action: action, for: .touchUpInside)
+        self.isHidden = true
+        self.alpha = 0
     }
     
     required init?(coder aDecoder: NSCoder) {

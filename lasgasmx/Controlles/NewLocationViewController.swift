@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewLocationViewController: UIViewController, UISearchResultsUpdating{
+class NewLocationViewController: UIViewController{
     
     var gasPrice : GasPriceInState? = nil
     var selectCityController: SelectCityCollectionController? = nil
@@ -37,32 +37,21 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
         return cv
     }()
     
-    let deleteButton : UIButton = {
-        let b = UIButton()
-        b.layer.cornerRadius = 10
+    lazy var deleteButton : UIRoundedButton = {
+        let b = UIRoundedButton(withTarget: self, action: #selector(NewLocationViewController.deleteLocation), radius: 10)
         b.backgroundColor = .delete
         b.setTitle("Eliminar locacion", for: .normal)
-        b.addTarget(self, action: #selector(NewLocationViewController.deleteLocation), for: .touchUpInside)
-        b.isHidden = true
-        b.alpha = 0
         return b
     }()
     
-    let saveButton : UIButton = {
-        let b = UIButton()
-        b.layer.cornerRadius = 10
+    lazy var saveButton : UIRoundedButton = {
+        let b = UIRoundedButton(withTarget: self, action: #selector(NewLocationViewController.saveLocation), radius: 10)
         b.backgroundColor = .succes
         b.setTitle("Guardar Locacion", for: .normal)
-        b.addTarget(self, action: #selector(NewLocationViewController.saveLocation), for: .touchUpInside)
-        b.isHidden = true
-        b.alpha = 0
         return b
     }()
     
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
+    init() { super.init(nibName: nil, bundle: nil) }
     
     init(gasPrice: GasPriceInState) {
         super.init(nibName: nil, bundle: nil)
@@ -109,17 +98,13 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
         saveButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 20, rightConstant: 30, widthConstant: 20, heightConstant: 40)
     }
     
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchString = searchController.searchBar.text
-        selectCityDatasource.filterQuery =  (searchController.isActive && searchString != "") ? searchString : nil
-    }    
-    
     func popToRoot(){
+        self.navigationItem.titleView = nil
         self.navigationController?.popToRootViewController(animated: true)
     }
     
     func popView(){
+        self.navigationItem.titleView = nil
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -131,6 +116,7 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
     
     func saveLocation() {
         guard let newLocation = selectCityDatasource.getActualLocation()  else {
+            // TODO:
             print("manejar error")
             return
         }
@@ -143,12 +129,11 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
                 gasPriceToUpdate.city = newLocation.city
             })
         }
-        
         popToRoot()
     }
     
     func setHiddenButtons(_ value: Bool) {
-        if (deleteButtonisAvilable){
+        if (deleteButtonisAvilable) {
             deleteButton.isHidden = value
             deleteButton.alpha = value ? 0 : 1
         }
@@ -158,17 +143,21 @@ class NewLocationViewController: UIViewController, UISearchResultsUpdating{
 
 }
 
+extension NewLocationViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchString = searchController.searchBar.text
+        selectCityDatasource.filterQuery =  (searchString != "") ? searchString : nil
+    }
+}
+
 extension NewLocationViewController: SelectCityCollectionDelegate{
-    
     func itemsSelected(location: GasPriceLocation?) {
         searchController.searchBar.text = ""
         searchController.searchBar.endEditing(true)
-        
         setHiddenButtons(selectCityDatasource.sectiosAreActive())
     }
     
     func headerTapped() {
         setHiddenButtons(selectCityDatasource.sectiosAreActive())
     }
-    
 }
