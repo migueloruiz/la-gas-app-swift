@@ -16,16 +16,22 @@ class InfoView: UIView {
     var gasStation: GasStation? = nil {
         didSet{
             guard let station = gasStation else { return }
-            
             stationNameLable.text = station.name.capitalized
-            timeLable.text = "A \(station.route!.time) aprox."
-            distanceLable.text = "A \(station.route!.distance) aprox."
-            directionArea.text = station.route?.address
             pricesStack.clearSubviews()
             for price in station.prices {
                 let priceView = GasItemView(price: price.price, forType: price.type)
                 pricesStack.addArrangedSubview(priceView)
             }
+            
+            guard let route = station.route else {
+                timeLable.text = ""
+                distanceLable.text = ""
+                directionArea.text = ""
+                return
+            }
+            timeLable.text = "A \(route.time) aprox."
+            distanceLable.text = "A \(route.distance) aprox."
+            directionArea.text = route.address
         }
     }
     

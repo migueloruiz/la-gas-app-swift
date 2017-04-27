@@ -69,10 +69,7 @@ class CalculatorViewController: UIViewController {
         calcResultsView.anchor(top: amountInput.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: offset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
     
-    // TODO: creo que aui se puede elimiar el pop view pasandolo a la clase del boton
-    func popView(){
-        self.navigationController?.popViewController(animated: true)
-    }
+    func popView(){ _ = self.navigationController?.popViewController(animated: true) }
     
     func openEdit(){
         guard let nav = self.navigationController else { return }

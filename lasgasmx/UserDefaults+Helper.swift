@@ -1,5 +1,5 @@
 //
-//  UserSettingsManager.swift
+//  UserDefaultsManager.swift
 //  lasgasmx
 //
 //  Created by Desarrollo on 4/6/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserSettingsManager: NSObject {
+class UserDefaultsManager: NSObject {
     
     static var userDefaults: UserDefaults {
         let userDefaults = UserDefaults.standard

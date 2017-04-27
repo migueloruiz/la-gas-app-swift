@@ -11,6 +11,10 @@ import UIKit
 class GasPricesDatasorce: CollectionDatasource {
     
     let storageManager = GasPriceStorageManager()
+    lazy var gasApi: GasApiManager = {
+        let configManager = (UIApplication.shared.delegate as! AppDelegate).configManager
+        return GasApiManager(baseUrl: configManager["API_BASE_URL"])
+    }()
     
     override func cellClasses() -> [CollectionDatasourceCell.Type] {
         return [GasPriceCell.self, GasPriceEmptyCell.self]
@@ -29,12 +33,12 @@ class GasPricesDatasorce: CollectionDatasource {
     }
     
     func updateStorageItems() {
-        let apiBucket = BucketAPI()
         let entitys = storageManager.fetchAll()
         
         for entity in entitys {
+            guard entity.canUpdate() else { continue }
             let location = GasPriceLocation(state: entity.state!, city: entity.city!)
-            apiBucket.getPriceBy(location: location, completition: { dataResult in
+            gasApi.getPriceBy(location: location, completition: { dataResult in
                 switch dataResult {
                     case .Success(let data):
                         DispatchQueue.main.async {

@@ -23,7 +23,6 @@ class GasPricesCarrouselController: CollectionDatasourceController {
     override func setupViews(collectionView: UICollectionView) {
         collectionView.backgroundColor = .clear
     }
-    
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width - (lateralSpace * 2), height: collectionView.frame.height)

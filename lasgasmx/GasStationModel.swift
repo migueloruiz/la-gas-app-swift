@@ -59,8 +59,6 @@ struct GasStation {
         guard price.price > 0 else { return nil }
         return price
     }
-    
-    
 }
 
 struct GasStationRouteData {
@@ -82,5 +80,3 @@ struct GasStationRouteData {
         self.address = address
     }
 }
-
-

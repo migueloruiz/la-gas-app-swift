@@ -27,10 +27,16 @@ extension DataBucket: ConnectBucketDelegate {
         let request = resource.toRequest(baseURL: baseURL)
         session.dataTask(with: request) { (data, response, error) in
             
-//            print(data)
-//            print(response)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.Failure(.Status("No Response")))
+                return
+            }
             
-            // TODO Response Status
+            guard httpResponse.statusCode < 400 else {
+                completion(.Failure(.Status("Error statusCode: \(httpResponse.statusCode)")))
+                return
+            }
+            
             guard let d = data else {
                 completion(.Failure(.Network(error!.localizedDescription)))
                 return

@@ -9,21 +9,18 @@
 
 import Foundation
 
+enum SelectCityHeaderstype: String {
+    case State  = "Elige un estado"
+    case City  = "Elige una ciudad"
+}
+
 struct SelectCityHeadersItems {
     let defaultText: SelectCityHeaderstype
     var isSectionActive: Bool
     var slectedItem: String?
     
     func getText() -> String {
-        if let item = slectedItem {
-            return item.capitalized
-        } else {
-            return defaultText.rawValue
-        }
+        guard let item = slectedItem else { return defaultText.rawValue }
+        return item.capitalized
     }
-}
-
-enum SelectCityHeaderstype: String {
-    case State  = "Elige un estado"
-    case City  = "Elige una ciudad"
 }

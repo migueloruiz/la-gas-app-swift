@@ -36,7 +36,6 @@ class UIMapControlButton: UIButton {
         case .navigation:
             return #imageLiteral(resourceName: "navigation")
         }
-        
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 //
-//  BucketAPI.swift
+//  GoogleMapsApiManager.swift
 //  lasgasmx
 //
 //  Created by Desarrollo on 4/5/17.
@@ -16,9 +16,7 @@
 import UIKit
 import GoogleMaps
 
-class BuketMapDirections: DataBucket {
-    
-    let configManager = (UIApplication.shared.delegate as! AppDelegate).configManager;
+class GoogleMapsApiManager: DataBucket {
     
     init() {
         let url = URL(string: "https://maps.googleapis.com/")

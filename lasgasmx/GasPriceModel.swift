@@ -2,52 +2,16 @@
 //  GasPriceModel.swift
 //  lasgasmx
 //
-//  Created by Desarrollo on 3/30/17.
+//  Created by Desarrollo on 4/26/17.
 //  Copyright © 2017 migueloruiz. All rights reserved.
 //
 
 import Foundation
 
-struct GasPriceInState {
-    var priceLocation: GasPriceLocation
-    var date: String
-    var prices: [GasPrice]
-    
-    var id: String?
-    
-    func getText() -> String {
-        return "\(priceLocation.city.capitalized), \(priceLocation.state.capitalized)"
-    }
-    
-    init(priceLocation: GasPriceLocation, date: String, prices: [GasPrice]) {
-        self.priceLocation = priceLocation
-        self.date = date
-        self.prices = prices
-    }
-    
-    init(priceLocation: GasPriceLocation, date: String, prices: [GasPrice], id: String) {
-        self.priceLocation = priceLocation
-        self.date = date
-        self.prices = prices
-        self.id = id
-    }
-    
-    init(priceLocation: GasPriceLocation, json: [String: Any]) {
-        guard let date = json["date"] as? String, let pricesArray = json["price"] as? [String: String] else {
-            self.priceLocation = priceLocation
-            self.date = ""
-            self.prices = []
-            return
-        }
-        self.priceLocation = priceLocation
-        self.date = date
-        self.prices = GasPrice.buildArray(from: pricesArray)
-    }
-}
-
-struct GasPriceLocation {
-    var state: String
-    var city: String
+enum FuelType: String {
+    case Magna = "Magana"
+    case Premium = "Premium"
+    case Diesel = "Diesel"
 }
 
 struct GasPrice {
@@ -71,79 +35,4 @@ struct GasPrice {
         
         return prices
     }
-}
-
-// MARK: Coredata Model
-
-extension GasPriceEntity {
-    func set(location: GasPriceLocation) {
-        self.state = location.state
-        self.city = location.city
-    }
-    
-    func update(with data: GasPriceInState) {
-        self.state = data.priceLocation.state
-        self.city = data.priceLocation.city
-        self.dateText = data.date
-        self.updatePrices(with: data.prices)
-    }
-    
-    func updatePrices(with prices: [GasPrice]) {
-        for price in prices {
-            switch price.type {
-                case .Magna:
-                    self.magna = price.price
-                case .Premium:
-                    self.premium = price.price
-                case .Diesel:
-                    self.diesel = price.price
-            }
-        }
-    }
-    
-    func getStruct() -> GasPriceInState {
-        let location = GasPriceLocation(state: self.state!, city: self.city!)
-        let date = (self.dateText != nil) ? self.dateText! : ""
-        var prices : [GasPrice] = []
-        
-        let magna = GasPrice(type: .Magna, price: self.magna)
-        let premium = GasPrice(type: .Premium, price: self.premium)
-        let diesel = GasPrice(type: .Diesel, price: self.diesel)
-        
-        let id = self.id!
-        
-        prices.append(magna)
-        prices.append(premium)
-        prices.append(diesel)
-        
-        return GasPriceInState(priceLocation: location, date: date, prices: prices, id: id)
-    }
-}
-
-
-enum FuelType: String {
-    case Magna = "Magana"
-    case Premium = "Premium"
-    case Diesel = "Diesel"
-}
-
-struct CalcPrice {
-    var price : GasPrice
-    var type: CalcType
-    
-    func calculate() -> String{
-        switch type {
-        case .liters(let pesos):
-            let value = pesos / price.price
-            return value.asLiters
-        case .pesos(let litros):
-            let value = litros * price.price
-            return value.asPesos
-        }
-    }
-}
-
-enum CalcType {
-    case liters(Float)  // Cuantos pesos equivalen en litros
-    case pesos(Float)   // Cuantos litros equivalen en pesos
 }

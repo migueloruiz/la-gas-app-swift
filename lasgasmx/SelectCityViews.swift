@@ -48,21 +48,18 @@ class SelectCityCell: CollectionDatasourceCell {
     
 }
 
-// TODO: arrow up y down
-
 class SelectCityHeader: CollectionDatasourceCell {
     
     override var datasourceItem: Any? {
         didSet {
             guard let item = datasourceItem as? SelectCityHeadersItems else { return }
             label.text = item.getText()
-            arrowImage.image = (item.isSectionActive) ? UIImage(named: "up-arrow")?.withRenderingMode(.alwaysTemplate) : UIImage(named: "down-arrow")?.withRenderingMode(.alwaysTemplate)
+            arrowImage.image = getImage(item : item)
         }
     }
     
     let label :UILabel = {
         let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = true
         l.textColor = .white
         l.backgroundColor = .clear
         return l
@@ -84,4 +81,8 @@ class SelectCityHeader: CollectionDatasourceCell {
         arrowImage.anchor(top: topAnchor, left: label.rightAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 15, heightConstant: 0)
     }
     
+    internal func getImage(item : SelectCityHeadersItems) -> UIImage {
+        let image = (item.isSectionActive) ? #imageLiteral(resourceName: "up-arrow") : #imageLiteral(resourceName: "down-arrow")
+        return image.withRenderingMode(.alwaysTemplate)
+    }
 }

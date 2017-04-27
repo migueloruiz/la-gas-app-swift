@@ -6,14 +6,6 @@
 //  Copyright © 2017 migueloruiz. All rights reserved.
 //
 
-
-//  gasPricesCarouselDatasorce.swift
-//  lasgasmx
-//
-//  Created by Desarrollo on 3/29/17.
-//  Copyright © 2017 migueloruiz. All rights reserved.
-//
-
 import UIKit
 
 protocol SelectCityCollectionDelegate: class {
@@ -54,7 +46,6 @@ class SelectCityCollectionController: CollectionDatasourceController  {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let d = delegate, let data = datasource as? SelectCityDatasorce else { return }

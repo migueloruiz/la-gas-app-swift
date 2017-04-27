@@ -13,7 +13,6 @@
 		CAE3235C1E8E1759005871F7 /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3235B1E8E1759005871F7 /* NewLocationViewController.swift */; };
 		DB70DF66F4F1D9BFA05867F8 /* Pods_lasgasmxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D074A889606F99E424CFDD9A /* Pods_lasgasmxTests.framework */; };
 		E90E73411E8D848400041042 /* GasPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E73401E8D848400041042 /* GasPriceCell.swift */; };
-		E90E73431E8DD25100041042 /* GasPriceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E73421E8DD25100041042 /* GasPriceModel.swift */; };
 		E9112ABF1E8195EE00B6E60F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9112ABE1E8195EE00B6E60F /* AppDelegate.swift */; };
 		E9112AC11E8195EE00B6E60F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9112AC01E8195EE00B6E60F /* HomeViewController.swift */; };
 		E9112AC71E8195EE00B6E60F /* lasgasmx.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9112AC51E8195EE00B6E60F /* lasgasmx.xcdatamodeld */; };
@@ -33,9 +32,8 @@
 		E96254ED1E946266004CEB66 /* GasPriceStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254EC1E946266004CEB66 /* GasPriceStorageManager.swift */; };
 		E96CE1801E89CE2B00F9D97B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E96CE17F1E89CE2B00F9D97B /* GoogleService-Info.plist */; };
 		E96CE1821E89D3F200F9D97B /* PrivateKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E96CE1811E89D3F200F9D97B /* PrivateKeys.plist */; };
-		E96CE1851E89D5AB00F9D97B /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CE1841E89D5AB00F9D97B /* ConfigManager.swift */; };
+		E96CE1851E89D5AB00F9D97B /* PrivateKeys+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CE1841E89D5AB00F9D97B /* PrivateKeys+Helper.swift */; };
 		E96DB63D1EA5724B00C385BA /* GasStationsMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96DB63C1EA5724B00C385BA /* GasStationsMap.swift */; };
-		E96DB63F1EA572EF00C385BA /* GasStationsMapViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96DB63E1EA572EF00C385BA /* GasStationsMapViews.swift */; };
 		E96DB6411EA582EA00C385BA /* UIPageControl+Custome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96DB6401EA582EA00C385BA /* UIPageControl+Custome.swift */; };
 		E97A819C1E8C324900294DCE /* GasPricesCarouselController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A819B1E8C324900294DCE /* GasPricesCarouselController.swift */; };
 		E97A81A61E8C744C00294DCE /* UIView+Anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A81A51E8C744C00294DCE /* UIView+Anchors.swift */; };
@@ -50,9 +48,43 @@
 		E9BEDDB81E8ED85F00C0A41D /* SelectCityDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEDDB71E8ED85F00C0A41D /* SelectCityDatasource.swift */; };
 		E9BEDDBA1E8EDA0C00C0A41D /* SelectCityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEDDB91E8EDA0C00C0A41D /* SelectCityViews.swift */; };
 		E9BEDDBC1E8F156B00C0A41D /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BEDDBB1E8F156B00C0A41D /* locations.json */; };
+		E9C8086F1EB104140003C193 /* GMSPolyline+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C8086E1EB104140003C193 /* GMSPolyline+Extention.swift */; };
+		E9C808711EB10B650003C193 /* GasStation+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808701EB10B650003C193 /* GasStation+Extention.swift */; };
+		E9C808731EB10DF80003C193 /* GasStationsMap+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808721EB10DF80003C193 /* GasStationsMap+Extention.swift */; };
+		E9C808751EB1186F0003C193 /* CalcModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808741EB1186F0003C193 /* CalcModels.swift */; };
+		E9C808771EB119010003C193 /* GasPriceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808761EB119010003C193 /* GasPriceModel.swift */; };
+		E9C808791EB123D00003C193 /* AdModManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808781EB123D00003C193 /* AdModManager.swift */; };
+		E9C8087B1EB147730003C193 /* CitysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C8087A1EB147730003C193 /* CitysModel.swift */; };
+		E9C8087D1EB14CB70003C193 /* GasPriceEntity+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C8087C1EB14CB70003C193 /* GasPriceEntity+Extension.swift */; };
+		E9C808841EB15A990003C193 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C808831EB15A990003C193 /* NotificationCenter.framework */; };
+		E9C808871EB15A990003C193 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808861EB15A990003C193 /* TodayViewController.swift */; };
+		E9C8088A1EB15A990003C193 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9C808881EB15A990003C193 /* MainInterface.storyboard */; };
+		E9C8088E1EB15A9A0003C193 /* La Gas Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E9C808821EB15A990003C193 /* La Gas Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E9C808931EB15C770003C193 /* GasPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E73401E8D848400041042 /* GasPriceCell.swift */; };
+		E9C808941EB15C7E0003C193 /* UIPageControl+Custome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96DB6401EA582EA00C385BA /* UIPageControl+Custome.swift */; };
+		E9C808951EB15C850003C193 /* GasPricesCarouselController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A819B1E8C324900294DCE /* GasPricesCarouselController.swift */; };
+		E9C808971EB15E4F0003C193 /* CollectionDatasourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A81A71E8C77EE00294DCE /* CollectionDatasourceController.swift */; };
+		E9C808981EB15E4F0003C193 /* CollectionDatasorce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A81A91E8C78BF00294DCE /* CollectionDatasorce.swift */; };
+		E9C808991EB15E4F0003C193 /* CollectionDatasorceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A81AB1E8C790100294DCE /* CollectionDatasorceCell.swift */; };
+		E9C8089A1EB15E4F0003C193 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A81AD1E8C80A300294DCE /* DefaultCell.swift */; };
+		E9C8089D1EB15E9B0003C193 /* GasPriceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808761EB119010003C193 /* GasPriceModel.swift */; };
+		E9C8089E1EB15E9B0003C193 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254E81E941164004CEB66 /* Request.swift */; };
+		E9C8089F1EB15E9B0003C193 /* DataBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254E61E940C68004CEB66 /* DataBucket.swift */; };
+		E9C808A01EB15E9B0003C193 /* JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8687D1E956EDF007181BA /* JsonParse.swift */; };
+		E9C808A11EB15E9B0003C193 /* GasApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8687F1E9589DE007181BA /* GasApiManager.swift */; };
+		E9C808A41EB15EDA0003C193 /* Float+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961AF181E980026008173FB /* Float+Helpers.swift */; };
+		E9C808A51EB15EF10003C193 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96254E41E940BB2004CEB66 /* Result.swift */; };
+		E9C808AA1EB1638E0003C193 /* GasAPIManager+GET_PRICES.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808A91EB1638E0003C193 /* GasAPIManager+GET_PRICES.swift */; };
+		E9C808AC1EB163F50003C193 /* GasApiManager+GET_STATIONS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808AB1EB163F50003C193 /* GasApiManager+GET_STATIONS.swift */; };
+		E9C808AD1EB1648E0003C193 /* GasAPIManager+GET_PRICES.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808A91EB1638E0003C193 /* GasAPIManager+GET_PRICES.swift */; };
+		E9C808B01EB16A360003C193 /* UIColor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */; };
+		E9C808B11EB16A360003C193 /* UIView+Anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A81A51E8C744C00294DCE /* UIView+Anchors.swift */; };
+		E9C808B21EB16A360003C193 /* UIStackView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE323581E8DFDDC005871F7 /* UIStackView+Helpers.swift */; };
+		E9C808B41EB16ADE0003C193 /* GasPriceDatasorceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808B31EB16ADE0003C193 /* GasPriceDatasorceWidget.swift */; };
+		E9C808B61EB16C6B0003C193 /* GasPriceInStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808B51EB16C6B0003C193 /* GasPriceInStateModel.swift */; };
 		E9D738951EAA7137001D36CF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D738941EAA7137001D36CF /* InfoView.swift */; };
-		E9D738971EAAB7FE001D36CF /* BukettMapDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D738961EAAB7FE001D36CF /* BukettMapDirections.swift */; };
-		E9DE33A61E96AF91006498EF /* UserSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A51E96AF91006498EF /* UserSettingsManager.swift */; };
+		E9D738971EAAB7FE001D36CF /* GoogleMapsApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D738961EAAB7FE001D36CF /* GoogleMapsApiManager.swift */; };
+		E9DE33A61E96AF91006498EF /* UserDefaults+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A51E96AF91006498EF /* UserDefaults+Helper.swift */; };
 		E9DE33A81E96B755006498EF /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A71E96B755006498EF /* CalculatorViewController.swift */; };
 		E9DE33AB1E96B9B4006498EF /* UIBackButton+Custome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33AA1E96B9B4006498EF /* UIBackButton+Custome.swift */; };
 		E9DE33AD1E96C1AA006498EF /* UINavigationItem+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33AC1E96C1AA006498EF /* UINavigationItem+Helper.swift */; };
@@ -61,7 +93,7 @@
 		E9E87BD21EB00B690012AB09 /* UIImage+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E87BD11EB00B690012AB09 /* UIImage+Helper.swift */; };
 		E9EB3A3E1E8AD57900D76215 /* UIColor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */; };
 		E9F8687E1E956EDF007181BA /* JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8687D1E956EDF007181BA /* JsonParse.swift */; };
-		E9F868801E9589DE007181BA /* BucketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8687F1E9589DE007181BA /* BucketAPI.swift */; };
+		E9F868801E9589DE007181BA /* GasApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8687F1E9589DE007181BA /* GasApiManager.swift */; };
 		E9F868821E959447007181BA /* String+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F868811E959447007181BA /* String+Helper.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,7 +112,28 @@
 			remoteGlobalIDString = E9112ABA1E8195EE00B6E60F;
 			remoteInfo = lasgasmx;
 		};
+		E9C8088C1EB15A9A0003C193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9112AB31E8195EE00B6E60F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9C808811EB15A990003C193;
+			remoteInfo = "La Gas Widget";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E9C808921EB15A9A0003C193 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E9C8088E1EB15A9A0003C193 /* La Gas Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2D567CC778115E18613716C2 /* Pods-lasgasmxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lasgasmxTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lasgasmxTests/Pods-lasgasmxTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -95,7 +148,6 @@
 		D074A889606F99E424CFDD9A /* Pods_lasgasmxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lasgasmxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0597AB28257458B092F15E6 /* Pods_lasgasmxUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lasgasmxUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90E73401E8D848400041042 /* GasPriceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceCell.swift; sourceTree = "<group>"; };
-		E90E73421E8DD25100041042 /* GasPriceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceModel.swift; sourceTree = "<group>"; };
 		E9112ABB1E8195EE00B6E60F /* lasgasmx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lasgasmx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9112ABE1E8195EE00B6E60F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9112AC01E8195EE00B6E60F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -121,9 +173,8 @@
 		E96254EC1E946266004CEB66 /* GasPriceStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceStorageManager.swift; sourceTree = "<group>"; };
 		E96CE17F1E89CE2B00F9D97B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E96CE1811E89D3F200F9D97B /* PrivateKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PrivateKeys.plist; sourceTree = "<group>"; };
-		E96CE1841E89D5AB00F9D97B /* ConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigManager.swift; path = Helpers/ConfigManager.swift; sourceTree = "<group>"; };
+		E96CE1841E89D5AB00F9D97B /* PrivateKeys+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PrivateKeys+Helper.swift"; path = "Helpers/PrivateKeys+Helper.swift"; sourceTree = "<group>"; };
 		E96DB63C1EA5724B00C385BA /* GasStationsMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GasStationsMap.swift; path = Componets/GasStationsMap/GasStationsMap.swift; sourceTree = "<group>"; };
-		E96DB63E1EA572EF00C385BA /* GasStationsMapViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GasStationsMapViews.swift; path = Componets/GasStationsMap/GasStationsMapViews.swift; sourceTree = "<group>"; };
 		E96DB6401EA582EA00C385BA /* UIPageControl+Custome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIPageControl+Custome.swift"; path = "Views/UI/UIPageControl+Custome.swift"; sourceTree = "<group>"; };
 		E97A819B1E8C324900294DCE /* GasPricesCarouselController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GasPricesCarouselController.swift; path = Controlles/GasPricesCarouselController.swift; sourceTree = "<group>"; };
 		E97A81A51E8C744C00294DCE /* UIView+Anchors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Anchors.swift"; sourceTree = "<group>"; };
@@ -138,9 +189,26 @@
 		E9BEDDB71E8ED85F00C0A41D /* SelectCityDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityDatasource.swift; sourceTree = "<group>"; };
 		E9BEDDB91E8EDA0C00C0A41D /* SelectCityViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityViews.swift; sourceTree = "<group>"; };
 		E9BEDDBB1E8F156B00C0A41D /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
+		E9C8086E1EB104140003C193 /* GMSPolyline+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GMSPolyline+Extention.swift"; sourceTree = "<group>"; };
+		E9C808701EB10B650003C193 /* GasStation+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GasStation+Extention.swift"; sourceTree = "<group>"; };
+		E9C808721EB10DF80003C193 /* GasStationsMap+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GasStationsMap+Extention.swift"; sourceTree = "<group>"; };
+		E9C808741EB1186F0003C193 /* CalcModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcModels.swift; sourceTree = "<group>"; };
+		E9C808761EB119010003C193 /* GasPriceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceModel.swift; sourceTree = "<group>"; };
+		E9C808781EB123D00003C193 /* AdModManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdModManager.swift; sourceTree = "<group>"; };
+		E9C8087A1EB147730003C193 /* CitysModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitysModel.swift; sourceTree = "<group>"; };
+		E9C8087C1EB14CB70003C193 /* GasPriceEntity+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GasPriceEntity+Extension.swift"; sourceTree = "<group>"; };
+		E9C808821EB15A990003C193 /* La Gas Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "La Gas Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9C808831EB15A990003C193 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		E9C808861EB15A990003C193 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		E9C808891EB15A990003C193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		E9C8088B1EB15A9A0003C193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9C808A91EB1638E0003C193 /* GasAPIManager+GET_PRICES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GasAPIManager+GET_PRICES.swift"; sourceTree = "<group>"; };
+		E9C808AB1EB163F50003C193 /* GasApiManager+GET_STATIONS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GasApiManager+GET_STATIONS.swift"; sourceTree = "<group>"; };
+		E9C808B31EB16ADE0003C193 /* GasPriceDatasorceWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceDatasorceWidget.swift; sourceTree = "<group>"; };
+		E9C808B51EB16C6B0003C193 /* GasPriceInStateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceInStateModel.swift; sourceTree = "<group>"; };
 		E9D738941EAA7137001D36CF /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoView.swift; path = Componets/infoView/InfoView.swift; sourceTree = "<group>"; };
-		E9D738961EAAB7FE001D36CF /* BukettMapDirections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BukettMapDirections.swift; sourceTree = "<group>"; };
-		E9DE33A51E96AF91006498EF /* UserSettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsManager.swift; sourceTree = "<group>"; };
+		E9D738961EAAB7FE001D36CF /* GoogleMapsApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsApiManager.swift; sourceTree = "<group>"; };
+		E9DE33A51E96AF91006498EF /* UserDefaults+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helper.swift"; sourceTree = "<group>"; };
 		E9DE33A71E96B755006498EF /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		E9DE33AA1E96B9B4006498EF /* UIBackButton+Custome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBackButton+Custome.swift"; sourceTree = "<group>"; };
 		E9DE33AC1E96C1AA006498EF /* UINavigationItem+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Helper.swift"; sourceTree = "<group>"; };
@@ -149,7 +217,7 @@
 		E9E87BD11EB00B690012AB09 /* UIImage+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Helper.swift"; sourceTree = "<group>"; };
 		E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Helper.swift"; path = "Helpers/Extension/UIColor+Helper.swift"; sourceTree = "<group>"; };
 		E9F8687D1E956EDF007181BA /* JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParse.swift; sourceTree = "<group>"; };
-		E9F8687F1E9589DE007181BA /* BucketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketAPI.swift; sourceTree = "<group>"; };
+		E9F8687F1E9589DE007181BA /* GasApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasApiManager.swift; sourceTree = "<group>"; };
 		E9F868811E959447007181BA /* String+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Helper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +246,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9C8087F1EB15A990003C193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9C808841EB15A990003C193 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -187,6 +263,7 @@
 				A67412A47D62D5C3339E096B /* Pods_lasgasmx.framework */,
 				D074A889606F99E424CFDD9A /* Pods_lasgasmxTests.framework */,
 				E0597AB28257458B092F15E6 /* Pods_lasgasmxUITests.framework */,
+				E9C808831EB15A990003C193 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -207,6 +284,7 @@
 				E9112ABD1E8195EE00B6E60F /* lasgasmx */,
 				E9112AD51E8195EE00B6E60F /* lasgasmxTests */,
 				E9112AE01E8195EE00B6E60F /* lasgasmxUITests */,
+				E9C808851EB15A990003C193 /* La Gas Widget */,
 				E9112ABC1E8195EE00B6E60F /* Products */,
 				EC29B02A82043465A3ACDE9D /* Pods */,
 				066CE30C96273C75A340121A /* Frameworks */,
@@ -219,6 +297,7 @@
 				E9112ABB1E8195EE00B6E60F /* lasgasmx.app */,
 				E9112AD21E8195EE00B6E60F /* lasgasmxTests.xctest */,
 				E9112ADD1E8195EE00B6E60F /* lasgasmxUITests.xctest */,
+				E9C808821EB15A990003C193 /* La Gas Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -230,14 +309,13 @@
 				E9112ACD1E8195EE00B6E60F /* Info.plist */,
 				E96CE17F1E89CE2B00F9D97B /* GoogleService-Info.plist */,
 				E96CE1811E89D3F200F9D97B /* PrivateKeys.plist */,
+				E9112AF01E81967300B6E60F /* Assets */,
 				E9112AEF1E81965A00B6E60F /* Controllers */,
 				E97A81981E8C29BF00294DCE /* Componets */,
-				E9112AF11E81968200B6E60F /* Views */,
-				E9112AF01E81967300B6E60F /* Resurces */,
 				E96CE1831E89D57A00F9D97B /* Helpers */,
-				E96254E31E940A45004CEB66 /* Providers */,
-				E97A81971E8C259100294DCE /* Services */,
 				E9112AF21E81969300B6E60F /* Models */,
+				E96254E31E940A45004CEB66 /* Providers */,
+				E9112AF11E81968200B6E60F /* Views */,
 			);
 			path = lasgasmx;
 			sourceTree = "<group>";
@@ -270,21 +348,19 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		E9112AF01E81967300B6E60F /* Resurces */ = {
+		E9112AF01E81967300B6E60F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				E9112AC51E8195EE00B6E60F /* lasgasmx.xcdatamodeld */,
 				E9BEDDBB1E8F156B00C0A41D /* locations.json */,
 				E9112ACA1E8195EE00B6E60F /* LaunchScreen.storyboard */,
 				E9112AC81E8195EE00B6E60F /* Assets.xcassets */,
 			);
-			name = Resurces;
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		E9112AF11E81968200B6E60F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E9DE33A91E96B98D006498EF /* UI */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -292,9 +368,15 @@
 		E9112AF21E81969300B6E60F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E90E73421E8DD25100041042 /* GasPriceModel.swift */,
-				E96254EA1E941873004CEB66 /* SelectCityModels.swift */,
+				E9112AC51E8195EE00B6E60F /* lasgasmx.xcdatamodeld */,
+				E9C808741EB1186F0003C193 /* CalcModels.swift */,
+				E9C8087C1EB14CB70003C193 /* GasPriceEntity+Extension.swift */,
+				E9C808761EB119010003C193 /* GasPriceModel.swift */,
 				E9932B1B1EA7E15900214520 /* GasStationModel.swift */,
+				E96254E41E940BB2004CEB66 /* Result.swift */,
+				E96254EA1E941873004CEB66 /* SelectCityModels.swift */,
+				E9C8087A1EB147730003C193 /* CitysModel.swift */,
+				E9C808B51EB16C6B0003C193 /* GasPriceInStateModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -312,12 +394,13 @@
 		E96254E31E940A45004CEB66 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				E96254E41E940BB2004CEB66 /* Result.swift */,
+				E9C808A81EB1635A0003C193 /* GasAPIManager */,
 				E96254E81E941164004CEB66 /* Request.swift */,
 				E96254E61E940C68004CEB66 /* DataBucket.swift */,
 				E9F8687D1E956EDF007181BA /* JsonParse.swift */,
-				E9F8687F1E9589DE007181BA /* BucketAPI.swift */,
-				E9D738961EAAB7FE001D36CF /* BukettMapDirections.swift */,
+				E9D738961EAAB7FE001D36CF /* GoogleMapsApiManager.swift */,
+				E96254EC1E946266004CEB66 /* GasPriceStorageManager.swift */,
+				E9C808781EB123D00003C193 /* AdModManager.swift */,
 			);
 			name = Providers;
 			sourceTree = "<group>";
@@ -333,6 +416,8 @@
 				E9DE33AE1E96C88E006498EF /* Timestamp.swift */,
 				E961AF181E980026008173FB /* Float+Helpers.swift */,
 				E9E87BD11EB00B690012AB09 /* UIImage+Helper.swift */,
+				E9DE33A51E96AF91006498EF /* UserDefaults+Helper.swift */,
+				E96CE1841E89D5AB00F9D97B /* PrivateKeys+Helper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -341,24 +426,17 @@
 			isa = PBXGroup;
 			children = (
 				E96DB63C1EA5724B00C385BA /* GasStationsMap.swift */,
-				E96DB63E1EA572EF00C385BA /* GasStationsMapViews.swift */,
+				E9C808721EB10DF80003C193 /* GasStationsMap+Extention.swift */,
+				E9C8086E1EB104140003C193 /* GMSPolyline+Extention.swift */,
+				E9C808701EB10B650003C193 /* GasStation+Extention.swift */,
 			);
 			name = GasStationsMapView;
-			sourceTree = "<group>";
-		};
-		E97A81971E8C259100294DCE /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				E96CE1841E89D5AB00F9D97B /* ConfigManager.swift */,
-				E96254EC1E946266004CEB66 /* GasPriceStorageManager.swift */,
-				E9DE33A51E96AF91006498EF /* UserSettingsManager.swift */,
-			);
-			name = Services;
 			sourceTree = "<group>";
 		};
 		E97A81981E8C29BF00294DCE /* Componets */ = {
 			isa = PBXGroup;
 			children = (
+				E9DE33A91E96B98D006498EF /* General Custome UI */,
 				E9D738931EAA70D2001D36CF /* InfoView */,
 				E96DB63B1EA571FD00C385BA /* GasStationsMapView */,
 				E97A819E1E8C3EF700294DCE /* Generic */,
@@ -390,6 +468,27 @@
 			name = SelectCityTable;
 			sourceTree = "<group>";
 		};
+		E9C808851EB15A990003C193 /* La Gas Widget */ = {
+			isa = PBXGroup;
+			children = (
+				E9C808861EB15A990003C193 /* TodayViewController.swift */,
+				E9C808881EB15A990003C193 /* MainInterface.storyboard */,
+				E9C8088B1EB15A9A0003C193 /* Info.plist */,
+				E9C808B31EB16ADE0003C193 /* GasPriceDatasorceWidget.swift */,
+			);
+			path = "La Gas Widget";
+			sourceTree = "<group>";
+		};
+		E9C808A81EB1635A0003C193 /* GasAPIManager */ = {
+			isa = PBXGroup;
+			children = (
+				E9F8687F1E9589DE007181BA /* GasApiManager.swift */,
+				E9C808A91EB1638E0003C193 /* GasAPIManager+GET_PRICES.swift */,
+				E9C808AB1EB163F50003C193 /* GasApiManager+GET_STATIONS.swift */,
+			);
+			name = GasAPIManager;
+			sourceTree = "<group>";
+		};
 		E9D738931EAA70D2001D36CF /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,7 +498,7 @@
 			name = InfoView;
 			sourceTree = "<group>";
 		};
-		E9DE33A91E96B98D006498EF /* UI */ = {
+		E9DE33A91E96B98D006498EF /* General Custome UI */ = {
 			isa = PBXGroup;
 			children = (
 				E9DE33AA1E96B9B4006498EF /* UIBackButton+Custome.swift */,
@@ -407,7 +506,7 @@
 				E96DB6401EA582EA00C385BA /* UIPageControl+Custome.swift */,
 				E98D53DA1EA698530055EEEE /* UIButton+Custome.swift */,
 			);
-			name = UI;
+			name = "General Custome UI";
 			sourceTree = "<group>";
 		};
 		EC29B02A82043465A3ACDE9D /* Pods */ = {
@@ -436,10 +535,12 @@
 				E9112AB91E8195EE00B6E60F /* Resources */,
 				BDC6C908A42099100C71C19E /* [CP] Embed Pods Frameworks */,
 				D79310B590859F1748D470C2 /* [CP] Copy Pods Resources */,
+				E9C808921EB15A9A0003C193 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E9C8088D1EB15A9A0003C193 /* PBXTargetDependency */,
 			);
 			name = lasgasmx;
 			productName = lasgasmx;
@@ -488,6 +589,23 @@
 			productReference = E9112ADD1E8195EE00B6E60F /* lasgasmxUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		E9C808811EB15A990003C193 /* La Gas Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9C8088F1EB15A9A0003C193 /* Build configuration list for PBXNativeTarget "La Gas Widget" */;
+			buildPhases = (
+				E9C8087E1EB15A990003C193 /* Sources */,
+				E9C8087F1EB15A990003C193 /* Frameworks */,
+				E9C808801EB15A990003C193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "La Gas Widget";
+			productName = "La Gas Widget";
+			productReference = E9C808821EB15A990003C193 /* La Gas Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -515,6 +633,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = E9112ABA1E8195EE00B6E60F;
 					};
+					E9C808811EB15A990003C193 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = ZA326M6Y84;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = E9112AB61E8195EE00B6E60F /* Build configuration list for PBXProject "lasgasmx" */;
@@ -533,6 +656,7 @@
 				E9112ABA1E8195EE00B6E60F /* lasgasmx */,
 				E9112AD11E8195EE00B6E60F /* lasgasmxTests */,
 				E9112ADC1E8195EE00B6E60F /* lasgasmxUITests */,
+				E9C808811EB15A990003C193 /* La Gas Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -561,6 +685,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9C808801EB15A990003C193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9C8088A1EB15A990003C193 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,47 +845,56 @@
 				E97A819C1E8C324900294DCE /* GasPricesCarouselController.swift in Sources */,
 				E9E87BD01EAFB43F0012AB09 /* InfoView+ShowDirectionOptions.swift in Sources */,
 				E961AF191E980026008173FB /* Float+Helpers.swift in Sources */,
-				E90E73431E8DD25100041042 /* GasPriceModel.swift in Sources */,
+				E9C808791EB123D00003C193 /* AdModManager.swift in Sources */,
+				E9C808771EB119010003C193 /* GasPriceModel.swift in Sources */,
 				CAE3235C1E8E1759005871F7 /* NewLocationViewController.swift in Sources */,
 				E961AF151E97EFC7008173FB /* CalcResultDatasorce.swift in Sources */,
 				E97A81AE1E8C80A300294DCE /* DefaultCell.swift in Sources */,
+				E9C8086F1EB104140003C193 /* GMSPolyline+Extention.swift in Sources */,
 				E96254E71E940C68004CEB66 /* DataBucket.swift in Sources */,
 				E9932B1C1EA7E15900214520 /* GasStationModel.swift in Sources */,
+				E9C808731EB10DF80003C193 /* GasStationsMap+Extention.swift in Sources */,
+				E9C8087D1EB14CB70003C193 /* GasPriceEntity+Extension.swift in Sources */,
 				E96254E91E941164004CEB66 /* Request.swift in Sources */,
 				E9DE33AB1E96B9B4006498EF /* UIBackButton+Custome.swift in Sources */,
 				E961AF1B1E980C87008173FB /* UICalcTextField+Costume.swift in Sources */,
 				E96254ED1E946266004CEB66 /* GasPriceStorageManager.swift in Sources */,
 				E98D53DB1EA698530055EEEE /* UIButton+Custome.swift in Sources */,
 				E961AF131E97EE99008173FB /* CalcResultsCollectionController.swift in Sources */,
+				E9C808B61EB16C6B0003C193 /* GasPriceInStateModel.swift in Sources */,
 				E97A81B01E8C88F900294DCE /* GasPricesDatasorce.swift in Sources */,
 				E9112AC11E8195EE00B6E60F /* HomeViewController.swift in Sources */,
 				E96254E51E940BB2004CEB66 /* Result.swift in Sources */,
 				E9BEDDBA1E8EDA0C00C0A41D /* SelectCityViews.swift in Sources */,
-				E9F868801E9589DE007181BA /* BucketAPI.swift in Sources */,
+				E9F868801E9589DE007181BA /* GasApiManager.swift in Sources */,
 				E9DE33A81E96B755006498EF /* CalculatorViewController.swift in Sources */,
-				E96DB63F1EA572EF00C385BA /* GasStationsMapViews.swift in Sources */,
+				E9C808AA1EB1638E0003C193 /* GasAPIManager+GET_PRICES.swift in Sources */,
 				E9EB3A3E1E8AD57900D76215 /* UIColor+Helper.swift in Sources */,
+				E9C8087B1EB147730003C193 /* CitysModel.swift in Sources */,
 				E9BEDDB61E8ED72200C0A41D /* SelectCityCollectionController.swift in Sources */,
 				E96DB63D1EA5724B00C385BA /* GasStationsMap.swift in Sources */,
-				E9D738971EAAB7FE001D36CF /* BukettMapDirections.swift in Sources */,
+				E9D738971EAAB7FE001D36CF /* GoogleMapsApiManager.swift in Sources */,
 				E96254EB1E941873004CEB66 /* SelectCityModels.swift in Sources */,
 				E9D738951EAA7137001D36CF /* InfoView.swift in Sources */,
-				E96CE1851E89D5AB00F9D97B /* ConfigManager.swift in Sources */,
+				E96CE1851E89D5AB00F9D97B /* PrivateKeys+Helper.swift in Sources */,
 				CAE323591E8DFDDC005871F7 /* UIStackView+Helpers.swift in Sources */,
 				E97A81A81E8C77EE00294DCE /* CollectionDatasourceController.swift in Sources */,
 				E9BEDDB81E8ED85F00C0A41D /* SelectCityDatasource.swift in Sources */,
 				E9DE33AD1E96C1AA006498EF /* UINavigationItem+Helper.swift in Sources */,
 				E97A81AA1E8C78BF00294DCE /* CollectionDatasorce.swift in Sources */,
 				E9112ABF1E8195EE00B6E60F /* AppDelegate.swift in Sources */,
+				E9C808AC1EB163F50003C193 /* GasApiManager+GET_STATIONS.swift in Sources */,
 				E90E73411E8D848400041042 /* GasPriceCell.swift in Sources */,
-				E9DE33A61E96AF91006498EF /* UserSettingsManager.swift in Sources */,
+				E9DE33A61E96AF91006498EF /* UserDefaults+Helper.swift in Sources */,
 				E97A81A61E8C744C00294DCE /* UIView+Anchors.swift in Sources */,
 				E96DB6411EA582EA00C385BA /* UIPageControl+Custome.swift in Sources */,
 				E9E87BD21EB00B690012AB09 /* UIImage+Helper.swift in Sources */,
 				E961AF171E97F29A008173FB /* CalcResultCell.swift in Sources */,
+				E9C808711EB10B650003C193 /* GasStation+Extention.swift in Sources */,
 				E97A81AC1E8C790100294DCE /* CollectionDatasorceCell.swift in Sources */,
 				E9F868821E959447007181BA /* String+Helper.swift in Sources */,
 				E9DE33AF1E96C88E006498EF /* Timestamp.swift in Sources */,
+				E9C808751EB1186F0003C193 /* CalcModels.swift in Sources */,
 				E9112AC71E8195EE00B6E60F /* lasgasmx.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,6 +915,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9C8087E1EB15A990003C193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9C808B01EB16A360003C193 /* UIColor+Helper.swift in Sources */,
+				E9C808B11EB16A360003C193 /* UIView+Anchors.swift in Sources */,
+				E9C808B21EB16A360003C193 /* UIStackView+Helpers.swift in Sources */,
+				E9C808A11EB15E9B0003C193 /* GasApiManager.swift in Sources */,
+				E9C808AD1EB1648E0003C193 /* GasAPIManager+GET_PRICES.swift in Sources */,
+				E9C8089D1EB15E9B0003C193 /* GasPriceModel.swift in Sources */,
+				E9C8089E1EB15E9B0003C193 /* Request.swift in Sources */,
+				E9C8089F1EB15E9B0003C193 /* DataBucket.swift in Sources */,
+				E9C808A01EB15E9B0003C193 /* JsonParse.swift in Sources */,
+				E9C808A51EB15EF10003C193 /* Result.swift in Sources */,
+				E9C808971EB15E4F0003C193 /* CollectionDatasourceController.swift in Sources */,
+				E9C808981EB15E4F0003C193 /* CollectionDatasorce.swift in Sources */,
+				E9C808991EB15E4F0003C193 /* CollectionDatasorceCell.swift in Sources */,
+				E9C8089A1EB15E4F0003C193 /* DefaultCell.swift in Sources */,
+				E9C808951EB15C850003C193 /* GasPricesCarouselController.swift in Sources */,
+				E9C808931EB15C770003C193 /* GasPriceCell.swift in Sources */,
+				E9C808941EB15C7E0003C193 /* UIPageControl+Custome.swift in Sources */,
+				E9C808B41EB16ADE0003C193 /* GasPriceDatasorceWidget.swift in Sources */,
+				E9C808A41EB15EDA0003C193 /* Float+Helpers.swift in Sources */,
+				E9C808871EB15A990003C193 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -787,6 +955,11 @@
 			target = E9112ABA1E8195EE00B6E60F /* lasgasmx */;
 			targetProxy = E9112ADE1E8195EE00B6E60F /* PBXContainerItemProxy */;
 		};
+		E9C8088D1EB15A9A0003C193 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9C808811EB15A990003C193 /* La Gas Widget */;
+			targetProxy = E9C8088C1EB15A9A0003C193 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -796,6 +969,14 @@
 				E9112ACB1E8195EE00B6E60F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E9C808881EB15A990003C193 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9C808891EB15A990003C193 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -898,6 +1079,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 59941DA09833677EDE42910F /* Pods-lasgasmx.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZA326M6Y84;
 				INFOPLIST_FILE = lasgasmx/Info.plist;
@@ -913,6 +1095,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 54BAE393326F9D775A6BFB4C /* Pods-lasgasmx.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZA326M6Y84;
 				INFOPLIST_FILE = lasgasmx/Info.plist;
@@ -986,6 +1169,32 @@
 			};
 			name = Release;
 		};
+		E9C808901EB15A9A0003C193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = ZA326M6Y84;
+				INFOPLIST_FILE = "La Gas Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.migueloruiz.lasgasmx.La-Gas-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E9C808911EB15A9A0003C193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = ZA326M6Y84;
+				INFOPLIST_FILE = "La Gas Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.migueloruiz.lasgasmx.La-Gas-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1021,6 +1230,15 @@
 			buildConfigurations = (
 				E9112AED1E8195EE00B6E60F /* Debug */,
 				E9112AEE1E8195EE00B6E60F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9C8088F1EB15A9A0003C193 /* Build configuration list for PBXNativeTarget "La Gas Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9C808901EB15A9A0003C193 /* Debug */,
+				E9C808911EB15A9A0003C193 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

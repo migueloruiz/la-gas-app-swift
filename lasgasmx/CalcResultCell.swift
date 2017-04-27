@@ -12,10 +12,7 @@ class CalcResultCell: CollectionDatasourceCell {
     
     override var datasourceItem: Any? {
         didSet {
-            guard let item = datasourceItem as? CalcPrice else {
-                return
-            }
-            
+            guard let item = datasourceItem as? CalcPrice else { return }
             setColor(by: item.price.type)
             resultLable.text = item.calculate()
         }
@@ -23,8 +20,6 @@ class CalcResultCell: CollectionDatasourceCell {
     
     let fuelLabel: UILabel = {
         let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.text = ""
         l.font = UIFont.systemFont(ofSize: 18, weight: 500)
         l.textAlignment = .center
         l.textColor = .white
@@ -34,8 +29,6 @@ class CalcResultCell: CollectionDatasourceCell {
     
     let resultLable: UILabel = {
         let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.text = ""
         l.font = UIFont.systemFont(ofSize: 18)
         l.textAlignment = .center
         l.tintColor = .black
@@ -51,11 +44,9 @@ class CalcResultCell: CollectionDatasourceCell {
         
         fuelLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: resultLable.leftAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         resultLable.anchor(top: topAnchor, left: fuelLabel.rightAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 5, rightConstant: 15, widthConstant: frame.width * 0.6, heightConstant: 0)
-        
     }
     
-    // TODO esto se puede volver una funcion mas general
-    func setColor( by type: FuelType) {
+    func setColor(by type: FuelType) {
         fuelLabel.text = type.rawValue
         switch type {
         case .Magna:

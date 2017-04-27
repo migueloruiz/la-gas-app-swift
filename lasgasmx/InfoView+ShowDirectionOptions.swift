@@ -8,46 +8,60 @@
 
 import UIKit
 import MapKit
+import CoreLocation
+
+struct MapsApp {
+    let name: String
+    var urlGenerator: (CLLocationCoordinate2D) -> String
+}
 
 extension InfoView {
     
-    func showDirectionsOptions () {
-        
-        let optionMenu = UIAlertController(title: nil, message: "Abrir direccion en:", preferredStyle: .actionSheet)
-        
-        
-        // TODO: HACER ESTA SECCION mucho mas modular con un diccionario
-        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
-            let google = UIAlertAction(title: "Google Maps", style: .default, handler: {
-                (alert: UIAlertAction!) -> Void in
-                UIApplication.shared.openURL(URL(string: "comgooglemaps://?saddr=&daddr=\(self.gasStation?.location.latitude),\(self.gasStation?.location.longitude)&directionsmode=driving")!)
+    internal func generateAction(app: MapsApp, location: CLLocationCoordinate2D) -> UIAlertAction {
+        let action = UIAlertAction(title: app.name, style: .default, handler: { _ in
+            let url = URL(string: app.urlGenerator(location) )!
+            UIApplication.shared.open(url, options: [:], completionHandler: { result in
+                print(result)
             })
-            optionMenu.addAction(google)
-        }
-        
-        if (UIApplication.shared.canOpenURL(URL(string:"waze://")!)) {
-            let waze = UIAlertAction(title: "Waze", style: .default, handler: {
-                (alert: UIAlertAction!) -> Void in
-                UIApplication.shared.openURL(URL(string: "waze://?ll=\(self.gasStation?.location.latitude),\(self.gasStation?.location.longitude)&navigate=yes")!)
-            })
-            optionMenu.addAction(waze)
-        }
-        
-        let maps = UIAlertAction(title: "Maps", style: .default, handler: {
+        })
+        return action
+    }
+    
+    internal func generateAppleMapsAction(location: CLLocationCoordinate2D) -> UIAlertAction {
+        return UIAlertAction(title: "Maps", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             let regionDistance:CLLocationDistance = 100;
-            let regionSpan = MKCoordinateRegionMakeWithDistance((self.gasStation?.location)!, regionDistance, regionDistance)
+            let regionSpan = MKCoordinateRegionMakeWithDistance((location), regionDistance, regionDistance)
             
             let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center)]
             
-            let placemark = MKPlacemark(coordinate: (self.gasStation?.location)!)
+            let placemark = MKPlacemark(coordinate: (location))
             let mapItem = MKMapItem(placemark: placemark)
             mapItem.name = self.gasStation?.name
             mapItem.openInMaps(launchOptions: options)
         })
+    }
+    
+    internal func showDirectionsOptions () {
+        
+        guard let location = gasStation?.location else { return }
+        
+        let apps = [
+            MapsApp(name: "Google Maps", urlGenerator: { l in  return "comgooglemaps://?saddr=&daddr=\(l.latitude),\(l.longitude)&directionsmode=driving"}),
+            MapsApp(name: "Waze", urlGenerator: {l in "waze://?ll=\(l.latitude),\(l.longitude)&navigate=yes"})
+        ]
+        
+        let optionMenu = UIAlertController(title: nil, message: "Abrir direccion en", preferredStyle: .actionSheet)
+        
+        for app in apps {
+            let action = generateAction(app: app, location: location)
+            optionMenu.addAction(action)
+        }
+
+        let maps = generateAppleMapsAction(location: location)
         optionMenu.addAction(maps)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
         optionMenu.addAction(cancelAction)
         
         self.rootViewController?.present(optionMenu, animated: true, completion: nil)

@@ -34,6 +34,7 @@ class GasPriceStorageManager {
         newGasPriceStorage.magna = 0.0
         newGasPriceStorage.diesel = 0.0
         newGasPriceStorage.premium = 0.0
+        newGasPriceStorage.updateDate = nil
         newGasPriceStorage.id = generateIdTimestamp()
         saveChanges()
     }
@@ -59,10 +60,6 @@ class GasPriceStorageManager {
         return fetchAll().map{ $0.getStruct() } as [GasPriceInState]
     }
     
-    func editLocation(with actualLocation: GasPriceLocation, recordChanges: (_ item: GasPriceEntity) -> Bool) {
-
-    }
-    
     func deleteWith(id: String) {
         let predicate = NSPredicate(format: "id = %@" ,"\(id)")
         let fetchRequest: NSFetchRequest<GasPriceEntity> = GasPriceEntity.fetchRequest()
@@ -81,7 +78,6 @@ class GasPriceStorageManager {
     
     
     func updatePriceBy(id:String, recordChanges:(_ gasPriceEntity: GasPriceEntity) -> Void){
-        
         let predicate = NSPredicate(format: "id = %@" ,"\(id)")
         let fetchRequest: NSFetchRequest<GasPriceEntity> = GasPriceEntity.fetchRequest()
         fetchRequest.predicate = predicate

@@ -173,9 +173,7 @@ class GasItemView: UIView {
         fuelTypeLabel.anchor(top: priceLabel.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: -5, leftConstant: 0, bottomConstant: 3, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
     
-    // TODO esto se puede volver una funcion mas general
-    
-    func setColor( by type: FuelType) {
+    func setColor(by type: FuelType) {
         fuelTypeLabel.text = type.rawValue
         switch type {
         case .Magna:

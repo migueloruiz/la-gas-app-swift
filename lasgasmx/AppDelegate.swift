@@ -9,14 +9,14 @@
 import UIKit
 import CoreData
 import Firebase
-import GoogleMaps;
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var mainNavigation: UINavigationController? = nil
-    let configManager = ConfigManager(byPlistFile: "PrivateKeys")
+    let configManager = PrivateKeysManager(byPlistFile: "PrivateKeys")
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -26,12 +26,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        // TODO: mover esto a un Wraper o capaz espesificas
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-\(configManager["AD_MOD_ID"])")
         GMSServices.provideAPIKey(configManager["GOOGLE_MAPS_KEY"])
+        let adsManager = AdModManager.init(key: configManager["AD_MOD_ID"])
         
         // TODO: Hacer un Routing o manejador de vista
-        let homeViewController = HomeViewController()
+        let homeViewController = HomeViewController( adsManager: adsManager )
+        
+        // TODO: Revisar si es la primera vez que entra el ususraio
+        // Y mandar a Turorial
+        
+        // TODO: Revisar si la locacion esta Activa
+        // GasStationsMapController.isLocationServicesEnabled()
+        // Y mandar a Mapa o vista de error
         
         mainNavigation = UINavigationController(rootViewController: homeViewController )
         mainNavigation?.navigationBar.backIndicatorImage = UIImage(named: "back")

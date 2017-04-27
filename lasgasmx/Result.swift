@@ -15,5 +15,6 @@ enum Result<T, E: Swift.Error> {
 
 enum Error: Swift.Error {
     case Network(String)
+    case Status(String)
     case Parser(String)
 }

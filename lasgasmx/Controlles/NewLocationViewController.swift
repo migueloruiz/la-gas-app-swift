@@ -100,12 +100,12 @@ class NewLocationViewController: UIViewController{
     
     func popToRoot(){
         self.navigationItem.titleView = nil
-        self.navigationController?.popToRootViewController(animated: true)
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     func popView(){
         self.navigationItem.titleView = nil
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     func deleteLocation() {
@@ -115,11 +115,8 @@ class NewLocationViewController: UIViewController{
     }
     
     func saveLocation() {
-        guard let newLocation = selectCityDatasource.getActualLocation()  else {
-            // TODO:
-            print("manejar error")
-            return
-        }
+        guard let newLocation = selectCityDatasource.getActualLocation()  else { return }
+        
         if(!deleteButtonisAvilable) {
             storageManager.newGasPrice(location: newLocation)
         } else {
