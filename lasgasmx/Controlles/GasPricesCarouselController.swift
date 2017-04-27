@@ -17,7 +17,7 @@ protocol GasPricesCarrouselDelegate: class {
 
 class GasPricesCarrouselController: CollectionDatasourceController {
     
-    let lateralSpace: CGFloat = 30
+    var lateralSpace: CGFloat = 30
     weak var delegate: GasPricesCarrouselDelegate? = nil
     
     override func setupViews(collectionView: UICollectionView) {

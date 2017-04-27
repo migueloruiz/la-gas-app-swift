@@ -11,6 +11,22 @@ import Foundation
 struct GasPriceLocation {
     var state: String
     var city: String
+    
+    init(state: String, city: String) {
+        self.city = city
+        self.state = state
+    }
+    
+    init?(decode: String) {
+        let split = decode.components(separatedBy:",")
+        guard split.count == 2 else { return nil }
+        self.state = split[0]
+        self.city = split[1]
+    }
+    
+    func encode() -> String {
+        return "\(state),\(city)"
+    }
 }
 
 struct GasPriceInState {

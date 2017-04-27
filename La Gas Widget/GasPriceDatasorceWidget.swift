@@ -10,51 +10,45 @@ import UIKit
 
 class GasPricesDatasorce: CollectionDatasource {
     
-    // TODO: hacer injectable la URL del API
-    lazy var gasApi = GasApiManager(baseUrl: "https://lagasmx.herokuapp.com")
+    var gasApi: GasApiManager
+    var userDefaults: UserDefaultsManager
+    
+    init(api: GasApiManager, userDefaults: UserDefaultsManager) {
+        self.gasApi = api
+        self.userDefaults = userDefaults
+    }
     
     override func cellClasses() -> [CollectionDatasourceCell.Type] {
-        return [GasPriceCell.self, GasPriceEmptyCell.self]
+        return [GasPriceCellNoRounded.self, GasPriceEmptyCell.self]
     }
     
     override func cellClass(_ indexPath: IndexPath) -> CollectionDatasourceCell.Type? {
         guard (objects?[indexPath.item] as? GasPriceInState) != nil  else { return GasPriceEmptyCell.self }
-        return GasPriceCell.self
+        return GasPriceCellNoRounded.self
     }
     
-    func fetchStroage(){
-        // TODO: Obtener de UserSetings
-//        var prices = storageManager.fetchAllAsGasPrices() as [AnyObject]
-//        if prices.count < 5 { prices.append(1 as AnyObject) }
-//        objects = prices
-//        updateDatasorce()
+    func fetchResurces(completition: @escaping (Bool) -> Void){
+        completition(true)
+        self.objects = []
+        self.updateDatasorce()
+        
+        let locations = userDefaults.retrieveLocations()
+        
+        for loc in locations{
+            gasApi.getPriceBy(location: loc, completition: { dataResult in
+                switch dataResult {
+                    case .Success(let data):
+                        DispatchQueue.main.async {
+                            self.objects?.append(data as AnyObject)
+                            self.updateDatasorce()
+                            completition(true)
+                        }
+                    break
+                    case .Failure:
+                        completition(false)
+                    break
+                }
+            })
+        }
     }
-    
-    func updateStorageItems() {
-//        let entitys = storageManager.fetchAll()
-//        
-//        for entity in entitys {
-//            guard entity.canUpdate() else { continue }
-//            let location = GasPriceLocation(state: entity.state!, city: entity.city!)
-//            gasApi.getPriceBy(location: location, completition: { dataResult in
-//                switch dataResult {
-//                case .Success(let data):
-//                    DispatchQueue.main.async {
-//                        entity.update(with: data)
-//                        self.storageManager.saveChanges()
-//                        self.fetchStroage()
-//                    }
-//                case .Failure:
-//                    break
-//                }
-//            })
-//        }
-    }
-    
-    func updateCarrousell() {
-        fetchStroage()
-        updateStorageItems()
-    }
-    
 }
-

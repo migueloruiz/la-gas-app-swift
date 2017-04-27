@@ -15,6 +15,10 @@ class NewLocationViewController: UIViewController{
     var selectCityDatasource = SelectCityDatasorce()
     
     let storageManager = GasPriceStorageManager()
+    lazy var userDeafults: UserDefaultsManager = {
+        let configManager = (UIApplication.shared.delegate as! AppDelegate).configManager
+        return UserDefaultsManager(suitName: configManager["GROUP_KEY"])!
+    }()
     
     var deleteButtonisAvilable = false
     var saveButtonisAvilable = true
@@ -111,6 +115,7 @@ class NewLocationViewController: UIViewController{
     func deleteLocation() {
         guard let price = gasPrice else { return }
         storageManager.deleteWith(id: price.id!)
+        userDeafults.delateGasPrices(id: price.id!)
         popToRoot()
     }
     
@@ -118,13 +123,15 @@ class NewLocationViewController: UIViewController{
         guard let newLocation = selectCityDatasource.getActualLocation()  else { return }
         
         if(!deleteButtonisAvilable) {
-            storageManager.newGasPrice(location: newLocation)
+            let id = storageManager.newGasPrice(location: newLocation)
+            userDeafults.saveNewGasPrices(location: newLocation, id: id)
         } else {
             guard let idToFind = gasPrice?.id  else { return }
             storageManager.updatePriceBy(id: idToFind, recordChanges: { gasPriceToUpdate in
                 gasPriceToUpdate.state = newLocation.state
                 gasPriceToUpdate.city = newLocation.city
             })
+            userDeafults.editGasPrices(location: newLocation, id: idToFind)
         }
         popToRoot()
     }

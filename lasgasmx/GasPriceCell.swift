@@ -74,6 +74,17 @@ class GasPriceCell: CollectionDatasourceCell {
 
 }
 
+class GasPriceCellNoRounded: GasPriceCell {
+    
+    override func setupViews() {
+        super.setupViews()
+        self.layer.cornerRadius = 5
+    }
+
+}
+
+
+
 class GasPriceEmptyCell: CollectionDatasourceCell {
     
     override var datasourceItem: Any? {

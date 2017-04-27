@@ -27,7 +27,7 @@ class GasPriceStorageManager {
         }
     }
     
-    func newGasPrice(location: GasPriceLocation) {
+    func newGasPrice(location: GasPriceLocation) -> String {
         let newGasPriceStorage = GasPriceEntity(entity: generalEntity, insertInto: context)
         newGasPriceStorage.set(location: location)
         newGasPriceStorage.dateText = ""
@@ -37,6 +37,8 @@ class GasPriceStorageManager {
         newGasPriceStorage.updateDate = nil
         newGasPriceStorage.id = generateIdTimestamp()
         saveChanges()
+        
+        return newGasPriceStorage.id!
     }
     
     func saveChanges() {

@@ -37,11 +37,11 @@ class HomeViewController: UIViewController {
         return cb
     }()
     
-    lazy var controlsButton: UIMapControlButton = {
-        let cb = UIMapControlButton(withTarget: self, action: #selector(HomeViewController.filterMap), radius: 20, type: .controls)
-        cb.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
-        return cb
-    }()
+//    lazy var controlsButton: UIMapControlButton = {
+//        let cb = UIMapControlButton(withTarget: self, action: #selector(HomeViewController.filterMap), radius: 20, type: .controls)
+//        cb.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
+//        return cb
+//    }()
     
     lazy var closeInfoButton: UIButton = {
         let b = UIButton()
@@ -111,7 +111,7 @@ class HomeViewController: UIViewController {
         view.addSubview(gasPricesCarrousell)
         view.addSubview(pager)
         view.addSubview(centerButton)
-        view.addSubview(controlsButton)
+//        view.addSubview(controlsButton)
         view.addSubview(closeInfoButton)
         
         pager.anchorCenterXToSuperview()
@@ -127,7 +127,7 @@ class HomeViewController: UIViewController {
         centerButton.anchor(top: nil, left: nil, bottom: infoView
             .topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 60, rightConstant: 5, widthConstant: 40, heightConstant: 40)
         
-        controlsButton.anchor(top: nil, left: nil, bottom: centerButton.topAnchor, right: centerButton.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 10, rightConstant: 0, widthConstant: 40, heightConstant: 40)
+//        controlsButton.anchor(top: nil, left: nil, bottom: centerButton.topAnchor, right: centerButton.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 10, rightConstant: 0, widthConstant: 40, heightConstant: 40)
         
         closeInfoButton.anchor(top: self.view.topAnchor, left: self.view.leftAnchor, bottom: nil, right: nil, topConstant: 25, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 20, heightConstant: 20)
 

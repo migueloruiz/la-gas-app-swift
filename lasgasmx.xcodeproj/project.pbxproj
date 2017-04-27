@@ -20,6 +20,13 @@
 		E9112ACC1E8195EE00B6E60F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9112ACA1E8195EE00B6E60F /* LaunchScreen.storyboard */; };
 		E9112AD71E8195EE00B6E60F /* lasgasmxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9112AD61E8195EE00B6E60F /* lasgasmxTests.swift */; };
 		E9112AE21E8195EE00B6E60F /* lasgasmxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9112AE11E8195EE00B6E60F /* lasgasmxUITests.swift */; };
+		E91505651EB253DF00C20FA4 /* GasPriceInStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808B51EB16C6B0003C193 /* GasPriceInStateModel.swift */; };
+		E91505661EB2643F00C20FA4 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = E9112AC81E8195EE00B6E60F /* Assets.xcassets */; };
+		E91505691EB276EC00C20FA4 /* PrivateKeys.plist in Sources */ = {isa = PBXBuildFile; fileRef = E96CE1811E89D3F200F9D97B /* PrivateKeys.plist */; };
+		E915056A1EB2770600C20FA4 /* PrivateKeys+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CE1841E89D5AB00F9D97B /* PrivateKeys+Helper.swift */; };
+		E915056C1EB289A600C20FA4 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A51E96AF91006498EF /* UserDefaultsManager.swift */; };
+		E915056E1EB2927A00C20FA4 /* UserDefaultPricesID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915056D1EB2927A00C20FA4 /* UserDefaultPricesID.swift */; };
+		E91505721EB29CA400C20FA4 /* UserDefaultPricesID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915056D1EB2927A00C20FA4 /* UserDefaultPricesID.swift */; };
 		E961AF131E97EE99008173FB /* CalcResultsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961AF121E97EE99008173FB /* CalcResultsCollectionController.swift */; };
 		E961AF151E97EFC7008173FB /* CalcResultDatasorce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961AF141E97EFC7008173FB /* CalcResultDatasorce.swift */; };
 		E961AF171E97F29A008173FB /* CalcResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961AF161E97F29A008173FB /* CalcResultCell.swift */; };
@@ -84,7 +91,7 @@
 		E9C808B61EB16C6B0003C193 /* GasPriceInStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C808B51EB16C6B0003C193 /* GasPriceInStateModel.swift */; };
 		E9D738951EAA7137001D36CF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D738941EAA7137001D36CF /* InfoView.swift */; };
 		E9D738971EAAB7FE001D36CF /* GoogleMapsApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D738961EAAB7FE001D36CF /* GoogleMapsApiManager.swift */; };
-		E9DE33A61E96AF91006498EF /* UserDefaults+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A51E96AF91006498EF /* UserDefaults+Helper.swift */; };
+		E9DE33A61E96AF91006498EF /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A51E96AF91006498EF /* UserDefaultsManager.swift */; };
 		E9DE33A81E96B755006498EF /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33A71E96B755006498EF /* CalculatorViewController.swift */; };
 		E9DE33AB1E96B9B4006498EF /* UIBackButton+Custome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33AA1E96B9B4006498EF /* UIBackButton+Custome.swift */; };
 		E9DE33AD1E96C1AA006498EF /* UINavigationItem+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DE33AC1E96C1AA006498EF /* UINavigationItem+Helper.swift */; };
@@ -161,6 +168,9 @@
 		E9112ADD1E8195EE00B6E60F /* lasgasmxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lasgasmxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9112AE11E8195EE00B6E60F /* lasgasmxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lasgasmxUITests.swift; sourceTree = "<group>"; };
 		E9112AE31E8195EE00B6E60F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E91505671EB268DD00C20FA4 /* lasgasmx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = lasgasmx.entitlements; sourceTree = "<group>"; };
+		E91505681EB268F300C20FA4 /* La Gas Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "La Gas Widget.entitlements"; sourceTree = "<group>"; };
+		E915056D1EB2927A00C20FA4 /* UserDefaultPricesID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultPricesID.swift; sourceTree = "<group>"; };
 		E961AF121E97EE99008173FB /* CalcResultsCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcResultsCollectionController.swift; sourceTree = "<group>"; };
 		E961AF141E97EFC7008173FB /* CalcResultDatasorce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcResultDatasorce.swift; sourceTree = "<group>"; };
 		E961AF161E97F29A008173FB /* CalcResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcResultCell.swift; sourceTree = "<group>"; };
@@ -208,7 +218,7 @@
 		E9C808B51EB16C6B0003C193 /* GasPriceInStateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceInStateModel.swift; sourceTree = "<group>"; };
 		E9D738941EAA7137001D36CF /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoView.swift; path = Componets/infoView/InfoView.swift; sourceTree = "<group>"; };
 		E9D738961EAAB7FE001D36CF /* GoogleMapsApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsApiManager.swift; sourceTree = "<group>"; };
-		E9DE33A51E96AF91006498EF /* UserDefaults+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helper.swift"; sourceTree = "<group>"; };
+		E9DE33A51E96AF91006498EF /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		E9DE33A71E96B755006498EF /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		E9DE33AA1E96B9B4006498EF /* UIBackButton+Custome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBackButton+Custome.swift"; sourceTree = "<group>"; };
 		E9DE33AC1E96C1AA006498EF /* UINavigationItem+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Helper.swift"; sourceTree = "<group>"; };
@@ -305,6 +315,7 @@
 		E9112ABD1E8195EE00B6E60F /* lasgasmx */ = {
 			isa = PBXGroup;
 			children = (
+				E91505671EB268DD00C20FA4 /* lasgasmx.entitlements */,
 				E9112ABE1E8195EE00B6E60F /* AppDelegate.swift */,
 				E9112ACD1E8195EE00B6E60F /* Info.plist */,
 				E96CE17F1E89CE2B00F9D97B /* GoogleService-Info.plist */,
@@ -377,6 +388,7 @@
 				E96254EA1E941873004CEB66 /* SelectCityModels.swift */,
 				E9C8087A1EB147730003C193 /* CitysModel.swift */,
 				E9C808B51EB16C6B0003C193 /* GasPriceInStateModel.swift */,
+				E915056D1EB2927A00C20FA4 /* UserDefaultPricesID.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -396,6 +408,7 @@
 			children = (
 				E9C808A81EB1635A0003C193 /* GasAPIManager */,
 				E96254E81E941164004CEB66 /* Request.swift */,
+				E9DE33A51E96AF91006498EF /* UserDefaultsManager.swift */,
 				E96254E61E940C68004CEB66 /* DataBucket.swift */,
 				E9F8687D1E956EDF007181BA /* JsonParse.swift */,
 				E9D738961EAAB7FE001D36CF /* GoogleMapsApiManager.swift */,
@@ -416,7 +429,6 @@
 				E9DE33AE1E96C88E006498EF /* Timestamp.swift */,
 				E961AF181E980026008173FB /* Float+Helpers.swift */,
 				E9E87BD11EB00B690012AB09 /* UIImage+Helper.swift */,
-				E9DE33A51E96AF91006498EF /* UserDefaults+Helper.swift */,
 				E96CE1841E89D5AB00F9D97B /* PrivateKeys+Helper.swift */,
 			);
 			name = Helpers;
@@ -471,9 +483,10 @@
 		E9C808851EB15A990003C193 /* La Gas Widget */ = {
 			isa = PBXGroup;
 			children = (
-				E9C808861EB15A990003C193 /* TodayViewController.swift */,
-				E9C808881EB15A990003C193 /* MainInterface.storyboard */,
 				E9C8088B1EB15A9A0003C193 /* Info.plist */,
+				E91505681EB268F300C20FA4 /* La Gas Widget.entitlements */,
+				E9C808881EB15A990003C193 /* MainInterface.storyboard */,
+				E9C808861EB15A990003C193 /* TodayViewController.swift */,
 				E9C808B31EB16ADE0003C193 /* GasPriceDatasorceWidget.swift */,
 			);
 			path = "La Gas Widget";
@@ -620,6 +633,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = ZA326M6Y84;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					E9112AD11E8195EE00B6E60F = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -637,6 +655,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = ZA326M6Y84;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -878,6 +901,7 @@
 				E9D738951EAA7137001D36CF /* InfoView.swift in Sources */,
 				E96CE1851E89D5AB00F9D97B /* PrivateKeys+Helper.swift in Sources */,
 				CAE323591E8DFDDC005871F7 /* UIStackView+Helpers.swift in Sources */,
+				E915056E1EB2927A00C20FA4 /* UserDefaultPricesID.swift in Sources */,
 				E97A81A81E8C77EE00294DCE /* CollectionDatasourceController.swift in Sources */,
 				E9BEDDB81E8ED85F00C0A41D /* SelectCityDatasource.swift in Sources */,
 				E9DE33AD1E96C1AA006498EF /* UINavigationItem+Helper.swift in Sources */,
@@ -885,7 +909,7 @@
 				E9112ABF1E8195EE00B6E60F /* AppDelegate.swift in Sources */,
 				E9C808AC1EB163F50003C193 /* GasApiManager+GET_STATIONS.swift in Sources */,
 				E90E73411E8D848400041042 /* GasPriceCell.swift in Sources */,
-				E9DE33A61E96AF91006498EF /* UserDefaults+Helper.swift in Sources */,
+				E9DE33A61E96AF91006498EF /* UserDefaultsManager.swift in Sources */,
 				E97A81A61E8C744C00294DCE /* UIView+Anchors.swift in Sources */,
 				E96DB6411EA582EA00C385BA /* UIPageControl+Custome.swift in Sources */,
 				E9E87BD21EB00B690012AB09 /* UIImage+Helper.swift in Sources */,
@@ -919,6 +943,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E91505721EB29CA400C20FA4 /* UserDefaultPricesID.swift in Sources */,
+				E915056C1EB289A600C20FA4 /* UserDefaultsManager.swift in Sources */,
+				E915056A1EB2770600C20FA4 /* PrivateKeys+Helper.swift in Sources */,
+				E91505691EB276EC00C20FA4 /* PrivateKeys.plist in Sources */,
+				E91505661EB2643F00C20FA4 /* Assets.xcassets in Sources */,
+				E91505651EB253DF00C20FA4 /* GasPriceInStateModel.swift in Sources */,
 				E9C808B01EB16A360003C193 /* UIColor+Helper.swift in Sources */,
 				E9C808B11EB16A360003C193 /* UIView+Anchors.swift in Sources */,
 				E9C808B21EB16A360003C193 /* UIStackView+Helpers.swift in Sources */,
@@ -1081,6 +1111,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = lasgasmx/lasgasmx.entitlements;
 				DEVELOPMENT_TEAM = ZA326M6Y84;
 				INFOPLIST_FILE = lasgasmx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1097,6 +1128,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = lasgasmx/lasgasmx.entitlements;
 				DEVELOPMENT_TEAM = ZA326M6Y84;
 				INFOPLIST_FILE = lasgasmx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1172,6 +1204,7 @@
 		E9C808901EB15A9A0003C193 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "La Gas Widget/La Gas Widget.entitlements";
 				DEVELOPMENT_TEAM = ZA326M6Y84;
 				INFOPLIST_FILE = "La Gas Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1185,6 +1218,7 @@
 		E9C808911EB15A9A0003C193 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "La Gas Widget/La Gas Widget.entitlements";
 				DEVELOPMENT_TEAM = ZA326M6Y84;
 				INFOPLIST_FILE = "La Gas Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
