@@ -35,6 +35,8 @@ class GasPricesDatasorce: CollectionDatasource {
     func updateStorageItems() {
         let entitys = storageManager.fetchAll()
         
+        // TODO: Indicador de Carga
+        
         for entity in entitys {
             guard entity.canUpdate() else { continue }
             let location = GasPriceLocation(state: entity.state!, city: entity.city!)

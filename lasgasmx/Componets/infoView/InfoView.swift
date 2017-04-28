@@ -13,6 +13,10 @@ class InfoView: UIView {
     var rootViewController: UIViewController? = nil
     let margin : CGFloat = 20
     
+    private var viewHeights: [String :CGFloat] = [:]
+    
+    var estimatedHeight: CGFloat = 350
+    
     var gasStation: GasStation? = nil {
         didSet{
             guard let station = gasStation else { return }
@@ -32,6 +36,8 @@ class InfoView: UIView {
             timeLable.text = "A \(route.time) aprox."
             distanceLable.text = "A \(route.distance) aprox."
             directionArea.text = route.address
+            
+            estimatedHeight = estimateHeight(text: route.address)
         }
     }
     
@@ -130,22 +136,50 @@ class InfoView: UIView {
         self.addSubview(stackViewContainer)
         self.addSubview(directionsButton)
         
-        stationNameLable.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 50)
+        viewHeights["stationNameLable"] = 50
+        stationNameLable.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: viewHeights["stationNameLable"]!)
         
+        viewHeights["subLabelsHeigth"] = 20
         timeLable.anchor(top: stationNameLable.bottomAnchor, left: stationNameLable.leftAnchor, bottom: nil
-            , right: nil, topConstant: 0, leftConstant: margin, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
-        
+            , right: nil, topConstant: 0, leftConstant: margin, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: viewHeights["subLabelsHeigth"]!)
         distanceLable.anchor(top: stationNameLable.bottomAnchor, left: nil, bottom: nil
-            , right: stationNameLable.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: margin, widthConstant: 0, heightConstant: 20)
+            , right: stationNameLable.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: margin, widthConstant: 0, heightConstant: viewHeights["subLabelsHeigth"]!)
         
+        viewHeights["directionTopOffset"] = -3
+        directionArea.anchor(top: distanceLable.bottomAnchor, left: locationIcon.rightAnchor, bottom: nil
+            , right: distanceLable.rightAnchor, topConstant: viewHeights["directionTopOffset"]!, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         locationIcon.anchor(top: directionArea.topAnchor, left: timeLable.leftAnchor, bottom: directionArea.bottomAnchor, right: directionArea.leftAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: margin, widthConstant: 30, heightConstant: 0)
         
-        directionArea.anchor(top: distanceLable.bottomAnchor, left: locationIcon.rightAnchor, bottom: nil
-            , right: distanceLable.rightAnchor, topConstant: -5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        viewHeights["stackViewTopoffset"] = 0
+        viewHeights["stackViewHeigth"] = 40
+        stackViewContainer.anchor(top: directionArea.bottomAnchor, left: timeLable.leftAnchor, bottom: nil, right: distanceLable.rightAnchor, topConstant: viewHeights["stackViewTopoffset"]!, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: viewHeights["stackViewHeigth"]!)
         
-        stackViewContainer.anchor(top: directionArea.bottomAnchor, left: timeLable.leftAnchor, bottom: nil, right: distanceLable.rightAnchor, topConstant: -5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)
+        viewHeights["directionsButtonTopoffset"] = 15
+        viewHeights["directionsButtonHeigth"] = 40
+        directionsButton.anchor(top: stackViewContainer.bottomAnchor, left: timeLable.leftAnchor, bottom: nil, right: distanceLable.rightAnchor, topConstant: viewHeights["directionsButtonTopoffset"]!, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: viewHeights["directionsButtonHeigth"]!)
         
-        directionsButton.anchor(top: stackViewContainer.bottomAnchor, left: timeLable.leftAnchor, bottom: nil, right: distanceLable.rightAnchor, topConstant: 15, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)
+        viewHeights["BottomMargion"] = 10
+    }
+    
+    public func estimateHeight(text: String) -> CGFloat {
+        var heigth: CGFloat = 0
+        
+        for (_ ,item) in viewHeights {
+            heigth = heigth + item
+        }
+        
+        let size = CGSize(width: directionArea.bounds.width, height: 1000)
+        let attributes = [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 14)
+        ]
+        let textAreaVerticalMargin: CGFloat = 14 // directionArea.contentInset.top + directionArea.contentInset.bottom
+        let textRect = NSString(string: text).boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes, context: nil)
+        let totalHeigth = textRect.height + textAreaVerticalMargin
+        
+        let locationIconHeigth: CGFloat = 66.5 // alto d ela imagen a con ancho de 30
+        
+        
+        return heigth + ((totalHeigth > locationIconHeigth) ? totalHeigth : locationIconHeigth)
     }
 
 }

@@ -27,6 +27,11 @@ extension DataBucket: ConnectBucketDelegate {
         let request = resource.toRequest(baseURL: baseURL)
         session.dataTask(with: request) { (data, response, error) in
             
+            guard let d = data else {
+                completion(.Failure(.Network(error!.localizedDescription)))
+                return
+            }
+                
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(.Failure(.Status("No Response")))
                 return
@@ -37,10 +42,6 @@ extension DataBucket: ConnectBucketDelegate {
                 return
             }
             
-            guard let d = data else {
-                completion(.Failure(.Network(error!.localizedDescription)))
-                return
-            }
             completion(.Success(d))
         }.resume()
     }

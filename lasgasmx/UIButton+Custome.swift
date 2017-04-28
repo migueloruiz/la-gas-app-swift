@@ -11,6 +11,7 @@ import UIKit
 enum UIMapControlButtonType {
     case navigation
     case controls
+    case refresh
 }
 class UIMapControlButton: UIButton {
     
@@ -31,6 +32,8 @@ class UIMapControlButton: UIButton {
     
     func getImageBy(_ type: UIMapControlButtonType ) -> UIImage{
         switch type {
+        case .refresh:
+            return #imageLiteral(resourceName: "refresh")
         case .controls:
             return #imageLiteral(resourceName: "controls")
         case .navigation:

@@ -17,7 +17,6 @@ let kMapStyle = "[{\"elementType\": \"labels\",\"stylers\": [{\"visibility\": \"
 
 class GasStationsMapController: NSObject {
 
-    
     internal let locationManager = CLLocationManager()
     lazy var gasApi: GasApiManager = {
         let configManager = (UIApplication.shared.delegate as! AppDelegate).configManager
@@ -39,8 +38,9 @@ class GasStationsMapController: NSObject {
     
     internal var userCordinates = CLLocationCoordinate2D()  {
         willSet(newLocation){
+            guard newLocation.latitude != 0.0 else { return }
             setCameraIn( cordinates: newLocation )
-            getSattions(location: newLocation)
+            getSations(location: newLocation)
             waitForLocationUpdate = false
         }
     }
@@ -89,8 +89,6 @@ class GasStationsMapController: NSObject {
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(GasStationsMapController.askForUserLocation), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
-        
-        updateUserLocation()
     }
     
     // MARK: Update Locations
@@ -101,8 +99,9 @@ class GasStationsMapController: NSObject {
     
     public func askForUserLocation() { waitForLocationUpdate = true }
     
-    // MARK: getSattions
-    internal func getSattions(location: CLLocationCoordinate2D) {
+    // MARK: getSations
+    internal func getSations(location: CLLocationCoordinate2D) {
+        UILoadingIndicator.shared.show()
         searchRegion = GMSCircle(position: location, radius: CLLocationDistance(distance * 1000))
         gasApi.getGasStationsFor(location: location, distance: distance,completition: { result in
             switch result {
@@ -110,8 +109,11 @@ class GasStationsMapController: NSObject {
                     DispatchQueue.main.async {
                         self.cleanMarkers()
                         for station in stations { self.addMarker(station: station) }
+                        UILoadingIndicator.shared.hide()
                     }
                 case .Failure(let error):
+                    UILoadingIndicator.shared.hide()
+                    // TODO: Print user mesage
                     print(error)
             }
         })
@@ -142,3 +144,5 @@ class GasStationsMapController: NSObject {
         markers.removeAll()
     }
 }
+
+

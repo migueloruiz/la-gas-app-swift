@@ -14,7 +14,6 @@ extension GasStationsMapController {
     }
 }
 
-
 extension GasStationsMapController: CLLocationManagerDelegate {
     internal func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard waitForLocationUpdate else { return }

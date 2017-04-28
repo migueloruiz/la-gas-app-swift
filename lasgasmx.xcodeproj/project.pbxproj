@@ -49,6 +49,7 @@
 		E97A81AC1E8C790100294DCE /* CollectionDatasorceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A81AB1E8C790100294DCE /* CollectionDatasorceCell.swift */; };
 		E97A81AE1E8C80A300294DCE /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A81AD1E8C80A300294DCE /* DefaultCell.swift */; };
 		E97A81B01E8C88F900294DCE /* GasPricesDatasorce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A81AF1E8C88F900294DCE /* GasPricesDatasorce.swift */; };
+		E988C3FA1EB4054400EB8CB0 /* UIToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E988C3F91EB4054400EB8CB0 /* UIToast.swift */; };
 		E98D53DB1EA698530055EEEE /* UIButton+Custome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98D53DA1EA698530055EEEE /* UIButton+Custome.swift */; };
 		E9932B1C1EA7E15900214520 /* GasStationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9932B1B1EA7E15900214520 /* GasStationModel.swift */; };
 		E9BEDDB61E8ED72200C0A41D /* SelectCityCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEDDB51E8ED72200C0A41D /* SelectCityCollectionController.swift */; };
@@ -99,6 +100,7 @@
 		E9E87BD01EAFB43F0012AB09 /* InfoView+ShowDirectionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E87BCF1EAFB43F0012AB09 /* InfoView+ShowDirectionOptions.swift */; };
 		E9E87BD21EB00B690012AB09 /* UIImage+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E87BD11EB00B690012AB09 /* UIImage+Helper.swift */; };
 		E9EB3A3E1E8AD57900D76215 /* UIColor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */; };
+		E9F0B4871EB3B4110072BF83 /* UILoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0B4861EB3B4110072BF83 /* UILoadingIndicator.swift */; };
 		E9F8687E1E956EDF007181BA /* JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8687D1E956EDF007181BA /* JsonParse.swift */; };
 		E9F868801E9589DE007181BA /* GasApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8687F1E9589DE007181BA /* GasApiManager.swift */; };
 		E9F868821E959447007181BA /* String+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F868811E959447007181BA /* String+Helper.swift */; };
@@ -193,6 +195,7 @@
 		E97A81AB1E8C790100294DCE /* CollectionDatasorceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionDatasorceCell.swift; sourceTree = "<group>"; };
 		E97A81AD1E8C80A300294DCE /* DefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		E97A81AF1E8C88F900294DCE /* GasPricesDatasorce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPricesDatasorce.swift; sourceTree = "<group>"; };
+		E988C3F91EB4054400EB8CB0 /* UIToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIToast.swift; sourceTree = "<group>"; };
 		E98D53DA1EA698530055EEEE /* UIButton+Custome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Custome.swift"; sourceTree = "<group>"; };
 		E9932B1B1EA7E15900214520 /* GasStationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasStationModel.swift; sourceTree = "<group>"; };
 		E9BEDDB51E8ED72200C0A41D /* SelectCityCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityCollectionController.swift; sourceTree = "<group>"; };
@@ -226,6 +229,7 @@
 		E9E87BCF1EAFB43F0012AB09 /* InfoView+ShowDirectionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InfoView+ShowDirectionOptions.swift"; sourceTree = "<group>"; };
 		E9E87BD11EB00B690012AB09 /* UIImage+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Helper.swift"; sourceTree = "<group>"; };
 		E9EB3A3D1E8AD57900D76215 /* UIColor+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Helper.swift"; path = "Helpers/Extension/UIColor+Helper.swift"; sourceTree = "<group>"; };
+		E9F0B4861EB3B4110072BF83 /* UILoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILoadingIndicator.swift; sourceTree = "<group>"; };
 		E9F8687D1E956EDF007181BA /* JsonParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParse.swift; sourceTree = "<group>"; };
 		E9F8687F1E9589DE007181BA /* GasApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasApiManager.swift; sourceTree = "<group>"; };
 		E9F868811E959447007181BA /* String+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Helper.swift"; sourceTree = "<group>"; };
@@ -518,6 +522,8 @@
 				E961AF1A1E980C87008173FB /* UICalcTextField+Costume.swift */,
 				E96DB6401EA582EA00C385BA /* UIPageControl+Custome.swift */,
 				E98D53DA1EA698530055EEEE /* UIButton+Custome.swift */,
+				E9F0B4861EB3B4110072BF83 /* UILoadingIndicator.swift */,
+				E988C3F91EB4054400EB8CB0 /* UIToast.swift */,
 			);
 			name = "General Custome UI";
 			sourceTree = "<group>";
@@ -903,6 +909,7 @@
 				CAE323591E8DFDDC005871F7 /* UIStackView+Helpers.swift in Sources */,
 				E915056E1EB2927A00C20FA4 /* UserDefaultPricesID.swift in Sources */,
 				E97A81A81E8C77EE00294DCE /* CollectionDatasourceController.swift in Sources */,
+				E988C3FA1EB4054400EB8CB0 /* UIToast.swift in Sources */,
 				E9BEDDB81E8ED85F00C0A41D /* SelectCityDatasource.swift in Sources */,
 				E9DE33AD1E96C1AA006498EF /* UINavigationItem+Helper.swift in Sources */,
 				E97A81AA1E8C78BF00294DCE /* CollectionDatasorce.swift in Sources */,
@@ -919,6 +926,7 @@
 				E9F868821E959447007181BA /* String+Helper.swift in Sources */,
 				E9DE33AF1E96C88E006498EF /* Timestamp.swift in Sources */,
 				E9C808751EB1186F0003C193 /* CalcModels.swift in Sources */,
+				E9F0B4871EB3B4110072BF83 /* UILoadingIndicator.swift in Sources */,
 				E9112AC71E8195EE00B6E60F /* lasgasmx.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
