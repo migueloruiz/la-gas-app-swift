@@ -17,11 +17,16 @@ enum UIBackButtonType {
 class UIBackButton: UIButton {
 
     init( withTarget target: Any?, action: Selector, type: UIBackButtonType ){
-        super.init(frame: .zero)
+        super.init(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        self.frame = CGRect(x:0 , y:0, width: 20, height: 20)
         self.backgroundColor = .clear
         self.addTarget(target, action: action, for: .touchUpInside)
-        self.setImage( getImageBy(type), for: .normal)
+        self.setImage( getImageBy(type).withRenderingMode(.alwaysTemplate), for: .normal)
+        self.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        self.tintColor = .white
+        self.contentMode = UIViewContentMode.center
         self.sizeToFit()
+        self.imageEdgeInsets = UIEdgeInsetsMake(0,0,0,0)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -9,6 +9,7 @@ target 'lasgasmx' do
 
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
+  pod 'Firebase/Crash'
   pod 'GoogleMaps'
 
   target 'lasgasmxTests' do

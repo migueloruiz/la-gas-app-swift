@@ -33,7 +33,7 @@ class CalcResultCell: CollectionDatasourceCell {
         l.textAlignment = .center
         l.tintColor = .black
         l.backgroundColor = .white
-        l.layer.cornerRadius = 20
+        l.layer.cornerRadius = 10
         l.clipsToBounds = true
         return l
     }()
@@ -43,7 +43,7 @@ class CalcResultCell: CollectionDatasourceCell {
         addSubview(resultLable)
         
         fuelLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: resultLable.leftAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        resultLable.anchor(top: topAnchor, left: fuelLabel.rightAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 5, rightConstant: 15, widthConstant: frame.width * 0.6, heightConstant: 0)
+        resultLable.anchor(top: topAnchor, left: fuelLabel.rightAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 15, leftConstant: 0, bottomConstant: 15, rightConstant: 15, widthConstant: frame.width * 0.6, heightConstant: 0)
     }
     
     func setColor(by type: FuelType) {

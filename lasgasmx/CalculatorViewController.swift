@@ -41,14 +41,26 @@ class CalculatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.isNavigationBarHidden = false
         view.backgroundColor = .white
         
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.backgroundColor = .diesel
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = .diesel
+        self.navigationController?.navigationBar.tintColor = .diesel
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.diesel]
+        self.navigationController?.navigationBar.hiddeShadow()
+        
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        
         let backButton = UIBackButton(withTarget: self, action: #selector(CalculatorViewController.popView), type: .back)
+        backButton.frame = CGRect(x:0 , y:0, width: 20, height: 20)
         let backButtonItem:UIBarButtonItem = UIBarButtonItem(customView: backButton)
         self.navigationItem.leftBarButtonItem  = backButtonItem
+
         
         let editButton = UIBackButton(withTarget: self, action: #selector(CalculatorViewController.openEdit), type: .edit)
+        editButton.frame = CGRect(x:0 , y:0, width: 20, height: 20)
         let editButtonItem:UIBarButtonItem = UIBarButtonItem(customView: editButton)
         self.navigationItem.rightBarButtonItem  = editButtonItem
         
@@ -58,13 +70,17 @@ class CalculatorViewController: UIViewController {
         amountInput.delegate = self
         
         setSubviews()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(CalculatorViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     }
     
     func setSubviews() {
+        view.backgroundColor = .diesel
+        
         view.addSubview(amountInput)
         view.addSubview(calcResultsView)
         
-        amountInput.anchor(top: view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 60 + offset, leftConstant: 20, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 40)
+        amountInput.anchor(top: view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: offset - 10, leftConstant: 20, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 60)
         
         calcResultsView.anchor(top: amountInput.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: offset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
@@ -74,6 +90,14 @@ class CalculatorViewController: UIViewController {
     func openEdit(){
         guard let nav = self.navigationController else { return }
         nav.pushViewController(NewLocationViewController(gasPrice: price) , animated: true)
+    }
+    
+    func keyboardWillShow(notification:NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
+        
+        calcResultController.keboardHeigth = keyboardFrame.size.height
+        calcResultController.datasorseUpdate()
     }
     
 }

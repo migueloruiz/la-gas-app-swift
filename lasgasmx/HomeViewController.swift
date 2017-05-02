@@ -101,6 +101,8 @@ class HomeViewController: UIViewController {
     func setupNavigationBar() {
         guard let nav = self.navigationController else { return }
         nav.isNavigationBarHidden = true
+        
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
     }
     
     func setupSubViews() {
@@ -189,6 +191,8 @@ class HomeViewController: UIViewController {
             self.view.layoutIfNeeded()
         })
     }
+    
+    
     
 }
 

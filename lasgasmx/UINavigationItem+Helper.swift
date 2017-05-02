@@ -14,7 +14,7 @@ extension UINavigationItem {
         
         let titleLabel = UILabel()
         titleLabel.backgroundColor = .clear
-        titleLabel.textColor = .black
+        titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
         titleLabel.text = title
         titleLabel.textAlignment = .center
@@ -22,7 +22,7 @@ extension UINavigationItem {
         
         let subtitleLabel = UILabel()
         subtitleLabel.backgroundColor = .clear
-        subtitleLabel.textColor = .black
+        subtitleLabel.textColor = .white
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.text = subtitle
         subtitleLabel.textAlignment = .center
@@ -41,3 +41,13 @@ extension UINavigationItem {
         self.titleView = titleView
     }
 }
+
+extension UINavigationBar {
+    
+    func hiddeShadow() {
+        self.setBackgroundImage(UIImage(), for: .default)
+        self.shadowImage = UIImage()
+    }
+
+}
+

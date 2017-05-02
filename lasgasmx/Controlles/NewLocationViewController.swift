@@ -38,6 +38,9 @@ class NewLocationViewController: UIViewController{
         layout.sectionHeadersPinToVisibleBounds = true
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
+        
+        let cancelButtonAttributes: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String : AnyObject], for: UIControlState.normal)
         return cv
     }()
     
@@ -84,6 +87,7 @@ class NewLocationViewController: UIViewController{
         self.navigationItem.titleView = searchController.searchBar
         
         let exitButton = UIBackButton(withTarget: self, action: #selector(NewLocationViewController.popView), type: .cross)
+        exitButton.frame = CGRect(x:0 , y:0, width: 20, height: 20)
         let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: exitButton)
         self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
     }
@@ -144,6 +148,8 @@ class NewLocationViewController: UIViewController{
         saveButton.isHidden = value
         saveButton.alpha = value ? 0 : 1
     }
+    
+    
 
 }
 

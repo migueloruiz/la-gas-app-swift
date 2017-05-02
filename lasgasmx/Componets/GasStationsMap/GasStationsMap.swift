@@ -101,6 +101,7 @@ class GasStationsMapController: NSObject {
     
     // MARK: getSations
     internal func getSations(location: CLLocationCoordinate2D) {
+        UIToast.shared.hide()
         UILoadingIndicator.shared.show()
         searchRegion = GMSCircle(position: location, radius: CLLocationDistance(distance * 1000))
         gasApi.getGasStationsFor(location: location, distance: distance,completition: { result in
@@ -115,6 +116,7 @@ class GasStationsMapController: NSObject {
                     UILoadingIndicator.shared.hide()
                     // TODO: Print user mesage
                     print(error)
+                    UIToast.shared.show(type: .Wifi, message: "Hemos detecado problemas con tu red. Revisa tu conexion e intentalo de nuevo")
             }
         })
     }

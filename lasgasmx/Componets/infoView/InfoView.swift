@@ -77,6 +77,7 @@ class InfoView: UIView {
         t.isSelectable = true
         t.isScrollEnabled = false
         t.backgroundColor = .clear
+        t.tintColor = .softBlue
         return t
     }()
     

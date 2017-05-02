@@ -14,7 +14,7 @@ protocol UICalcTextFieldDelegate {
 
 class UICalcTextField: UIView {
     
-    let butonsWidth: CGFloat = 36
+    let butonsWidth: CGFloat = 60
     var delegate: UICalcTextFieldDelegate? = nil
     
     lazy var moneyButton: UICalcButton = {
@@ -31,6 +31,8 @@ class UICalcTextField: UIView {
         t.translatesAutoresizingMaskIntoConstraints = true
         t.textAlignment = .right
         t.placeholder = "0.0"
+        t.textColor = .diesel
+        t.tintColor = .diesel
         t.keyboardType = UIKeyboardType.decimalPad
         return t
     }()
@@ -54,8 +56,8 @@ class UICalcTextField: UIView {
     
     func styleView() {
         self.translatesAutoresizingMaskIntoConstraints = true
-        self.backgroundColor = .red
-        self.layer.cornerRadius = 20
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 30
 //        self.layer.borderWidth = 2
 //        self.layer.borderColor = UIColor.lightGray.cgColor
         self.inputMode = true
@@ -66,9 +68,9 @@ class UICalcTextField: UIView {
         
         textField.anchor(top: topAnchor, left: moneyButton.rightAnchor, bottom: bottomAnchor, right: litersButton.leftAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 0)
         
-        moneyButton.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, topConstant: 2, leftConstant: 2, bottomConstant: 2, rightConstant: 0, widthConstant: butonsWidth, heightConstant: 0)
+        moneyButton.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, topConstant: 4, leftConstant: 4, bottomConstant: 4, rightConstant: 0, widthConstant: butonsWidth - 8, heightConstant: butonsWidth - 8)
         
-        litersButton.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, topConstant: 2, leftConstant: 0, bottomConstant: 2, rightConstant: 2, widthConstant: butonsWidth, heightConstant: 0)
+        litersButton.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, topConstant: 4, leftConstant: 0, bottomConstant: 4, rightConstant: 4, widthConstant: butonsWidth - 8, heightConstant: butonsWidth - 8)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -94,19 +96,6 @@ class UICalcTextField: UIView {
         let value = Float(self.textField.text ?? "0") ?? 0
         return (inputMode) ? CalcType.liters(value) : CalcType.pesos(value)
     }
-    
-//    private let padding = UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45)
-//    override func textRect(forBounds bounds: CGRect) -> CGRect {
-//        return UIEdgeInsetsInsetRect(bounds, padding)
-//    }
-//
-//    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-//        return UIEdgeInsetsInsetRect(bounds, padding)
-//    }
-//
-//    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-//        return UIEdgeInsetsInsetRect(bounds, padding)
-//    }
 
 }
 
@@ -119,11 +108,7 @@ class UICalcButton: UIButton {
     
     var isActive: Bool = true {
         didSet{
-            if isActive {
-                self.backgroundColor = .black
-            } else {
-                self.backgroundColor = .lightGray
-            }
+            self.backgroundColor = isActive ? UIColor.diesel : UIColor.lightGray.withAlphaComponent(0.5)
         }
     }
     
@@ -137,7 +122,7 @@ class UICalcButton: UIButton {
         
         self.backgroundColor = .clear
         self.tintColor = .white
-        self.layer.cornerRadius = 20
+        self.layer.cornerRadius = CGFloat((60  - 8) / 2)
         self.translatesAutoresizingMaskIntoConstraints = true
         
         self.imageEdgeInsets = UIEdgeInsetsMake(7, 7, 7, 7)

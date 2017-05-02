@@ -9,53 +9,78 @@
 import UIKit
 import Foundation
 
+enum UIToastIcons: String {
+    case Wifi = "wifi"
+}
+
 public class UIToast {
     
     private var overlayView = UIView()
-    private var activityIndicator = UIActivityIndicatorView()
-    private var visible = false {
-        didSet{
-            UIApplication.shared.isNetworkActivityIndicatorVisible = visible
-        }
-    }
+    private var mesageImage = UIImageView()
+    private var mesageLable = UITextView()
+    private var visible = false
     
-    var count = 0
-    
-    class var shared: UILoadingIndicator {
+    class var shared: UIToast {
         struct Static {
-            static let instance: UILoadingIndicator = UILoadingIndicator()
+            static let instance: UIToast = UIToast()
         }
         return Static.instance
     }
     
-    public func show() {
+    func show(type: UIToastIcons, message: String) {
         guard !visible else { return }
         guard let window = UIApplication.shared.keyWindow else { return }
         DispatchQueue.main.async {
-            self.overlayView = UIView(frame: UIScreen.main.bounds)
+            self.overlayView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: 50))
             self.overlayView.clipsToBounds = true
-            self.overlayView.center = window.center
-            self.overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-            self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-            self.overlayView.addSubview(self.activityIndicator)
-            self.activityIndicator.fillSuperview()
-            self.activityIndicator.startAnimating()
+            self.overlayView.backgroundColor = .red
+            
+            self.addSubviews (type: type, message: message)
+
             window.addSubview(self.overlayView)
             self.visible = true
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.overlayView.center.y = self.overlayView.center.y - 50
+            })
         }
     }
     
     public func hide() {
+        guard visible else { return }
         DispatchQueue.main.async {
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.removeFromSuperview()
-            self.overlayView.removeFromSuperview()
-            self.visible = false
+            UIView.animate(withDuration: 0.3, animations: {
+                self.overlayView.center.y = self.overlayView.center.y + 50
+            }, completion: { flag in
+                self.overlayView.removeFromSuperview()
+                self.visible = false
+            })
         }
     }
     
     public func isVisible() -> Bool {
         return visible
+    }
+    
+    private func addSubviews (type: UIToastIcons, message: String) {
+        mesageImage.image = UIImage(named: type.rawValue)?.withRenderingMode(.alwaysTemplate)
+        mesageImage.tintColor = .white
+        mesageImage.contentMode = .scaleAspectFit
+        
+        mesageLable = UITextView()
+        mesageLable.text = message
+        mesageLable.textColor = .white
+        mesageLable.backgroundColor = .clear
+        mesageLable.isEditable = false
+        mesageLable.isSelectable = false
+        mesageLable.font = UIFont.systemFont(ofSize: 12)
+        
+        
+        overlayView.addSubview(mesageImage)
+        overlayView.addSubview(mesageLable)
+        
+        mesageLable.anchor(top: overlayView.topAnchor, left: mesageImage.rightAnchor, bottom: overlayView.bottomAnchor, right: overlayView.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        mesageImage.anchor(top: overlayView.topAnchor, left: overlayView.leftAnchor, bottom: overlayView.bottomAnchor, right: mesageLable.leftAnchor, topConstant: 7, leftConstant: 5, bottomConstant: 7, rightConstant: 5, widthConstant: 50, heightConstant: 0)
     }
 }
 
