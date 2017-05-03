@@ -397,14 +397,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		E95D45881EB90A5200758608 /* UIToast */ = {
-			isa = PBXGroup;
-			children = (
-				E988C3F91EB4054400EB8CB0 /* UIToast.swift */,
-			);
-			name = UIToast;
-			sourceTree = "<group>";
-		};
 		E961AF111E97EE37008173FB /* CalcResults */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,7 +523,7 @@
 				E96DB6401EA582EA00C385BA /* UIPageControl+Custome.swift */,
 				E98D53DA1EA698530055EEEE /* UIButton+Custome.swift */,
 				E9F0B4861EB3B4110072BF83 /* UILoadingIndicator.swift */,
-				E95D45881EB90A5200758608 /* UIToast */,
+				E988C3F91EB4054400EB8CB0 /* UIToast.swift */,
 			);
 			name = "General Custome UI";
 			sourceTree = "<group>";

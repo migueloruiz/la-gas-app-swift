@@ -11,6 +11,7 @@ import Foundation
 
 enum UIToastIcons: String {
     case Wifi = "wifi"
+    case Uups = "uups"
 }
 
 public class UIToast {
@@ -27,13 +28,13 @@ public class UIToast {
         return Static.instance
     }
     
-    func show(type: UIToastIcons, message: String) {
+    func show(type: UIToastIcons, message: String, color: UIColor) {
         guard !visible else { return }
         guard let window = UIApplication.shared.keyWindow else { return }
         DispatchQueue.main.async {
             self.overlayView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: 50))
             self.overlayView.clipsToBounds = true
-            self.overlayView.backgroundColor = .red
+            self.overlayView.backgroundColor = color
             
             self.addSubviews (type: type, message: message)
 

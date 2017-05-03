@@ -74,6 +74,9 @@ class NewLocationViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        
         setSubviews()
         
         if let price = gasPrice {
@@ -148,8 +151,6 @@ class NewLocationViewController: UIViewController{
         saveButton.isHidden = value
         saveButton.alpha = value ? 0 : 1
     }
-    
-    
 
 }
 

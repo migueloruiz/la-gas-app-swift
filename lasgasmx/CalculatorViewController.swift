@@ -72,6 +72,12 @@ class CalculatorViewController: UIViewController {
         setSubviews()
         
         NotificationCenter.default.addObserver(self, selector: #selector(CalculatorViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        setNeedsStatusBarAppearanceUpdate()
     }
     
     func setSubviews() {
@@ -99,7 +105,6 @@ class CalculatorViewController: UIViewController {
         calcResultController.keboardHeigth = keyboardFrame.size.height
         calcResultController.datasorseUpdate()
     }
-    
 }
 
 extension CalculatorViewController: UICalcTextFieldDelegate {

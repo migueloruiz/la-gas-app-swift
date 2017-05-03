@@ -114,9 +114,15 @@ class GasStationsMapController: NSObject {
                     }
                 case .Failure(let error):
                     UILoadingIndicator.shared.hide()
-                    // TODO: Print user mesage
+                    //TODO: Crash Logs
                     print(error)
-                    UIToast.shared.show(type: .Wifi, message: "Hemos detecado problemas con tu red. Revisa tu conexion e intentalo de nuevo")
+                    switch error {
+                        case .Network(let _):
+                            UIToast.shared.show(type: .Wifi, message: "Hemos detecado problemas con tu red. Revisa tu conexion e intentalo de nuevo", color: .magna)
+                        default:
+                            UIToast.shared.show(type: .Uups, message: "Ha surgido un problema al actualizar los contenidos, por favor intentalo de nuevo.", color: .orange)
+                    
+                    }
             }
         })
     }
