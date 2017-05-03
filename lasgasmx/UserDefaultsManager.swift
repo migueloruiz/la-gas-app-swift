@@ -10,11 +10,12 @@ import Foundation
 
 enum UserDefaultsKeys: String {
     case Index = "com.lagasmx.satateLocationsINDEX.key"
+    case FirstLaunch = "com.lagasmx.FirstLaunch.key"
 }
 
 class UserDefaultsManager {
     
-    var userDefaults: UserDefaults
+    private let userDefaults: UserDefaults
     
     init() {
         self.userDefaults = UserDefaults.standard
@@ -24,6 +25,10 @@ class UserDefaultsManager {
         guard let ud = UserDefaults.init(suiteName: suitName) else { fatalError("\(suitName) error") }
         self.userDefaults = ud
         self.userDefaults.synchronize()
+    }
+    
+    func isFistLaunch() -> Bool? {
+        return userDefaults.object(forKey: UserDefaultsKeys.FirstLaunch.rawValue) as? Bool
     }
     
     func retrieveIndexs() -> UserDefaultPricesID {

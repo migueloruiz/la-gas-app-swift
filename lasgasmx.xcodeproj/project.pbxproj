@@ -12,6 +12,7 @@
 		CAE323591E8DFDDC005871F7 /* UIStackView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE323581E8DFDDC005871F7 /* UIStackView+Helpers.swift */; };
 		CAE3235C1E8E1759005871F7 /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3235B1E8E1759005871F7 /* NewLocationViewController.swift */; };
 		DB70DF66F4F1D9BFA05867F8 /* Pods_lasgasmxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D074A889606F99E424CFDD9A /* Pods_lasgasmxTests.framework */; };
+		E907F8181EBA478A001B4040 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907F8171EBA478A001B4040 /* TutorialViewController.swift */; };
 		E90E73411E8D848400041042 /* GasPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E73401E8D848400041042 /* GasPriceCell.swift */; };
 		E9112ABF1E8195EE00B6E60F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9112ABE1E8195EE00B6E60F /* AppDelegate.swift */; };
 		E9112AC11E8195EE00B6E60F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9112AC01E8195EE00B6E60F /* HomeViewController.swift */; };
@@ -156,6 +157,7 @@
 		CAE3235B1E8E1759005871F7 /* NewLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewLocationViewController.swift; path = Controlles/NewLocationViewController.swift; sourceTree = "<group>"; };
 		D074A889606F99E424CFDD9A /* Pods_lasgasmxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lasgasmxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0597AB28257458B092F15E6 /* Pods_lasgasmxUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lasgasmxUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E907F8171EBA478A001B4040 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		E90E73401E8D848400041042 /* GasPriceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceCell.swift; sourceTree = "<group>"; };
 		E9112ABB1E8195EE00B6E60F /* lasgasmx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lasgasmx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9112ABE1E8195EE00B6E60F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -292,6 +294,13 @@
 			name = GasPricesCarrousel;
 			sourceTree = "<group>";
 		};
+		E907F8191EBA4A34001B4040 /* tutorialCollection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = tutorialCollection;
+			sourceTree = "<group>";
+		};
 		E9112AB21E8195EE00B6E60F = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +368,7 @@
 				E9112AC01E8195EE00B6E60F /* HomeViewController.swift */,
 				CAE3235B1E8E1759005871F7 /* NewLocationViewController.swift */,
 				E9DE33A71E96B755006498EF /* CalculatorViewController.swift */,
+				E907F8171EBA478A001B4040 /* TutorialViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -452,6 +462,7 @@
 		E97A81981E8C29BF00294DCE /* Componets */ = {
 			isa = PBXGroup;
 			children = (
+				E907F8191EBA4A34001B4040 /* tutorialCollection */,
 				E9DE33A91E96B98D006498EF /* General Custome UI */,
 				E9D738931EAA70D2001D36CF /* InfoView */,
 				E96DB63B1EA571FD00C385BA /* GasStationsMapView */,
@@ -1032,6 +1043,7 @@
 				E96254E91E941164004CEB66 /* Request.swift in Sources */,
 				E9DE33AB1E96B9B4006498EF /* UIBackButton+Custome.swift in Sources */,
 				E961AF1B1E980C87008173FB /* UICalcTextField+Costume.swift in Sources */,
+				E907F8181EBA478A001B4040 /* TutorialViewController.swift in Sources */,
 				E96254ED1E946266004CEB66 /* GasPriceStorageManager.swift in Sources */,
 				E98D53DB1EA698530055EEEE /* UIButton+Custome.swift in Sources */,
 				E961AF131E97EE99008173FB /* CalcResultsCollectionController.swift in Sources */,

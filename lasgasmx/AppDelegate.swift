@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var mainNavigation: UINavigationController? = nil
     let configManager = PrivateKeysManager(byPlistFile: "PrivateKeys")
+    var rootViewController: UIViewController = UIViewController()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -27,24 +28,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         
         GMSServices.provideAPIKey(configManager["GOOGLE_MAPS_KEY"])
-        let adsManager = AdModManager.init(key: configManager["AD_MOD_ID"])
         
-        // TODO: Hacer un Routing o manejador de vista
-        let homeViewController = HomeViewController( adsManager: adsManager )
-        
-        // TODO: Revisar si es la primera vez que entra el ususraio
-        // Y mandar a Turorial
+        let userDefaults = UserDefaultsManager()
+        let firstLaunch = userDefaults.isFistLaunch()
         
         // TODO: Revisar si la locacion esta Activa
         // GasStationsMapController.isLocationServicesEnabled()
         // Y mandar a Mapa o vista de error
         
-        mainNavigation = UINavigationController(rootViewController: homeViewController )
-        mainNavigation?.navigationBar.backIndicatorImage = UIImage(named: "back")
-        mainNavigation?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "back")        
+        if firstLaunch == nil {
+            rootViewController = TutorialViewController()
+        } else {
+            let adsManager = AdModManager.init(key: configManager["AD_MOD_ID"])
+            rootViewController = HomeViewController( adsManager: adsManager )
+        }
         
+        mainNavigation = UINavigationController(rootViewController: rootViewController )
         window?.rootViewController = mainNavigation
-        
         return true
     }
 
